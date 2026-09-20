@@ -25,16 +25,7 @@ import { products } from '../data/products';
         </div>
       </div>
       <div class="hero-image">
-        <div class="hero-image-placeholder" aria-hidden="true">
-          <svg viewBox="0 0 480 480" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect width="480" height="480" fill="#2a4a2a"/>
-            <circle cx="240" cy="200" r="120" fill="#1b2e1b"/>
-            <path d="M120 360 Q240 280 360 360" stroke="#c9943a" stroke-width="3" fill="none"/>
-            <circle cx="240" cy="200" r="60" fill="#c9943a" opacity="0.2"/>
-            <text x="240" y="210" text-anchor="middle" fill="#c9943a" font-size="48" font-family="serif">☕</text>
-            <text x="240" y="400" text-anchor="middle" fill="#888" font-size="14" font-family="sans-serif">Product photo coming soon</text>
-          </svg>
-        </div>
+        <img src="/logo.png" alt="Mayan Origin Coffee Co." class="hero-logo" width="480" height="480" />
       </div>
     </div>
   </section>
@@ -210,20 +201,14 @@ import { products } from '../data/products';
   .hero-image {
     display: flex;
     justify-content: center;
+    align-items: center;
   }
 
-  .hero-image-placeholder {
+  .hero-logo {
     width: 100%;
     max-width: 420px;
-    border-radius: 12px;
-    overflow: hidden;
-    box-shadow: 0 24px 60px rgba(0,0,0,0.4);
-  }
-
-  .hero-image-placeholder svg {
-    display: block;
-    width: 100%;
     height: auto;
+    filter: drop-shadow(0 24px 48px rgba(0,0,0,0.5));
   }
 
   /* TRUST BAR */
