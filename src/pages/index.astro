@@ -1,0 +1,451 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ProductCard from '../components/ProductCard.astro';
+import { products } from '../data/products';
+---
+
+<BaseLayout
+  title="Mayan Origin Coffee — Single-Origin from Honduras"
+  description="Premium single-origin coffee from Copán, Honduras. Three distinct roasts named after Mayan gods. Every order packed fresh and shipped directly to your door."
+>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-inner container">
+      <div class="hero-text">
+        <p class="hero-eyebrow">Single-Origin · Copán, Honduras</p>
+        <h1 class="hero-title">Coffee Rooted in Ancient Highlands</h1>
+        <p class="hero-sub">
+          Three roasts. Three Mayan names. One mountain range that has grown exceptional coffee for centuries.
+          Packed fresh in Honduras and shipped straight to your door.
+        </p>
+        <div class="hero-actions">
+          <a href="/shop/" class="btn btn-primary">Shop All Coffees</a>
+          <a href="/about/" class="btn btn-outline">Our Story</a>
+        </div>
+      </div>
+      <div class="hero-image">
+        <div class="hero-image-placeholder" aria-hidden="true">
+          <svg viewBox="0 0 480 480" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect width="480" height="480" fill="#2a4a2a"/>
+            <circle cx="240" cy="200" r="120" fill="#1b2e1b"/>
+            <path d="M120 360 Q240 280 360 360" stroke="#c9943a" stroke-width="3" fill="none"/>
+            <circle cx="240" cy="200" r="60" fill="#c9943a" opacity="0.2"/>
+            <text x="240" y="210" text-anchor="middle" fill="#c9943a" font-size="48" font-family="serif">☕</text>
+            <text x="240" y="400" text-anchor="middle" fill="#888" font-size="14" font-family="sans-serif">Product photo coming soon</text>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRUST BAR -->
+  <section class="trust-bar">
+    <div class="container">
+      <ul class="trust-list">
+        <li>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 2L3 7l9 5 9-5-9-5z"/><path d="M3 17l9 5 9-5"/><path d="M3 12l9 5 9-5"/></svg>
+          <span>Free shipping on orders over $60</span>
+        </li>
+        <li>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          <span>Every order packed fresh in Honduras</span>
+        </li>
+        <li>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          <span>Ships within 3 business days</span>
+        </li>
+        <li>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          <span>Direct from producer</span>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- FEATURED PRODUCTS -->
+  <section class="products-section">
+    <div class="container">
+      <div class="section-header">
+        <h2>Three Roasts. Three Mayan Gods.</h2>
+        <p>Each coffee named after a deity of the ancient Maya — bold, bright, or balanced. Which one calls to you?</p>
+      </div>
+      <div class="products-grid">
+        {products.map(product => (
+          <ProductCard product={product} />
+        ))}
+      </div>
+      <div class="products-cta">
+        <a href="/shop/" class="btn btn-outline">View All Coffees</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ORIGIN STORY -->
+  <section class="origin-section">
+    <div class="container">
+      <div class="origin-inner">
+        <div class="origin-text">
+          <p class="section-eyebrow">Where It Comes From</p>
+          <h2>Grown in the Highlands of Copán</h2>
+          <p>
+            Copán sits in the western mountains of Honduras at altitudes between 1,300 and 1,700 meters above sea level.
+            The same fertile volcanic soil that sustained the ancient Maya civilization now grows some of the finest
+            arabica coffee in Central America.
+          </p>
+          <p>
+            We source directly from small cooperative farms — CAFICO and COCAFCAL — whose families have cultivated
+            these highlands for generations. No middlemen. No mystery.
+          </p>
+          <a href="/about/" class="btn btn-outline">Read Our Story</a>
+        </div>
+        <div class="origin-stats">
+          <div class="stat">
+            <span class="stat-number">1,400+</span>
+            <span class="stat-label">Meters above sea level</span>
+          </div>
+          <div class="stat">
+            <span class="stat-number">100%</span>
+            <span class="stat-label">Arabica beans</span>
+          </div>
+          <div class="stat">
+            <span class="stat-number">2</span>
+            <span class="stat-label">Cooperative partners</span>
+          </div>
+          <div class="stat">
+            <span class="stat-number">3</span>
+            <span class="stat-label">Roast profiles</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY US -->
+  <section class="why-section">
+    <div class="container">
+      <h2 class="why-title">Why Mayan Origin</h2>
+      <div class="why-grid">
+        <div class="why-card">
+          <div class="why-icon">🌿</div>
+          <h3>Direct Trade</h3>
+          <p>We pay cooperatives fairly and know exactly where every bag comes from.</p>
+        </div>
+        <div class="why-card">
+          <div class="why-icon">📦</div>
+          <h3>Packed Fresh</h3>
+          <p>Every order is packed to order in Honduras — not sitting in a warehouse for months.</p>
+        </div>
+        <div class="why-card">
+          <div class="why-icon">🏔️</div>
+          <h3>High Altitude</h3>
+          <p>Coffee grown above 1,400 meters develops slower, producing denser, more complex beans.</p>
+        </div>
+        <div class="why-card">
+          <div class="why-icon">✈️</div>
+          <h3>Ships to the US</h3>
+          <p>Delivered to your door in the continental United States, straight from Honduras.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+  /* HERO */
+  .hero {
+    background: var(--green);
+    color: #fff;
+    padding: 5rem 0 4rem;
+  }
+
+  .hero-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+
+  .hero-eyebrow {
+    font-size: 0.78rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--gold);
+    margin: 0 0 1rem;
+    font-family: 'DM Sans', sans-serif;
+  }
+
+  .hero-title {
+    font-size: clamp(2rem, 4vw, 3rem);
+    color: #fff;
+    margin: 0 0 1.25rem;
+    line-height: 1.15;
+  }
+
+  .hero-sub {
+    font-size: 1.05rem;
+    color: rgba(255,255,255,0.75);
+    line-height: 1.7;
+    margin: 0 0 2rem;
+    max-width: 480px;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .hero .btn-outline {
+    color: #fff;
+    border-color: rgba(255,255,255,0.4);
+  }
+  .hero .btn-outline:hover {
+    background: rgba(255,255,255,0.1);
+    color: #fff;
+  }
+
+  .hero-image {
+    display: flex;
+    justify-content: center;
+  }
+
+  .hero-image-placeholder {
+    width: 100%;
+    max-width: 420px;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 24px 60px rgba(0,0,0,0.4);
+  }
+
+  .hero-image-placeholder svg {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  /* TRUST BAR */
+  .trust-bar {
+    background: #fff;
+    border-bottom: 1px solid var(--border);
+    padding: 1rem 0;
+  }
+
+  .trust-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .trust-list li {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.85rem;
+    color: var(--muted);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 500;
+  }
+
+  .trust-list svg {
+    color: var(--gold);
+    flex-shrink: 0;
+  }
+
+  /* PRODUCTS */
+  .products-section {
+    padding: 5rem 0;
+  }
+
+  .section-header {
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto 3rem;
+  }
+
+  .section-header h2 {
+    font-size: clamp(1.6rem, 3vw, 2.2rem);
+    margin-bottom: 0.75rem;
+  }
+
+  .section-header p {
+    color: var(--muted);
+    font-size: 1rem;
+    margin: 0;
+  }
+
+  .products-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.75rem;
+  }
+
+  .products-cta {
+    text-align: center;
+    margin-top: 2.5rem;
+  }
+
+  /* ORIGIN */
+  .origin-section {
+    background: var(--green);
+    color: #fff;
+    padding: 5rem 0;
+  }
+
+  .origin-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: center;
+  }
+
+  .section-eyebrow {
+    font-size: 0.78rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--gold);
+    margin: 0 0 1rem;
+    font-family: 'DM Sans', sans-serif;
+  }
+
+  .origin-text h2 {
+    color: #fff;
+    font-size: clamp(1.6rem, 3vw, 2.2rem);
+    margin-bottom: 1.25rem;
+  }
+
+  .origin-text p {
+    color: rgba(255,255,255,0.75);
+    line-height: 1.75;
+    margin-bottom: 1.25rem;
+  }
+
+  .origin-text .btn-outline {
+    color: #fff;
+    border-color: rgba(255,255,255,0.4);
+    margin-top: 0.5rem;
+  }
+  .origin-text .btn-outline:hover {
+    background: rgba(255,255,255,0.1);
+    color: #fff;
+  }
+
+  .origin-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+  }
+
+  .stat {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .stat-number {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--gold);
+    line-height: 1;
+  }
+
+  .stat-label {
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.6);
+    font-family: 'DM Sans', sans-serif;
+  }
+
+  /* WHY */
+  .why-section {
+    padding: 5rem 0;
+    background: #fff;
+  }
+
+  .why-title {
+    text-align: center;
+    font-size: clamp(1.6rem, 3vw, 2.2rem);
+    margin-bottom: 3rem;
+  }
+
+  .why-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+  }
+
+  .why-card {
+    text-align: center;
+    padding: 2rem 1.5rem;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    transition: box-shadow 0.2s, transform 0.2s;
+  }
+  .why-card:hover {
+    box-shadow: 0 8px 28px rgba(0,0,0,0.08);
+    transform: translateY(-3px);
+  }
+
+  .why-icon {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  .why-card h3 {
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .why-card p {
+    font-size: 0.9rem;
+    color: var(--muted);
+    margin: 0;
+    line-height: 1.65;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    .hero-inner,
+    .origin-inner {
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+    }
+
+    .hero-image { display: none; }
+
+    .products-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .why-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 560px) {
+    .products-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .why-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .trust-list {
+      flex-direction: column;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .origin-stats {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+</style>
