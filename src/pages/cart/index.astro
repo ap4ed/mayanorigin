@@ -196,9 +196,34 @@ import { products } from '../../data/products';
     });
   }
 
-  // Checkout placeholder
-  document.getElementById('checkoutBtn')?.addEventListener('click', () => {
-    alert('Checkout coming soon — Stripe integration in progress.');
+  // Checkout — calls Stripe API
+  document.getElementById('checkoutBtn')?.addEventListener('click', async () => {
+    const cart = loadCart();
+    if (cart.length === 0) return;
+
+    const btn = document.getElementById('checkoutBtn') as HTMLButtonElement;
+    btn.textContent = 'Redirecting to checkout…';
+    btn.disabled = true;
+
+    try {
+      const res = await fetch('/api/create-checkout', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ items: cart }),
+      });
+      const data = await res.json();
+      if (data.url) {
+        window.location.href = data.url;
+      } else {
+        alert(data.error ?? 'Checkout unavailable. Please try again.');
+        btn.textContent = 'Proceed to Checkout';
+        btn.disabled = false;
+      }
+    } catch {
+      alert('Connection error. Please try again.');
+      btn.textContent = 'Proceed to Checkout';
+      btn.disabled = false;
+    }
   });
 
   renderCart();

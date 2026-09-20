@@ -123,20 +123,54 @@ const bundleTotal = Object.values(product.prices)[0] + bundleItems.reduce((s, i)
   ogType="product"
 >
   <slot name="head">
+    <!-- Product schema -->
     <script type="application/ld+json" set:html={JSON.stringify({
       "@context": "https://schema.org",
       "@type": "Product",
-      "name": product.name,
+      "name": `${product.name} — ${product.roast} Coffee`,
       "description": product.description,
       "image": `https://mayanorigin.com${product.image}`,
       "brand": { "@type": "Brand", "name": "Mayan Origin Coffee" },
+      "countryOfOrigin": { "@type": "Country", "name": "Honduras" },
+      "category": "Coffee",
       "offers": Object.entries(product.prices).map(([size, price]) => ({
         "@type": "Offer",
         "name": size,
         "price": price,
         "priceCurrency": "USD",
         "availability": "https://schema.org/InStock",
+        "shippingDetails": {
+          "@type": "OfferShippingDetails",
+          "shippingDestination": { "@type": "DefinedRegion", "addressCountry": "US" },
+          "deliveryTime": { "@type": "ShippingDeliveryTime", "businessDays": { "@type": "QuantitativeValue", "minValue": 7, "maxValue": 14 } }
+        },
         "url": `https://mayanorigin.com/shop/${product.slug}/`
+      }))
+    })} />
+
+    <!-- BreadcrumbList schema -->
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://mayanorigin.com/" },
+        { "@type": "ListItem", "position": 2, "name": "Shop", "item": "https://mayanorigin.com/shop/" },
+        { "@type": "ListItem", "position": 3, "name": product.name, "item": `https://mayanorigin.com/shop/${product.slug}/` }
+      ]
+    })} />
+
+    <!-- FAQ schema (brew guide) -->
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": productBrewGuide.map((step, i) => ({
+        "@type": "Question",
+        "name": i === 0 ? `How do I grind ${product.name} coffee?` :
+                i === 1 ? `What is the coffee-to-water ratio for ${product.name}?` :
+                i === 2 ? `What water temperature should I use for ${product.name}?` :
+                i === 3 ? `How long should I brew ${product.name}?` :
+                `Best brewing tip for ${product.name}?`,
+        "acceptedAnswer": { "@type": "Answer", "text": step }
       }))
     })} />
   </slot>
@@ -444,9 +478,31 @@ const bundleTotal = Object.values(product.prices)[0] + bundleItems.reduce((s, i)
     } catch {}
   });
 
-  // Buy Now — placeholder until Stripe is wired
-  document.getElementById('buyNow')?.addEventListener('click', () => {
-    alert('Checkout coming soon!');
+  // Buy Now — direct to Stripe checkout
+  document.getElementById('buyNow')?.addEventListener('click', async () => {
+    const btn = document.getElementById('buyNow') as HTMLButtonElement;
+    btn.textContent = 'Redirecting…';
+    btn.disabled = true;
+
+    try {
+      const res = await fetch('/api/create-checkout', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ items: [{ slug, size: selectedSize, qty, price: prices[selectedSize] }] }),
+      });
+      const data = await res.json();
+      if (data.url) {
+        window.location.href = data.url;
+      } else {
+        alert(data.error ?? 'Checkout unavailable. Please try again.');
+        btn.textContent = 'Buy Now';
+        btn.disabled = false;
+      }
+    } catch {
+      alert('Connection error. Please try again.');
+      btn.textContent = 'Buy Now';
+      btn.disabled = false;
+    }
   });
 
   // Add Bundle — placeholder

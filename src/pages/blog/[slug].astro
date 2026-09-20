@@ -34,20 +34,73 @@ const categoryLabels: Record<string, string> = {
   ogImage={entry.data.image}
 >
   <slot name="head">
+    <!-- Article schema -->
     <script type="application/ld+json" set:html={JSON.stringify({
       "@context": "https://schema.org",
-      "@type": "Article",
+      "@type": entry.data.category === 'recipes' ? "HowTo" : "Article",
       "headline": entry.data.title,
       "description": entry.data.description,
       "datePublished": entry.data.pubDate.toISOString(),
       "dateModified": (entry.data.updatedDate ?? entry.data.pubDate).toISOString(),
       "image": entry.data.image ? `https://mayanorigin.com${entry.data.image}` : undefined,
+      "keywords": entry.data.keywords.join(', '),
+      "author": { "@type": "Organization", "name": "Mayan Origin Coffee" },
       "publisher": {
         "@type": "Organization",
         "name": "Mayan Origin Coffee",
-        "url": "https://mayanorigin.com"
-      }
+        "url": "https://mayanorigin.com",
+        "logo": { "@type": "ImageObject", "url": "https://mayanorigin.com/logo.png" }
+      },
+      "mainEntityOfPage": { "@type": "WebPage", "@id": `https://mayanorigin.com/blog/${slug}/` }
     })} />
+
+    <!-- BreadcrumbList schema -->
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://mayanorigin.com/" },
+        { "@type": "ListItem", "position": 2, "name": "Journal", "item": "https://mayanorigin.com/blog/" },
+        { "@type": "ListItem", "position": 3, "name": entry.data.title, "item": `https://mayanorigin.com/blog/${slug}/` }
+      ]
+    })} />
+
+    <!-- Recipe schema for hot chocolate post -->
+    {slug === 'mayan-hot-chocolate-recipe' && (
+      <script type="application/ld+json" set:html={JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "Recipe",
+        "name": "Authentic Mayan Hot Chocolate",
+        "description": "The original Mayan hot chocolate — spiced, bitter, and ceremonial. Made with raw cacao, chili, honey, and cinnamon.",
+        "image": "https://mayanorigin.com/images/blog/mayan-hot-chocolate.jpg",
+        "author": { "@type": "Organization", "name": "Mayan Origin Coffee" },
+        "datePublished": "2026-09-20",
+        "prepTime": "PT5M",
+        "cookTime": "PT5M",
+        "totalTime": "PT10M",
+        "recipeYield": "1 serving",
+        "recipeCategory": "Beverage",
+        "recipeCuisine": "Mayan",
+        "keywords": "mayan hot chocolate, hot cocoa drink recipe, ancient cacao drink, xocolatl",
+        "recipeIngredient": [
+          "2 tablespoons raw cacao powder",
+          "1 cup water or oat milk",
+          "1 small dried chili (árbol or ancho)",
+          "½ teaspoon cinnamon",
+          "Pinch of sea salt",
+          "1 teaspoon Jimerito honey",
+          "¼ teaspoon vanilla extract (optional)"
+        ],
+        "recipeInstructions": [
+          { "@type": "HowToStep", "text": "Warm the water or oat milk in a small saucepan over medium heat — do not boil." },
+          { "@type": "HowToStep", "text": "Whisk in the cacao powder until fully dissolved." },
+          { "@type": "HowToStep", "text": "Add the chili, cinnamon, and salt. Simmer 3 minutes." },
+          { "@type": "HowToStep", "text": "Remove chili. Whisk vigorously to create a light froth." },
+          { "@type": "HowToStep", "text": "Pour into a cup and sweeten with honey to taste." }
+        ],
+        "nutrition": { "@type": "NutritionInformation", "calories": "60 calories" }
+      })} />
+    )}
   </slot>
 
   <div class="post-wrap container">

@@ -72,12 +72,31 @@ const ogImageUrl = ogImage
       "@type": "Organization",
       "name": "Mayan Origin Coffee",
       "url": "https://mayanorigin.com",
-      "logo": "https://mayanorigin.com/favicon.svg",
-      "description": "Single-origin coffee from Copán, Honduras. Roasted in small batches and shipped directly to your door.",
+      "logo": "https://mayanorigin.com/logo.png",
+      "description": "Single-origin coffee from Copán, Honduras. Packed fresh and shipped directly to your door.",
+      "foundingLocation": { "@type": "Place", "name": "Copán, Honduras" },
+      "areaServed": "US",
       "sameAs": [
         "https://www.instagram.com/mayanorigin",
         "https://www.tiktok.com/@mayanorigin"
       ]
+    })} />
+
+    <!-- WebSite schema with SearchAction -->
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Mayan Origin Coffee",
+      "url": "https://mayanorigin.com",
+      "description": "Premium single-origin coffee from Copán, Honduras. Three roasts named after Mayan gods — Balam, Ixchel, and Kukulkan.",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": {
+          "@type": "EntryPoint",
+          "urlTemplate": "https://mayanorigin.com/shop/?q={search_term_string}"
+        },
+        "query-input": "required name=search_term_string"
+      }
     })} />
 
     <!-- Google Fonts -->
