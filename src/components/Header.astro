@@ -1,0 +1,277 @@
+---
+const nav = [
+  { label: 'Shop', href: '/shop/' },
+  { label: 'Our Story', href: '/about/' },
+  { label: 'Shipping', href: '/cart/' },
+];
+
+const { pathname } = Astro.url;
+---
+
+<header class="site-header">
+  <div class="header-inner">
+    <!-- Logo -->
+    <a href="/" class="logo" aria-label="Mayan Origin Coffee — Home">
+      <span class="logo-mayan">Mayan</span><span class="logo-origin"> Origin</span>
+    </a>
+
+    <!-- Desktop nav -->
+    <nav class="desktop-nav" aria-label="Main navigation">
+      <ul>
+        {nav.map(({ label, href }) => (
+          <li>
+            <a href={href} class={pathname.startsWith(href) ? 'active' : ''}>{label}</a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+
+    <!-- Cart icon + hamburger -->
+    <div class="header-actions">
+      <a href="/cart/" class="cart-btn" aria-label="View cart">
+        <!-- Shopping bag SVG -->
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/>
+          <line x1="3" y1="6" x2="21" y2="6"/>
+          <path d="M16 10a4 4 0 0 1-8 0"/>
+        </svg>
+        <span class="cart-count" id="cartCount" aria-live="polite">0</span>
+      </a>
+
+      <button class="hamburger" id="hamburgerBtn" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile nav drawer -->
+  <div class="mobile-nav" id="mobileNav" aria-hidden="true">
+    <nav aria-label="Mobile navigation">
+      <ul>
+        {nav.map(({ label, href }) => (
+          <li>
+            <a href={href} class={pathname.startsWith(href) ? 'active' : ''}>{label}</a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<style>
+  .site-header {
+    background: #fff;
+    border-bottom: 1px solid #e4ddd4;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 1px 6px rgba(0,0,0,0.07);
+  }
+
+  .header-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 1.25rem;
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    height: 64px;
+  }
+
+  /* Logo */
+  .logo {
+    text-decoration: none;
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    flex-shrink: 0;
+    line-height: 1;
+  }
+  .logo-mayan  { color: #1b2e1b; }
+  .logo-origin { color: #c9943a; }
+
+  /* Desktop nav */
+  .desktop-nav {
+    flex: 1;
+  }
+
+  .desktop-nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 0.25rem;
+  }
+
+  .desktop-nav a {
+    color: #4b4b4b;
+    text-decoration: none;
+    font-size: 0.88rem;
+    font-weight: 500;
+    padding: 0.45rem 0.9rem;
+    display: block;
+    font-family: 'DM Sans', sans-serif;
+    border-radius: 4px;
+    transition: color 0.15s, background 0.15s;
+  }
+  .desktop-nav a:hover {
+    color: #1b2e1b;
+    background: #f0ebe3;
+  }
+  .desktop-nav a.active {
+    color: #c9943a;
+    font-weight: 600;
+  }
+
+  /* Header actions */
+  .header-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-left: auto;
+  }
+
+  /* Cart button */
+  .cart-btn {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    color: #1b2e1b;
+    text-decoration: none;
+    border-radius: 50%;
+    transition: background 0.15s;
+  }
+  .cart-btn:hover { background: #f0ebe3; color: #c9943a; }
+
+  .cart-count {
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    background: #c9943a;
+    color: #fff;
+    font-size: 0.6rem;
+    font-weight: 700;
+    font-family: 'DM Sans', sans-serif;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+  }
+  .cart-count[data-empty="true"] { display: none; }
+
+  /* Hamburger */
+  .hamburger {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 6px 4px;
+    flex-shrink: 0;
+    flex-direction: column;
+    gap: 5px;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+  }
+  .hamburger span {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background: #1b2e1b;
+    border-radius: 2px;
+    transition: transform 0.2s, opacity 0.2s;
+  }
+  .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .hamburger.open span:nth-child(2) { opacity: 0; }
+  .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  /* Mobile nav drawer */
+  .mobile-nav {
+    display: none;
+    border-top: 1px solid #e4ddd4;
+    background: #fff;
+  }
+  .mobile-nav.open {
+    display: block;
+  }
+  .mobile-nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0.5rem 0;
+  }
+  .mobile-nav a {
+    display: block;
+    padding: 0.75rem 1.5rem;
+    color: #4b4b4b;
+    text-decoration: none;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 500;
+    transition: color 0.15s, background 0.15s;
+  }
+  .mobile-nav a:hover {
+    background: #faf8f4;
+    color: #1b2e1b;
+  }
+  .mobile-nav a.active { color: #c9943a; font-weight: 600; }
+
+  /* Mobile breakpoint */
+  @media (max-width: 640px) {
+    .hamburger { display: flex; }
+    .desktop-nav { display: none; }
+  }
+
+  @media (max-width: 420px) {
+    .logo { font-size: 1.25rem; }
+    .header-inner { gap: 1rem; }
+  }
+</style>
+
+<script>
+  // Update cart count from localStorage
+  (function() {
+    function updateCartCount() {
+      const countEl = document.getElementById('cartCount');
+      if (!countEl) return;
+      try {
+        const cart = JSON.parse(localStorage.getItem('mo_cart') || '[]');
+        const total = cart.reduce((sum: number, item: { qty: number }) => sum + (item.qty || 1), 0);
+        countEl.textContent = String(total);
+        countEl.dataset.empty = total === 0 ? 'true' : 'false';
+      } catch {
+        countEl.dataset.empty = 'true';
+      }
+    }
+    updateCartCount();
+    window.addEventListener('mo:cart-updated', updateCartCount);
+  })();
+
+  // Mobile hamburger
+  (function() {
+    const btn = document.getElementById('hamburgerBtn');
+    const nav = document.getElementById('mobileNav');
+    if (!btn || !nav) return;
+    btn.addEventListener('click', () => {
+      const isOpen = nav.classList.toggle('open');
+      btn.classList.toggle('open', isOpen);
+      btn.setAttribute('aria-expanded', String(isOpen));
+      nav.setAttribute('aria-hidden', String(!isOpen));
+    });
+    nav.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => {
+        nav.classList.remove('open');
+        btn.classList.remove('open');
+        btn.setAttribute('aria-expanded', 'false');
+        nav.setAttribute('aria-hidden', 'true');
+      });
+    });
+  })();
+</script>

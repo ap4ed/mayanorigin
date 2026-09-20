@@ -1,0 +1,203 @@
+---
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  canonicalUrl?: string;
+  ogImage?: string;
+  ogType?: string;
+}
+
+const {
+  title,
+  description,
+  canonicalUrl = Astro.url.href,
+  ogImage,
+  ogType = 'website',
+} = Astro.props;
+
+const siteName = 'Mayan Origin Coffee';
+const fullTitle = title.includes(siteName) ? title : `${title} | ${siteName}`;
+const ogImageUrl = ogImage
+  ? (ogImage.startsWith('http') ? ogImage : new URL(ogImage, Astro.site).href)
+  : undefined;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+
+    <!-- Primary meta -->
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalUrl} />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content={ogType} />
+    <meta property="og:site_name" content={siteName} />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalUrl} />
+    {ogImageUrl && <meta property="og:image" content={ogImageUrl} />}
+    {ogImageUrl && <meta property="og:image:width" content="1200" />}
+    {ogImageUrl && <meta property="og:image:height" content="630" />}
+    {ogImageUrl && <meta property="og:image:alt" content={fullTitle} />}
+    <meta property="og:locale" content="en_US" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content={ogImageUrl ? 'summary_large_image' : 'summary'} />
+    <meta name="twitter:site" content="@mayanorigin" />
+    <meta name="twitter:title" content={fullTitle} />
+    <meta name="twitter:description" content={description} />
+    {ogImageUrl && <meta name="twitter:image" content={ogImageUrl} />}
+    {ogImageUrl && <meta name="twitter:image:alt" content={fullTitle} />}
+
+    <!-- Extra head slot (schemas, etc.) -->
+    <slot name="head" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <!-- Sitemap reference -->
+    <link rel="sitemap" href="/sitemap-index.xml" />
+
+    <!-- Organization schema (site-wide) -->
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Mayan Origin Coffee",
+      "url": "https://mayanorigin.com",
+      "logo": "https://mayanorigin.com/favicon.svg",
+      "description": "Single-origin coffee from Copán, Honduras. Roasted in small batches and shipped directly to your door.",
+      "sameAs": [
+        "https://www.instagram.com/mayanorigin",
+        "https://www.tiktok.com/@mayanorigin"
+      ]
+    })} />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" /></noscript>
+  </head>
+  <body>
+    <Header />
+    <main>
+      <slot />
+    </main>
+    <Footer />
+
+    <button class="back-to-top" id="backToTop" aria-label="Back to top" hidden>↑</button>
+    <script is:inline>
+      (function() {
+        var btn = document.getElementById('backToTop');
+        if (!btn) return;
+        window.addEventListener('scroll', function() { btn.hidden = window.scrollY < 400; }, { passive: true });
+        btn.addEventListener('click', function() { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+      })();
+    </script>
+  </body>
+</html>
+
+<style is:global>
+  *, *::before, *::after { box-sizing: border-box; }
+
+  :root {
+    --green:  #1b2e1b;
+    --gold:   #c9943a;
+    --cream:  #faf8f4;
+    --text:   #2d2d2d;
+    --muted:  #6b6b6b;
+    --border: #e4ddd4;
+  }
+
+  body {
+    margin: 0;
+    font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    color: var(--text);
+    background: var(--cream);
+    line-height: 1.75;
+  }
+
+  main {
+    min-height: 60vh;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: 'Playfair Display', Georgia, serif;
+    line-height: 1.25;
+    margin-top: 0;
+    color: var(--green);
+  }
+
+  a { color: var(--gold); }
+  a:hover { color: var(--green); }
+
+  img { max-width: 100%; height: auto; }
+
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 1.25rem;
+  }
+
+  .btn {
+    display: inline-block;
+    padding: 0.7rem 1.6rem;
+    border-radius: 4px;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 600;
+    font-size: 0.9rem;
+    text-decoration: none;
+    cursor: pointer;
+    border: none;
+    transition: background 0.15s, transform 0.1s, box-shadow 0.15s;
+  }
+
+  .btn-primary {
+    background: var(--gold);
+    color: #fff;
+  }
+  .btn-primary:hover {
+    background: #b8832e;
+    color: #fff;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 14px rgba(201,148,58,0.35);
+  }
+
+  .btn-outline {
+    background: transparent;
+    color: var(--green);
+    border: 2px solid var(--green);
+  }
+  .btn-outline:hover {
+    background: var(--green);
+    color: #fff;
+  }
+
+  .back-to-top {
+    position: fixed;
+    bottom: 1.5rem;
+    right: 1.5rem;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: var(--green);
+    color: #fff;
+    border: none;
+    font-size: 1.2rem;
+    line-height: 1;
+    cursor: pointer;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.2);
+    z-index: 90;
+    transition: background 0.15s, transform 0.15s;
+  }
+  .back-to-top:hover { background: var(--gold); transform: translateY(-2px); }
+  .back-to-top[hidden] { display: none; }
+</style>

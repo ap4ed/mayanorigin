@@ -1,0 +1,132 @@
+---
+import type { Product } from '../data/products';
+import { getStartingPrice } from '../data/products';
+
+interface Props {
+  product: Product;
+}
+
+const { product } = Astro.props;
+const startingPrice = getStartingPrice(product);
+---
+
+<article class="product-card">
+  <a href={`/shop/${product.slug}/`} class="card-image-link" tabindex="-1" aria-hidden="true">
+    <div class="card-image">
+      <img
+        src={product.image}
+        alt={`${product.name} — ${product.subtitle}`}
+        loading="lazy"
+        width="400"
+        height="400"
+      />
+      <span class="roast-badge">{product.roast}</span>
+    </div>
+  </a>
+
+  <div class="card-body">
+    <a href={`/shop/${product.slug}/`} class="card-name-link">
+      <h2 class="card-name">{product.name}</h2>
+    </a>
+    <p class="card-subtitle">{product.subtitle}</p>
+    <p class="card-price">From <strong>${startingPrice}</strong></p>
+    <a href={`/shop/${product.slug}/`} class="btn btn-primary card-cta">Shop Now</a>
+  </div>
+</article>
+
+<style>
+  .product-card {
+    background: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.07);
+    transition: box-shadow 0.2s, transform 0.2s;
+    display: flex;
+    flex-direction: column;
+  }
+  .product-card:hover {
+    box-shadow: 0 8px 28px rgba(0,0,0,0.12);
+    transform: translateY(-3px);
+  }
+
+  /* Image */
+  .card-image-link { display: block; }
+
+  .card-image {
+    position: relative;
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+    background: #e8e0d4;
+  }
+
+  .card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.35s;
+  }
+  .product-card:hover .card-image img { transform: scale(1.04); }
+
+  /* Roast badge */
+  .roast-badge {
+    position: absolute;
+    top: 0.75rem;
+    left: 0.75rem;
+    background: rgba(27, 46, 27, 0.85);
+    color: #fff;
+    font-size: 0.68rem;
+    font-weight: 700;
+    font-family: 'DM Sans', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 0.25rem 0.6rem;
+    border-radius: 100px;
+    backdrop-filter: blur(4px);
+  }
+
+  /* Body */
+  .card-body {
+    padding: 1.25rem 1.25rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    flex: 1;
+  }
+
+  .card-name-link { text-decoration: none; }
+
+  .card-name {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: #1b2e1b;
+    margin: 0;
+    line-height: 1.2;
+  }
+  .card-name-link:hover .card-name { color: #c9943a; }
+
+  .card-subtitle {
+    font-style: italic;
+    color: #7a7a7a;
+    font-size: 0.88rem;
+    margin: 0;
+    font-family: 'DM Sans', sans-serif;
+  }
+
+  .card-price {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem;
+    color: #4b4b4b;
+    margin: 0.25rem 0 0.75rem;
+  }
+  .card-price strong {
+    color: #1b2e1b;
+    font-size: 1.1rem;
+  }
+
+  .card-cta {
+    align-self: flex-start;
+    margin-top: auto;
+  }
+</style>
