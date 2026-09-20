@@ -1,0 +1,86 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ProductCard from '../../components/ProductCard.astro';
+import { products } from '../../data/products';
+---
+
+<BaseLayout
+  title="Shop All Coffees — Mayan Origin Coffee"
+  description="Browse our three single-origin coffees from Copán, Honduras — Balam dark roast, Ixchel light roast, and Kukulkan medium roast. Every order packed fresh."
+>
+
+  <section class="shop-hero">
+    <div class="container">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="/">Home</a>
+        <span aria-hidden="true">›</span>
+        <span aria-current="page">Shop</span>
+      </nav>
+      <h1>All Coffees</h1>
+      <p>Three roasts. Three Mayan gods. All single-origin from Copán, Honduras.</p>
+    </div>
+  </section>
+
+  <section class="shop-grid-section">
+    <div class="container">
+      <div class="products-grid">
+        {products.map(product => (
+          <ProductCard product={product} />
+        ))}
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+  .shop-hero {
+    padding: 3rem 0 2rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.82rem;
+    color: var(--muted);
+    font-family: 'DM Sans', sans-serif;
+    margin-bottom: 1rem;
+  }
+
+  .breadcrumb a {
+    color: var(--muted);
+    text-decoration: none;
+  }
+  .breadcrumb a:hover { color: var(--gold); }
+
+  .shop-hero h1 {
+    font-size: clamp(1.8rem, 3vw, 2.5rem);
+    margin: 0 0 0.5rem;
+  }
+
+  .shop-hero p {
+    color: var(--muted);
+    margin: 0;
+    font-size: 1rem;
+  }
+
+  .shop-grid-section {
+    padding: 3rem 0 5rem;
+  }
+
+  .products-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.75rem;
+  }
+
+  @media (max-width: 900px) {
+    .products-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (max-width: 560px) {
+    .products-grid { grid-template-columns: 1fr; }
+  }
+</style>

@@ -1,0 +1,958 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ProductCard from '../../components/ProductCard.astro';
+import { products, getProductBySlug } from '../../data/products';
+
+export function getStaticPaths() {
+  return products.map(p => ({ params: { slug: p.slug } }));
+}
+
+const { slug } = Astro.params;
+const product = getProductBySlug(slug!);
+if (!product) return Astro.redirect('/shop/');
+
+const otherProducts = products.filter(p => p.slug !== product.slug);
+
+const bundleMap: Record<string, { name: string; description: string; price: number }[]> = {
+  balam: [
+    { name: 'Cacao Nibs', description: 'Raw Honduran cacao nibs', price: 12 },
+    { name: 'Jimerito Honey', description: 'Raw highland honey from Copán', price: 14 },
+  ],
+  ixchel: [
+    { name: 'Vanilla Beans', description: 'Whole vanilla beans, Grade A', price: 16 },
+    { name: 'Jimerito Honey', description: 'Raw highland honey from Copán', price: 14 },
+  ],
+  kukulkan: [
+    { name: 'Cacao Nibs', description: 'Raw Honduran cacao nibs', price: 12 },
+    { name: 'Vanilla Beans', description: 'Whole vanilla beans, Grade A', price: 16 },
+  ],
+};
+
+const bundleItems = bundleMap[product.slug] ?? [];
+
+const brewGuide: Record<string, string[]> = {
+  balam: [
+    'Grind: Coarse for French press, medium-coarse for drip',
+    'Ratio: 1:15 coffee to water (e.g., 20g coffee → 300ml water)',
+    'Water temp: 96°C / 205°F',
+    'Brew time: 4 min French press, 3–4 min pour-over',
+    'Best black — bold enough to stand on its own',
+  ],
+  ixchel: [
+    'Grind: Medium-fine for pour-over or Aeropress',
+    'Ratio: 1:16 coffee to water (e.g., 18g coffee → 288ml water)',
+    'Water temp: 91°C / 196°F — lower temp preserves floral notes',
+    'Brew time: 2.5–3 min pour-over',
+    'Outstanding as a cold brew — steep 18h at room temperature',
+  ],
+  kukulkan: [
+    'Grind: Medium for drip, espresso, or Moka pot',
+    'Ratio: 1:15 coffee to water (e.g., 20g coffee → 300ml water)',
+    'Water temp: 93°C / 200°F',
+    'Brew time: 4 min drip, 25–30 sec espresso',
+    'Versatile — works equally well black or with milk',
+  ],
+};
+
+const highlights: Record<string, string[]> = {
+  balam: [
+    'Single-origin from Copán, Honduras — 1,400–1,600 masl',
+    'Washed process — clean, intense, zero defects',
+    'Tasting notes: dark chocolate, smoky cedar, dried cherry',
+    'Ideal for French press, drip, or cold brew',
+    'Packed fresh to order in Honduras',
+    'Direct from CAFICO cooperative farmers',
+  ],
+  ixchel: [
+    'Single-origin from Copán, Honduras — 1,500–1,700 masl',
+    'Natural process — fruit-forward, complex, bright',
+    'Tasting notes: jasmine, white peach, honey finish',
+    'Best with pour-over or Aeropress — showcases delicate notes',
+    'Packed fresh to order in Honduras',
+    'Direct from CAFICO cooperative farmers',
+  ],
+  kukulkan: [
+    'Single-origin from Copán, Honduras — 1,350–1,550 masl',
+    'Honey process — balanced sweetness, clean finish',
+    'Tasting notes: brown sugar, toasted almond, citrus',
+    'Works beautifully as drip, espresso, or Moka pot',
+    'Packed fresh to order in Honduras',
+    'Direct from COCAFCAL cooperative farmers',
+  ],
+};
+
+const specs: Record<string, Record<string, string>> = {
+  balam: {
+    Origin: 'Copán, Honduras',
+    Roast: 'Dark',
+    Process: 'Washed',
+    Altitude: '1,400–1,600 masl',
+    Variety: 'Arabica (Catuaí, Lempira)',
+    'Tasting Notes': 'Dark chocolate, smoky cedar, dried cherry',
+    'Packed': 'Fresh to order in Honduras',
+  },
+  ixchel: {
+    Origin: 'Copán, Honduras',
+    Roast: 'Light',
+    Process: 'Natural',
+    Altitude: '1,500–1,700 masl',
+    Variety: 'Arabica (Bourbon, Catuaí)',
+    'Tasting Notes': 'Jasmine, white peach, honey finish',
+    'Packed': 'Fresh to order in Honduras',
+  },
+  kukulkan: {
+    Origin: 'Copán, Honduras',
+    Roast: 'Medium',
+    Process: 'Honey',
+    Altitude: '1,350–1,550 masl',
+    Variety: 'Arabica (Catuaí, IHCAFE 90)',
+    'Tasting Notes': 'Brown sugar, toasted almond, clean citrus',
+    'Packed': 'Fresh to order in Honduras',
+  },
+};
+
+const productHighlights = highlights[product.slug] ?? [];
+const productSpecs = specs[product.slug] ?? {};
+const productBrewGuide = brewGuide[product.slug] ?? [];
+const bundleTotal = Object.values(product.prices)[0] + bundleItems.reduce((s, i) => s + i.price, 0);
+---
+
+<BaseLayout
+  title={`${product.name} — ${product.roast} | Mayan Origin Coffee`}
+  description={product.description}
+  ogType="product"
+>
+  <slot name="head">
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "Product",
+      "name": product.name,
+      "description": product.description,
+      "image": `https://mayanorigin.com${product.image}`,
+      "brand": { "@type": "Brand", "name": "Mayan Origin Coffee" },
+      "offers": Object.entries(product.prices).map(([size, price]) => ({
+        "@type": "Offer",
+        "name": size,
+        "price": price,
+        "priceCurrency": "USD",
+        "availability": "https://schema.org/InStock",
+        "url": `https://mayanorigin.com/shop/${product.slug}/`
+      }))
+    })} />
+  </slot>
+
+  <div class="pdp-wrap container">
+
+    <!-- Breadcrumb -->
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="/">Home</a>
+      <span aria-hidden="true">›</span>
+      <a href="/shop/">Shop</a>
+      <span aria-hidden="true">›</span>
+      <span aria-current="page">{product.name}</span>
+    </nav>
+
+    <!-- Top 2-col grid -->
+    <div class="pdp-top">
+
+      <!-- Left: image gallery -->
+      <div class="pdp-gallery">
+        <div class="gallery-main">
+          <img
+            src={product.image}
+            alt={`${product.name} — ${product.subtitle} coffee bag`}
+            width="600"
+            height="600"
+            loading="eager"
+            class="gallery-img"
+          />
+          <span class="roast-badge">{product.roast}</span>
+        </div>
+      </div>
+
+      <!-- Right: purchase module -->
+      <div class="pdp-purchase">
+        <span class="roast-tag">{product.roast}</span>
+        <h1 class="pdp-name">{product.name} <span class="pdp-subtitle">— {product.subtitle}</span></h1>
+
+        <!-- Trustpilot placeholder -->
+        <div class="tp-placeholder" aria-label="Reviews coming soon">
+          <span class="stars">★★★★★</span>
+          <span class="tp-text">Reviews coming soon</span>
+        </div>
+
+        <!-- Flavor chips -->
+        <div class="flavor-chips">
+          {productHighlights.slice(2, 3)[0]?.replace('Tasting notes: ', '').split(', ').map(note => (
+            <span class="chip">{note}</span>
+          ))}
+        </div>
+
+        <!-- Live price -->
+        <div class="live-price">
+          <span class="price-display" id="priceDisplay">$17</span>
+          <span class="price-note" id="priceNote"></span>
+        </div>
+
+        <!-- Size selector -->
+        <div class="size-selector">
+          <p class="selector-label">Size</p>
+          <div class="size-buttons" role="group" aria-label="Select size">
+            {Object.entries(product.prices).map(([size, price], i) => (
+              <button
+                class={`size-btn${i === 0 ? ' active' : ''}`}
+                data-size={size}
+                data-price={price}
+                aria-pressed={i === 0 ? 'true' : 'false'}
+              >
+                {size}
+                <span class="size-price">${price}</span>
+              </button>
+            ))}
+          </div>
+        </div>
+
+        <!-- Quantity selector -->
+        <div class="qty-selector">
+          <p class="selector-label">Quantity</p>
+          <div class="qty-controls">
+            <button class="qty-btn" id="qtyMinus" aria-label="Decrease quantity">−</button>
+            <span class="qty-value" id="qtyValue">1</span>
+            <button class="qty-btn" id="qtyPlus" aria-label="Increase quantity">+</button>
+          </div>
+        </div>
+
+        <!-- CTAs -->
+        <div class="cta-stack">
+          <button class="btn btn-primary btn-full" id="addToCart">Add to Cart</button>
+          <button class="btn btn-outline btn-full btn-green" id="buyNow">Buy Now</button>
+        </div>
+
+        <p class="guest-note">No account needed — checkout as guest in seconds.</p>
+
+        <!-- Reassurance -->
+        <ul class="reassurance">
+          <li><span class="check">✓</span> Free shipping on orders over $60</li>
+          <li><span class="check">✓</span> Every order packed fresh in Honduras</li>
+          <li><span class="check">✓</span> 30-day satisfaction guarantee</li>
+        </ul>
+
+        <!-- Freshness signal -->
+        <p class="freshness">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          Ships within 3 business days from Honduras
+        </p>
+      </div>
+    </div>
+
+    <!-- Below-fold sections -->
+    <div class="pdp-sections">
+
+      <!-- Top Highlights -->
+      <section class="pdp-section">
+        <h2>About {product.name}</h2>
+        <p class="product-description">{product.description}</p>
+        <ul class="highlights-list">
+          {productHighlights.map(h => (
+            <li><span class="check">✓</span> {h}</li>
+          ))}
+        </ul>
+      </section>
+
+      <!-- Ingredients -->
+      <section class="pdp-section">
+        <h2>Ingredients</h2>
+        <p>100% Single-Origin Arabica Coffee — Copán, Honduras. Nothing added. Nothing removed.</p>
+      </section>
+
+      <!-- Item Details -->
+      <section class="pdp-section">
+        <h2>Item Details</h2>
+        <dl class="spec-table">
+          {Object.entries(productSpecs).map(([key, val]) => (
+            <>
+              <dt>{key}</dt>
+              <dd>{val}</dd>
+            </>
+          ))}
+        </dl>
+      </section>
+
+      <!-- Weight & Packaging -->
+      <section class="pdp-section">
+        <h2>Weight &amp; Packaging</h2>
+        <table class="weight-table">
+          <thead>
+            <tr>
+              <th>Size</th>
+              <th>Imperial</th>
+              <th>Approx. Cups</th>
+              <th>Price</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>250g</td>
+              <td>8.8 oz</td>
+              <td>~25 cups</td>
+              <td>${product.prices['250g']}</td>
+            </tr>
+            <tr>
+              <td>500g</td>
+              <td>17.6 oz</td>
+              <td>~50 cups</td>
+              <td>${product.prices['500g']}</td>
+            </tr>
+            <tr>
+              <td>1kg</td>
+              <td>35.3 oz</td>
+              <td>~100 cups</td>
+              <td>${product.prices['1kg']}</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <!-- Brew Guide -->
+      <section class="pdp-section">
+        <h2>Brew Guide</h2>
+        <ul class="brew-list">
+          {productBrewGuide.map(step => (
+            <li>{step}</li>
+          ))}
+        </ul>
+      </section>
+
+      <!-- Shipping & Returns -->
+      <section class="pdp-section">
+        <h2>Shipping &amp; Returns</h2>
+        <ul class="shipping-list">
+          <li><span class="check">✓</span> Ships from Honduras via DHL Express — 7–14 business days to the continental US</li>
+          <li><span class="check">✓</span> Free shipping on orders over $60</li>
+          <li><span class="check">✓</span> 30-day satisfaction guarantee — if you're not happy, we'll make it right</li>
+          <li><span class="check">✓</span> Tracking number sent by email once shipped</li>
+        </ul>
+      </section>
+    </div>
+
+    <!-- Reviews placeholder -->
+    <section class="reviews-section">
+      <h2>Customer Reviews</h2>
+      <div class="review-placeholder">
+        <p>Be the first to review {product.name}.</p>
+        <p class="review-sub">Reviews will appear here once customers share their experience.</p>
+      </div>
+    </section>
+
+    <!-- Frequently Bought Together -->
+    {bundleItems.length > 0 && (
+      <section class="bundle-section">
+        <h2>Frequently Bought Together</h2>
+        <div class="bundle-row">
+          <div class="bundle-item">
+            <div class="bundle-img-placeholder">☕</div>
+            <p class="bundle-name">{product.name}</p>
+            <p class="bundle-price">${product.prices['250g']}</p>
+          </div>
+          {bundleItems.map(item => (
+            <>
+              <span class="bundle-plus" aria-hidden="true">+</span>
+              <div class="bundle-item">
+                <div class="bundle-img-placeholder">🌿</div>
+                <p class="bundle-name">{item.name}</p>
+                <p class="bundle-desc">{item.description}</p>
+                <p class="bundle-price">${item.price}</p>
+              </div>
+            </>
+          ))}
+        </div>
+        <div class="bundle-cta">
+          <p class="bundle-total">Bundle total: <strong>${bundleTotal}</strong></p>
+          <button class="btn btn-primary" id="addBundle">Add All to Cart</button>
+        </div>
+      </section>
+    )}
+
+    <!-- You May Also Like -->
+    <section class="also-like-section">
+      <h2>You May Also Like</h2>
+      <div class="also-like-grid">
+        {otherProducts.map(p => (
+          <ProductCard product={p} />
+        ))}
+      </div>
+    </section>
+
+  </div>
+</BaseLayout>
+
+<script define:vars={{ slug: product.slug, prices: product.prices }}>
+  // Price & qty logic
+  let selectedSize = Object.keys(prices)[0];
+  let qty = 1;
+
+  const priceDisplay = document.getElementById('priceDisplay');
+  const priceNote = document.getElementById('priceNote');
+  const qtyValue = document.getElementById('qtyValue');
+
+  function updatePrice() {
+    const unitPrice = prices[selectedSize];
+    const total = unitPrice * qty;
+    if (priceDisplay) priceDisplay.textContent = `$${total}`;
+    if (priceNote) priceNote.textContent = qty > 1 ? `($${unitPrice} × ${qty})` : '';
+  }
+
+  // Size buttons
+  document.querySelectorAll('.size-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.size-btn').forEach(b => {
+        b.classList.remove('active');
+        b.setAttribute('aria-pressed', 'false');
+      });
+      btn.classList.add('active');
+      btn.setAttribute('aria-pressed', 'true');
+      selectedSize = btn.dataset.size;
+      updatePrice();
+    });
+  });
+
+  // Qty
+  document.getElementById('qtyMinus')?.addEventListener('click', () => {
+    if (qty > 1) { qty--; if (qtyValue) qtyValue.textContent = qty; updatePrice(); }
+  });
+  document.getElementById('qtyPlus')?.addEventListener('click', () => {
+    if (qty < 10) { qty++; if (qtyValue) qtyValue.textContent = qty; updatePrice(); }
+  });
+
+  // Add to Cart
+  document.getElementById('addToCart')?.addEventListener('click', () => {
+    try {
+      const cart = JSON.parse(localStorage.getItem('mo_cart') || '[]');
+      const existing = cart.find(i => i.slug === slug && i.size === selectedSize);
+      if (existing) {
+        existing.qty = Math.min(10, existing.qty + qty);
+      } else {
+        cart.push({ slug, size: selectedSize, qty, price: prices[selectedSize] });
+      }
+      localStorage.setItem('mo_cart', JSON.stringify(cart));
+      window.dispatchEvent(new Event('mo:cart-updated'));
+      const btn = document.getElementById('addToCart');
+      if (btn) {
+        btn.textContent = 'Added!';
+        setTimeout(() => { btn.textContent = 'Add to Cart'; }, 1800);
+      }
+    } catch {}
+  });
+
+  // Buy Now — placeholder until Stripe is wired
+  document.getElementById('buyNow')?.addEventListener('click', () => {
+    alert('Checkout coming soon!');
+  });
+
+  // Add Bundle — placeholder
+  document.getElementById('addBundle')?.addEventListener('click', () => {
+    document.getElementById('addToCart')?.click();
+  });
+
+  updatePrice();
+</script>
+
+<style>
+  .pdp-wrap {
+    padding-top: 1.5rem;
+    padding-bottom: 5rem;
+  }
+
+  /* Breadcrumb */
+  .breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.82rem;
+    color: var(--muted);
+    font-family: 'DM Sans', sans-serif;
+    margin-bottom: 2rem;
+  }
+  .breadcrumb a { color: var(--muted); text-decoration: none; }
+  .breadcrumb a:hover { color: var(--gold); }
+
+  /* Top grid */
+  .pdp-top {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: start;
+    margin-bottom: 4rem;
+  }
+
+  /* Gallery */
+  .pdp-gallery { position: sticky; top: 80px; }
+
+  .gallery-main {
+    position: relative;
+    aspect-ratio: 1 / 1;
+    background: #e8e0d4;
+    border-radius: 12px;
+    overflow: hidden;
+  }
+
+  .gallery-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .roast-badge {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    background: rgba(27,46,27,0.85);
+    color: #fff;
+    font-size: 0.72rem;
+    font-weight: 700;
+    font-family: 'DM Sans', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 0.3rem 0.75rem;
+    border-radius: 100px;
+    backdrop-filter: blur(4px);
+  }
+
+  /* Purchase module */
+  .pdp-purchase { position: sticky; top: 80px; }
+
+  .roast-tag {
+    display: inline-block;
+    font-size: 0.72rem;
+    font-weight: 700;
+    font-family: 'DM Sans', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--gold);
+    margin-bottom: 0.5rem;
+  }
+
+  .pdp-name {
+    font-size: clamp(1.6rem, 3vw, 2.2rem);
+    margin: 0 0 0.75rem;
+    line-height: 1.2;
+  }
+
+  .pdp-subtitle {
+    font-size: 1rem;
+    font-weight: 400;
+    color: var(--muted);
+    font-style: italic;
+  }
+
+  /* Trustpilot placeholder */
+  .tp-placeholder {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+  }
+  .stars { color: #00b67a; font-size: 1rem; letter-spacing: 1px; }
+  .tp-text { font-size: 0.82rem; color: var(--muted); font-family: 'DM Sans', sans-serif; }
+
+  /* Flavor chips */
+  .flavor-chips {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin-bottom: 1.25rem;
+  }
+  .chip {
+    font-size: 0.78rem;
+    font-family: 'DM Sans', sans-serif;
+    padding: 0.25rem 0.75rem;
+    border-radius: 100px;
+    border: 1px solid var(--border);
+    color: var(--muted);
+    background: #fff;
+    text-transform: capitalize;
+  }
+
+  /* Live price */
+  .live-price {
+    display: flex;
+    align-items: baseline;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+  }
+  .price-display {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--green);
+  }
+  .price-note {
+    font-size: 0.85rem;
+    color: var(--muted);
+    font-family: 'DM Sans', sans-serif;
+  }
+
+  /* Size selector */
+  .selector-label {
+    font-size: 0.82rem;
+    font-weight: 700;
+    font-family: 'DM Sans', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--text);
+    margin: 0 0 0.6rem;
+  }
+
+  .size-buttons {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .size-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.15rem;
+    padding: 0.6rem 1.25rem;
+    border: 2px solid var(--border);
+    border-radius: 6px;
+    background: #fff;
+    cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text);
+    transition: border-color 0.15s, background 0.15s;
+  }
+  .size-btn:hover { border-color: var(--green); }
+  .size-btn.active {
+    border-color: var(--green);
+    background: var(--green);
+    color: #fff;
+  }
+  .size-btn.active .size-price { color: rgba(255,255,255,0.8); }
+  .size-price {
+    font-size: 0.72rem;
+    font-weight: 400;
+    color: var(--muted);
+  }
+
+  /* Qty selector */
+  .qty-controls {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    margin-bottom: 1.5rem;
+    border: 2px solid var(--border);
+    border-radius: 6px;
+    width: fit-content;
+    overflow: hidden;
+  }
+  .qty-btn {
+    width: 40px;
+    height: 40px;
+    background: #fff;
+    border: none;
+    font-size: 1.2rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text);
+    transition: background 0.15s;
+    font-family: 'DM Sans', sans-serif;
+  }
+  .qty-btn:hover { background: var(--cream); }
+  .qty-value {
+    min-width: 44px;
+    text-align: center;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 600;
+    font-size: 1rem;
+    color: var(--text);
+    border-left: 1px solid var(--border);
+    border-right: 1px solid var(--border);
+    padding: 0 0.5rem;
+    line-height: 40px;
+  }
+
+  /* CTAs */
+  .cta-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-bottom: 0.75rem;
+  }
+  .btn-full { width: 100%; text-align: center; }
+  .btn-green {
+    color: var(--green);
+    border-color: var(--green);
+  }
+  .btn-green:hover {
+    background: var(--green);
+    color: #fff;
+  }
+
+  .guest-note {
+    font-size: 0.78rem;
+    color: var(--muted);
+    font-family: 'DM Sans', sans-serif;
+    margin: 0 0 1.25rem;
+    text-align: center;
+  }
+
+  /* Reassurance */
+  .reassurance {
+    list-style: none;
+    margin: 0 0 1rem;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 1rem 0;
+  }
+  .reassurance li {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.85rem;
+    font-family: 'DM Sans', sans-serif;
+    color: var(--text);
+  }
+  .check { color: var(--gold); font-weight: 700; }
+
+  .freshness {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.8rem;
+    color: var(--muted);
+    font-family: 'DM Sans', sans-serif;
+    margin: 0.75rem 0 0;
+  }
+
+  /* Below-fold sections */
+  .pdp-sections { border-top: 1px solid var(--border); }
+
+  .pdp-section {
+    padding: 2.5rem 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .pdp-section h2 {
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+  }
+
+  .product-description {
+    color: var(--muted);
+    line-height: 1.75;
+    margin-bottom: 1.25rem;
+    max-width: 680px;
+  }
+
+  .highlights-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .highlights-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.6rem;
+    font-size: 0.95rem;
+    font-family: 'DM Sans', sans-serif;
+  }
+
+  /* Spec table */
+  .spec-table {
+    display: grid;
+    grid-template-columns: 160px 1fr;
+    gap: 0.6rem 1.5rem;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem;
+    max-width: 600px;
+  }
+  .spec-table dt { color: var(--muted); font-weight: 600; }
+  .spec-table dd { margin: 0; color: var(--text); }
+
+  /* Weight table */
+  .weight-table {
+    width: 100%;
+    max-width: 500px;
+    border-collapse: collapse;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem;
+  }
+  .weight-table th, .weight-table td {
+    text-align: left;
+    padding: 0.6rem 1rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .weight-table th { font-weight: 700; color: var(--text); background: var(--cream); }
+  .weight-table td { color: var(--muted); }
+  .weight-table td:first-child { font-weight: 600; color: var(--text); }
+
+  /* Brew list */
+  .brew-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    max-width: 600px;
+  }
+  .brew-list li {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.95rem;
+    padding-left: 1.25rem;
+    position: relative;
+    color: var(--text);
+  }
+  .brew-list li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--gold);
+    font-weight: 700;
+  }
+
+  .shipping-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .shipping-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.6rem;
+    font-size: 0.95rem;
+    font-family: 'DM Sans', sans-serif;
+  }
+
+  /* Reviews */
+  .reviews-section {
+    padding: 2.5rem 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .reviews-section h2 { font-size: 1.25rem; margin-bottom: 1rem; }
+  .review-placeholder {
+    background: var(--cream);
+    border-radius: 8px;
+    padding: 2rem;
+    text-align: center;
+  }
+  .review-placeholder p { margin: 0 0 0.25rem; color: var(--muted); font-family: 'DM Sans', sans-serif; }
+  .review-sub { font-size: 0.85rem; }
+
+  /* Bundle */
+  .bundle-section {
+    padding: 2.5rem 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .bundle-section h2 { font-size: 1.25rem; margin-bottom: 1.5rem; }
+
+  .bundle-row {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    margin-bottom: 1.5rem;
+  }
+
+  .bundle-item {
+    text-align: center;
+    max-width: 140px;
+  }
+
+  .bundle-img-placeholder {
+    width: 100px;
+    height: 100px;
+    background: var(--cream);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.5rem;
+    margin: 0 auto 0.5rem;
+    border: 1px solid var(--border);
+  }
+
+  .bundle-name {
+    font-weight: 600;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem;
+    margin: 0 0 0.15rem;
+    color: var(--text);
+  }
+  .bundle-desc {
+    font-size: 0.78rem;
+    color: var(--muted);
+    font-family: 'DM Sans', sans-serif;
+    margin: 0 0 0.25rem;
+  }
+  .bundle-price {
+    font-weight: 700;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem;
+    color: var(--green);
+    margin: 0;
+  }
+
+  .bundle-plus {
+    font-size: 1.5rem;
+    color: var(--muted);
+    font-weight: 300;
+  }
+
+  .bundle-cta {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+  }
+
+  .bundle-total {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.95rem;
+    color: var(--muted);
+    margin: 0;
+  }
+  .bundle-total strong { color: var(--green); }
+
+  /* Also like */
+  .also-like-section { padding: 2.5rem 0; }
+  .also-like-section h2 { font-size: 1.25rem; margin-bottom: 1.5rem; }
+
+  .also-like-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.75rem;
+  }
+
+  /* Responsive */
+  @media (max-width: 900px) {
+    .pdp-top {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+    .pdp-gallery { position: static; }
+    .pdp-purchase { position: static; }
+    .also-like-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (max-width: 560px) {
+    .also-like-grid { grid-template-columns: 1fr; }
+    .spec-table { grid-template-columns: 130px 1fr; }
+  }
+</style>
