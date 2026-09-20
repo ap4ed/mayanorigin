@@ -1,0 +1,322 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ProductCard from '../../components/ProductCard.astro';
+import { products } from '../../data/products';
+---
+
+<BaseLayout
+  title="Our Story — Mayan Origin Coffee"
+  description="Mayan Origin Coffee was born in the highlands of Copán, Honduras — where ancient Mayan civilization once thrived and exceptional coffee grows today. This is our story."
+>
+
+  <!-- Hero -->
+  <section class="about-hero">
+    <div class="container">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="/">Home</a>
+        <span aria-hidden="true">›</span>
+        <span aria-current="page">Our Story</span>
+      </nav>
+      <p class="eyebrow">Our Story</p>
+      <h1>Where Ancient Land Meets Morning Coffee</h1>
+      <p class="hero-sub">
+        Copán, Honduras. The same highlands where the Maya built their greatest city
+        now grow some of the finest arabica coffee in Central America.
+        We exist to connect those two truths — and bring them to your door.
+      </p>
+    </div>
+  </section>
+
+  <!-- Brand story -->
+  <section class="story-section">
+    <div class="container">
+      <div class="story-grid">
+        <div class="story-image">
+          <div class="story-img-placeholder" aria-hidden="true">🏔️</div>
+        </div>
+        <div class="story-text">
+          <h2>The Land Behind the Cup</h2>
+          <p>
+            The Copán ruins in western Honduras are one of the most significant Mayan archaeological sites ever discovered.
+            The hieroglyphic stairway there contains more ancient Mayan text than any other monument on earth.
+            Kings were crowned here. Priests performed cacao ceremonies here.
+            The jaguar god Balam watched over these valleys for a thousand years.
+          </p>
+          <p>
+            Those same valleys — still volcanic, still high-altitude, still cultivated with care — now produce coffee
+            at elevations between 1,300 and 1,700 meters above sea level. The soil that fed the Maya feeds the coffee trees.
+            The altitude that built the ancient city is the altitude that builds complex flavor.
+          </p>
+          <p>
+            We named every product in our lineup after a Mayan deity — not as decoration,
+            but because this land carries that history in every bean.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Values -->
+  <section class="values-section">
+    <div class="container">
+      <h2 class="section-title">What We Believe</h2>
+      <div class="values-grid">
+        <div class="value-card">
+          <div class="value-icon">🤝</div>
+          <h3>Direct Trade</h3>
+          <p>
+            We source directly from CAFICO and COCAFCAL — two cooperatives whose farmer members
+            have cultivated Copán's highlands for generations.
+            No brokers. No mystery about origin.
+          </p>
+        </div>
+        <div class="value-card">
+          <div class="value-icon">🌿</div>
+          <h3>Honest Sourcing</h3>
+          <p>
+            We tell you exactly where each coffee comes from, what altitude it was grown at,
+            how it was processed, and which cooperative produced it.
+            Coffee should have a traceable story.
+          </p>
+        </div>
+        <div class="value-card">
+          <div class="value-icon">📦</div>
+          <h3>Packed Fresh</h3>
+          <p>
+            Every order is packed in Honduras — not sitting in a US warehouse for months.
+            We ship within 3 business days of your order.
+            Freshness is not a marketing claim. It's how we operate.
+          </p>
+        </div>
+        <div class="value-card">
+          <div class="value-icon">🏛️</div>
+          <h3>Cultural Respect</h3>
+          <p>
+            The Mayan civilization was not a marketing theme — it was one of the most sophisticated
+            cultures in human history. We treat it that way.
+            Every name, every story, every product connection is rooted in real history.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Our partners -->
+  <section class="partners-section">
+    <div class="container">
+      <div class="partners-inner">
+        <div class="partners-text">
+          <p class="eyebrow">Our Partners</p>
+          <h2>The Farmers Behind Your Coffee</h2>
+          <p>
+            <strong>CAFICO</strong> (Cooperativa Agrícola Fronteriza de Copán) has worked with smallholder
+            farmers in Copán for decades. Their members grow Catuaí and Lempira varieties
+            at 1,400–1,700 meters — some of the highest-altitude farms in Honduras.
+            They supply our Balam and Ixchel.
+          </p>
+          <p>
+            <strong>COCAFCAL</strong> serves the broader Copán corridor with a focus on sustainable farming
+            and experimental processing. Their honey-process lots are exceptional — used for our Kukulkan medium roast.
+          </p>
+          <p>
+            Both cooperatives represent families, not factories. When you buy a bag of Mayan Origin coffee,
+            you're paying a fair price directly to the people who grew it.
+          </p>
+        </div>
+        <div class="partners-stats">
+          <div class="stat-card">
+            <span class="stat-number">2</span>
+            <span class="stat-label">Cooperative partners</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-number">1,400+</span>
+            <span class="stat-label">Meters altitude</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-number">100%</span>
+            <span class="stat-label">Arabica beans</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-number">3</span>
+            <span class="stat-label">Roast profiles</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Products -->
+  <section class="about-products">
+    <div class="container">
+      <h2 class="section-title">The Lineup</h2>
+      <p class="section-sub">Three roasts. Three gods. All from Copán.</p>
+      <div class="products-grid">
+        {products.map(p => <ProductCard product={p} />)}
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+  /* Hero */
+  .about-hero {
+    background: var(--green);
+    color: #fff;
+    padding: 4rem 0 3.5rem;
+  }
+
+  .breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.82rem;
+    color: rgba(255,255,255,0.5);
+    font-family: 'DM Sans', sans-serif;
+    margin-bottom: 1rem;
+  }
+  .breadcrumb a { color: rgba(255,255,255,0.5); text-decoration: none; }
+  .breadcrumb a:hover { color: var(--gold); }
+
+  .eyebrow {
+    font-size: 0.78rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--gold);
+    margin: 0 0 0.75rem;
+    font-family: 'DM Sans', sans-serif;
+  }
+
+  .about-hero h1 {
+    color: #fff;
+    font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+    margin: 0 0 1rem;
+    max-width: 700px;
+  }
+
+  .hero-sub {
+    color: rgba(255,255,255,0.75);
+    font-size: 1.05rem;
+    line-height: 1.75;
+    margin: 0;
+    max-width: 620px;
+  }
+
+  /* Story */
+  .story-section { padding: 5rem 0; background: #fff; }
+
+  .story-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: center;
+  }
+
+  .story-img-placeholder {
+    aspect-ratio: 1 / 1;
+    background: var(--cream);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 6rem;
+    border: 1px solid var(--border);
+  }
+
+  .story-text h2 { font-size: clamp(1.4rem, 2.5vw, 1.9rem); margin-bottom: 1rem; }
+  .story-text p { color: var(--muted); line-height: 1.8; margin-bottom: 1.25rem; }
+  .story-text p:last-child { margin-bottom: 0; }
+
+  /* Values */
+  .values-section { padding: 5rem 0; background: var(--cream); }
+
+  .section-title {
+    font-size: clamp(1.4rem, 2.5vw, 2rem);
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .values-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+  }
+
+  .value-card {
+    background: #fff;
+    border-radius: 8px;
+    padding: 2rem 1.5rem;
+    border: 1px solid var(--border);
+  }
+
+  .value-icon { font-size: 2rem; margin-bottom: 1rem; }
+  .value-card h3 { font-size: 1.05rem; margin-bottom: 0.5rem; }
+  .value-card p { font-size: 0.875rem; color: var(--muted); margin: 0; line-height: 1.65; }
+
+  /* Partners */
+  .partners-section { padding: 5rem 0; background: var(--green); color: #fff; }
+
+  .partners-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: center;
+  }
+
+  .partners-text .eyebrow { color: var(--gold); }
+  .partners-text h2 { color: #fff; font-size: clamp(1.4rem, 2.5vw, 1.9rem); margin-bottom: 1rem; }
+  .partners-text p { color: rgba(255,255,255,0.75); line-height: 1.8; margin-bottom: 1.25rem; }
+  .partners-text strong { color: #fff; }
+
+  .partners-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+  }
+
+  .stat-card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    padding: 1.5rem;
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 8px;
+  }
+
+  .stat-number {
+    font-family: 'Cinzel', Georgia, serif;
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--gold);
+    line-height: 1;
+  }
+
+  .stat-label {
+    font-size: 0.82rem;
+    color: rgba(255,255,255,0.6);
+    font-family: 'DM Sans', sans-serif;
+  }
+
+  /* Products */
+  .about-products { padding: 5rem 0; }
+  .section-sub { text-align: center; color: var(--muted); margin: -2rem 0 2.5rem; }
+
+  .products-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.75rem;
+  }
+
+  @media (max-width: 1024px) {
+    .story-grid, .partners-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+    .values-grid { grid-template-columns: repeat(2, 1fr); }
+    .products-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (max-width: 560px) {
+    .values-grid { grid-template-columns: 1fr; }
+    .products-grid { grid-template-columns: 1fr; }
+    .partners-stats { grid-template-columns: 1fr 1fr; }
+  }
+</style>

@@ -1,0 +1,325 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ProductCard from '../../components/ProductCard.astro';
+import { getCollection, getEntry } from 'astro:content';
+import { getProductBySlug, products } from '../../data/products';
+
+const { slug } = Astro.params;
+const entry = await getEntry('blog', slug!);
+if (!entry) return Astro.redirect('/blog/');
+
+const { Content } = await entry.render();
+
+const relatedProduct = entry.data.relatedProduct
+  ? getProductBySlug(entry.data.relatedProduct)
+  : undefined;
+
+const allPosts = (await getCollection('blog'))
+  .filter(p => p.slug !== slug)
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+  .slice(0, 3);
+
+const categoryLabels: Record<string, string> = {
+  culture: 'Mayan Culture',
+  recipes: 'Recipes',
+  'brew-guides': 'Brew Guides',
+  origin: 'Origin & Sourcing',
+};
+---
+
+<BaseLayout
+  title={entry.data.title}
+  description={entry.data.description}
+  ogType="article"
+  ogImage={entry.data.image}
+>
+  <slot name="head">
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": entry.data.title,
+      "description": entry.data.description,
+      "datePublished": entry.data.pubDate.toISOString(),
+      "dateModified": (entry.data.updatedDate ?? entry.data.pubDate).toISOString(),
+      "image": entry.data.image ? `https://mayanorigin.com${entry.data.image}` : undefined,
+      "publisher": {
+        "@type": "Organization",
+        "name": "Mayan Origin Coffee",
+        "url": "https://mayanorigin.com"
+      }
+    })} />
+  </slot>
+
+  <div class="post-wrap container">
+
+    <!-- Breadcrumb -->
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="/">Home</a>
+      <span aria-hidden="true">›</span>
+      <a href="/blog/">Journal</a>
+      <span aria-hidden="true">›</span>
+      <span aria-current="page">{entry.data.title}</span>
+    </nav>
+
+    <div class="post-layout">
+
+      <!-- Main content -->
+      <article class="post-content">
+        <header class="post-header">
+          <span class="cat-tag">{categoryLabels[entry.data.category]}</span>
+          <h1>{entry.data.title}</h1>
+          <time class="post-date" datetime={entry.data.pubDate.toISOString()}>
+            {entry.data.pubDate.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+          </time>
+          {entry.data.image && (
+            <img
+              src={entry.data.image}
+              alt={entry.data.imageAlt ?? entry.data.title}
+              class="post-hero-img"
+              width="800"
+              height="500"
+              loading="eager"
+            />
+          )}
+        </header>
+
+        <div class="prose">
+          <Content />
+        </div>
+      </article>
+
+      <!-- Sidebar -->
+      <aside class="post-sidebar">
+
+        {relatedProduct && (
+          <div class="sidebar-card">
+            <p class="sidebar-label">Featured Product</p>
+            <ProductCard product={relatedProduct} />
+          </div>
+        )}
+
+        <div class="sidebar-card">
+          <p class="sidebar-label">Shop Our Coffees</p>
+          <div class="sidebar-products">
+            {products.slice(0, 2).map(p => (
+              <a href={`/shop/${p.slug}/`} class="sidebar-product-link">
+                <span class="sidebar-product-name">{p.name}</span>
+                <span class="sidebar-product-roast">{p.roast}</span>
+              </a>
+            ))}
+            <a href="/shop/" class="btn btn-outline sidebar-shop-btn">View All Coffees</a>
+          </div>
+        </div>
+
+      </aside>
+    </div>
+
+    <!-- Related posts -->
+    {allPosts.length > 0 && (
+      <section class="related-posts">
+        <h2>More from the Journal</h2>
+        <div class="related-grid">
+          {allPosts.map(post => (
+            <article class="related-card">
+              <a href={`/blog/${post.slug}/`} class="related-image-link">
+                <div class="related-image">
+                  {post.data.image
+                    ? <img src={post.data.image} alt={post.data.imageAlt ?? post.data.title} loading="lazy" width="400" height="250" />
+                    : <div class="related-placeholder">📖</div>
+                  }
+                </div>
+              </a>
+              <div class="related-body">
+                <span class="cat-tag small">{categoryLabels[post.data.category]}</span>
+                <a href={`/blog/${post.slug}/`}>
+                  <h3>{post.data.title}</h3>
+                </a>
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+    )}
+
+  </div>
+</BaseLayout>
+
+<style>
+  .post-wrap {
+    padding-top: 1.5rem;
+    padding-bottom: 5rem;
+  }
+
+  .breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.82rem;
+    color: var(--muted);
+    font-family: 'DM Sans', sans-serif;
+    margin-bottom: 2rem;
+  }
+  .breadcrumb a { color: var(--muted); text-decoration: none; }
+  .breadcrumb a:hover { color: var(--gold); }
+
+  .post-layout {
+    display: grid;
+    grid-template-columns: 1fr 320px;
+    gap: 4rem;
+    align-items: start;
+    margin-bottom: 4rem;
+  }
+
+  /* Post header */
+  .cat-tag {
+    display: inline-block;
+    font-size: 0.72rem;
+    font-weight: 700;
+    font-family: 'DM Sans', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--gold);
+    margin-bottom: 0.5rem;
+  }
+  .cat-tag.small { font-size: 0.65rem; }
+
+  .post-header h1 {
+    font-size: clamp(1.6rem, 3vw, 2.4rem);
+    margin: 0.25rem 0 0.5rem;
+    line-height: 1.2;
+  }
+
+  .post-date {
+    font-size: 0.82rem;
+    color: var(--muted);
+    font-family: 'DM Sans', sans-serif;
+    display: block;
+    margin-bottom: 1.5rem;
+  }
+
+  .post-hero-img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 2rem;
+    aspect-ratio: 16 / 10;
+    object-fit: cover;
+  }
+
+  /* Prose */
+  .prose {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: var(--text);
+    max-width: 680px;
+  }
+  .prose h2 {
+    font-size: 1.4rem;
+    margin: 2rem 0 0.75rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border);
+  }
+  .prose h3 { font-size: 1.15rem; margin: 1.5rem 0 0.5rem; }
+  .prose p { margin: 0 0 1.25rem; }
+  .prose ul, .prose ol { padding-left: 1.5rem; margin: 0 0 1.25rem; }
+  .prose li { margin-bottom: 0.4rem; }
+  .prose strong { color: var(--green); font-weight: 600; }
+  .prose a { color: var(--gold); }
+  .prose hr { border: none; border-top: 1px solid var(--border); margin: 2rem 0; }
+  .prose blockquote {
+    border-left: 3px solid var(--gold);
+    padding-left: 1rem;
+    margin-left: 0;
+    color: var(--muted);
+    font-style: italic;
+  }
+
+  /* Sidebar */
+  .post-sidebar { position: sticky; top: 100px; display: flex; flex-direction: column; gap: 1.5rem; }
+
+  .sidebar-card {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1.25rem;
+  }
+
+  .sidebar-label {
+    font-size: 0.72rem;
+    font-weight: 700;
+    font-family: 'DM Sans', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--muted);
+    margin: 0 0 1rem;
+  }
+
+  .sidebar-products { display: flex; flex-direction: column; gap: 0.6rem; }
+
+  .sidebar-product-link {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.6rem 0.75rem;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    text-decoration: none;
+    transition: border-color 0.15s;
+  }
+  .sidebar-product-link:hover { border-color: var(--gold); }
+
+  .sidebar-product-name {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: var(--green);
+  }
+  .sidebar-product-roast {
+    font-size: 0.75rem;
+    color: var(--muted);
+    font-family: 'DM Sans', sans-serif;
+  }
+
+  .sidebar-shop-btn { width: 100%; text-align: center; margin-top: 0.5rem; font-size: 0.85rem; }
+
+  /* Related posts */
+  .related-posts { border-top: 1px solid var(--border); padding-top: 2.5rem; }
+  .related-posts h2 { font-size: 1.25rem; margin-bottom: 1.5rem; }
+
+  .related-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+
+  .related-card {
+    background: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    transition: box-shadow 0.2s;
+  }
+  .related-card:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.08); }
+
+  .related-image { aspect-ratio: 16 / 9; overflow: hidden; background: #e8e0d4; }
+  .related-image img { width: 100%; height: 100%; object-fit: cover; }
+  .related-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+  }
+
+  .related-body { padding: 1rem; }
+  .related-body h3 { font-size: 0.95rem; margin: 0.4rem 0 0; line-height: 1.3; }
+  .related-body a { text-decoration: none; color: var(--text); }
+  .related-body a:hover h3 { color: var(--gold); }
+
+  @media (max-width: 1024px) {
+    .post-layout { grid-template-columns: 1fr; gap: 2rem; }
+    .post-sidebar { position: static; }
+    .related-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 560px) {
+    .related-grid { grid-template-columns: 1fr; }
+  }
+</style>

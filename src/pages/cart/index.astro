@@ -1,0 +1,447 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ProductCard from '../../components/ProductCard.astro';
+import { products } from '../../data/products';
+---
+
+<BaseLayout
+  title="Your Cart — Mayan Origin Coffee"
+  description="Review your cart and proceed to checkout."
+>
+
+  <div class="cart-wrap container">
+
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="/">Home</a>
+      <span aria-hidden="true">›</span>
+      <span aria-current="page">Cart</span>
+    </nav>
+
+    <h1>Your Cart</h1>
+
+    <!-- Empty state (shown by default, hidden via JS when cart has items) -->
+    <div class="cart-empty" id="cartEmpty">
+      <div class="empty-icon">🛒</div>
+      <h2>Your cart is empty</h2>
+      <p>You haven't added anything yet. Browse our coffees and find your roast.</p>
+      <a href="/shop/" class="btn btn-primary">Shop All Coffees</a>
+    </div>
+
+    <!-- Cart with items (hidden by default, shown via JS) -->
+    <div class="cart-filled" id="cartFilled" hidden>
+      <div class="cart-layout">
+
+        <!-- Line items -->
+        <div class="cart-items" id="cartItems">
+          <!-- Populated by JS -->
+        </div>
+
+        <!-- Order summary -->
+        <div class="cart-summary">
+          <h2>Order Summary</h2>
+
+          <div class="summary-rows" id="summaryRows">
+            <!-- Populated by JS -->
+          </div>
+
+          <div class="summary-shipping">
+            <span>Shipping</span>
+            <span id="shippingCost">Calculated at checkout</span>
+          </div>
+
+          <div class="summary-total">
+            <span>Total</span>
+            <span id="cartTotal">$0</span>
+          </div>
+
+          <button class="btn btn-primary btn-full" id="checkoutBtn">
+            Proceed to Checkout
+          </button>
+
+          <p class="checkout-note">No account needed — checkout as guest in seconds.</p>
+
+          <ul class="checkout-trust">
+            <li><span class="check">✓</span> Secure checkout via Stripe</li>
+            <li><span class="check">✓</span> Ships within 3 business days</li>
+            <li><span class="check">✓</span> 30-day satisfaction guarantee</li>
+          </ul>
+
+          <div class="shipping-info">
+            <p class="shipping-title">Shipping to the United States</p>
+            <p>Orders ship from Honduras via DHL Express. Estimated delivery: 7–14 business days to the continental US.</p>
+            <p>Free shipping on orders over $60.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- You may also like -->
+    <section class="also-like">
+      <h2>You May Also Like</h2>
+      <div class="also-grid">
+        {products.map(p => <ProductCard product={p} />)}
+      </div>
+    </section>
+
+  </div>
+</BaseLayout>
+
+<script>
+  interface CartItem {
+    slug: string;
+    size: string;
+    qty: number;
+    price: number;
+  }
+
+  const PRODUCT_NAMES: Record<string, string> = {
+    balam: 'Balam — Dark Roast',
+    ixchel: 'Ixchel — Light Roast',
+    kukulkan: 'Kukulkan — Medium Roast',
+  };
+
+  function loadCart(): CartItem[] {
+    try {
+      return JSON.parse(localStorage.getItem('mo_cart') || '[]');
+    } catch {
+      return [];
+    }
+  }
+
+  function saveCart(cart: CartItem[]) {
+    localStorage.setItem('mo_cart', JSON.stringify(cart));
+    window.dispatchEvent(new Event('mo:cart-updated'));
+  }
+
+  function renderCart() {
+    const cart = loadCart();
+    const emptyEl = document.getElementById('cartEmpty');
+    const filledEl = document.getElementById('cartFilled');
+    const itemsEl = document.getElementById('cartItems');
+    const summaryEl = document.getElementById('summaryRows');
+    const totalEl = document.getElementById('cartTotal');
+    const shippingEl = document.getElementById('shippingCost');
+
+    if (!emptyEl || !filledEl || !itemsEl || !summaryEl || !totalEl) return;
+
+    if (cart.length === 0) {
+      emptyEl.style.display = '';
+      filledEl.hidden = true;
+      return;
+    }
+
+    emptyEl.style.display = 'none';
+    filledEl.hidden = false;
+
+    const subtotal = cart.reduce((s, i) => s + i.price * i.qty, 0);
+    const freeShipping = subtotal >= 60;
+
+    // Render items
+    itemsEl.innerHTML = cart.map((item, idx) => `
+      <div class="cart-item" data-idx="${idx}">
+        <div class="item-image">☕</div>
+        <div class="item-info">
+          <p class="item-name">${PRODUCT_NAMES[item.slug] ?? item.slug}</p>
+          <p class="item-size">${item.size}</p>
+        </div>
+        <div class="item-qty">
+          <button class="qty-btn" data-action="minus" data-idx="${idx}">−</button>
+          <span>${item.qty}</span>
+          <button class="qty-btn" data-action="plus" data-idx="${idx}">+</button>
+        </div>
+        <p class="item-price">$${(item.price * item.qty).toFixed(2)}</p>
+        <button class="remove-btn" data-idx="${idx}" aria-label="Remove item">✕</button>
+      </div>
+    `).join('');
+
+    // Summary rows
+    summaryEl.innerHTML = cart.map(item => `
+      <div class="summary-row">
+        <span>${PRODUCT_NAMES[item.slug] ?? item.slug} (${item.size}) × ${item.qty}</span>
+        <span>$${(item.price * item.qty).toFixed(2)}</span>
+      </div>
+    `).join('');
+
+    totalEl.textContent = `$${subtotal.toFixed(2)}`;
+    if (shippingEl) {
+      shippingEl.textContent = freeShipping ? 'Free' : 'Calculated at checkout';
+    }
+
+    // Qty / remove handlers
+    itemsEl.querySelectorAll('[data-action]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const idx = parseInt((btn as HTMLElement).dataset.idx ?? '0');
+        const action = (btn as HTMLElement).dataset.action;
+        const cart = loadCart();
+        if (action === 'minus') {
+          if (cart[idx].qty > 1) cart[idx].qty--;
+          else cart.splice(idx, 1);
+        } else {
+          if (cart[idx].qty < 10) cart[idx].qty++;
+        }
+        saveCart(cart);
+        renderCart();
+      });
+    });
+
+    itemsEl.querySelectorAll('.remove-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const idx = parseInt((btn as HTMLElement).dataset.idx ?? '0');
+        const cart = loadCart();
+        cart.splice(idx, 1);
+        saveCart(cart);
+        renderCart();
+      });
+    });
+  }
+
+  // Checkout placeholder
+  document.getElementById('checkoutBtn')?.addEventListener('click', () => {
+    alert('Checkout coming soon — Stripe integration in progress.');
+  });
+
+  renderCart();
+  window.addEventListener('mo:cart-updated', renderCart);
+</script>
+
+<style>
+  .cart-wrap {
+    padding-top: 1.5rem;
+    padding-bottom: 5rem;
+  }
+
+  .breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.82rem;
+    color: var(--muted);
+    font-family: 'DM Sans', sans-serif;
+    margin-bottom: 1.5rem;
+  }
+  .breadcrumb a { color: var(--muted); text-decoration: none; }
+  .breadcrumb a:hover { color: var(--gold); }
+
+  .cart-wrap h1 { font-size: clamp(1.6rem, 3vw, 2.2rem); margin-bottom: 2rem; }
+
+  /* Empty state */
+  .cart-empty {
+    text-align: center;
+    padding: 5rem 0;
+  }
+  .empty-icon { font-size: 4rem; margin-bottom: 1rem; }
+  .cart-empty h2 { font-size: 1.5rem; margin-bottom: 0.5rem; }
+  .cart-empty p { color: var(--muted); margin-bottom: 1.5rem; }
+
+  /* Cart layout */
+  .cart-layout {
+    display: grid;
+    grid-template-columns: 1fr 360px;
+    gap: 3rem;
+    align-items: start;
+    margin-bottom: 4rem;
+  }
+
+  /* Items */
+  .cart-items { display: flex; flex-direction: column; gap: 1rem; }
+
+  .cart-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.25rem;
+    background: #fff;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+  }
+
+  .item-image {
+    width: 60px;
+    height: 60px;
+    background: var(--cream);
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.75rem;
+    flex-shrink: 0;
+  }
+
+  .item-info { flex: 1; }
+  .item-name {
+    font-weight: 600;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.95rem;
+    margin: 0 0 0.2rem;
+    color: var(--text);
+  }
+  .item-size { font-size: 0.82rem; color: var(--muted); margin: 0; font-family: 'DM Sans', sans-serif; }
+
+  .item-qty {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    overflow: hidden;
+  }
+  .qty-btn {
+    width: 32px;
+    height: 32px;
+    background: #fff;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+    font-family: 'DM Sans', sans-serif;
+    color: var(--text);
+    transition: background 0.15s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .qty-btn:hover { background: var(--cream); }
+  .item-qty span {
+    min-width: 32px;
+    text-align: center;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 600;
+    border-left: 1px solid var(--border);
+    border-right: 1px solid var(--border);
+    padding: 0 0.25rem;
+    line-height: 32px;
+  }
+
+  .item-price {
+    font-weight: 700;
+    font-family: 'DM Sans', sans-serif;
+    color: var(--green);
+    margin: 0;
+    min-width: 60px;
+    text-align: right;
+  }
+
+  .remove-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--muted);
+    font-size: 0.85rem;
+    padding: 0.25rem;
+    border-radius: 4px;
+    transition: color 0.15s;
+    line-height: 1;
+  }
+  .remove-btn:hover { color: #c0392b; }
+
+  /* Summary */
+  .cart-summary {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1.5rem;
+    position: sticky;
+    top: 100px;
+  }
+
+  .cart-summary h2 { font-size: 1.1rem; margin-bottom: 1.25rem; }
+
+  .summary-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.85rem;
+    font-family: 'DM Sans', sans-serif;
+    color: var(--muted);
+    margin-bottom: 0.5rem;
+  }
+
+  .summary-shipping {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.88rem;
+    font-family: 'DM Sans', sans-serif;
+    color: var(--muted);
+    padding-top: 0.75rem;
+    margin-top: 0.75rem;
+    border-top: 1px solid var(--border);
+  }
+
+  .summary-total {
+    display: flex;
+    justify-content: space-between;
+    font-weight: 700;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1.1rem;
+    color: var(--green);
+    padding-top: 0.75rem;
+    margin-top: 0.75rem;
+    border-top: 2px solid var(--border);
+    margin-bottom: 1.25rem;
+  }
+
+  .btn-full { width: 100%; text-align: center; }
+
+  .checkout-note {
+    text-align: center;
+    font-size: 0.75rem;
+    color: var(--muted);
+    font-family: 'DM Sans', sans-serif;
+    margin: 0.5rem 0 1rem;
+  }
+
+  .checkout-trust {
+    list-style: none;
+    margin: 0 0 1.25rem;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    border-top: 1px solid var(--border);
+    padding-top: 1rem;
+  }
+  .checkout-trust li {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.82rem;
+    font-family: 'DM Sans', sans-serif;
+    color: var(--text);
+  }
+  .check { color: var(--gold); font-weight: 700; }
+
+  .shipping-info {
+    background: var(--cream);
+    border-radius: 6px;
+    padding: 0.75rem 1rem;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.8rem;
+    color: var(--muted);
+  }
+  .shipping-title {
+    font-weight: 700;
+    color: var(--text);
+    margin: 0 0 0.4rem;
+    font-size: 0.82rem;
+  }
+  .shipping-info p { margin: 0 0 0.25rem; }
+  .shipping-info p:last-child { margin: 0; }
+
+  /* Also like */
+  .also-like { border-top: 1px solid var(--border); padding-top: 3rem; }
+  .also-like h2 { font-size: 1.25rem; margin-bottom: 1.5rem; }
+  .also-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.75rem;
+  }
+
+  @media (max-width: 900px) {
+    .cart-layout { grid-template-columns: 1fr; }
+    .cart-summary { position: static; }
+    .also-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 560px) {
+    .also-grid { grid-template-columns: 1fr; }
+  }
+</style>
