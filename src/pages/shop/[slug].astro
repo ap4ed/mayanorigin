@@ -424,17 +424,22 @@ const bundleTotal = Object.values(product.prices)[0] + bundleItems.reduce((s, i)
         <div class="size-selector">
           <p class="selector-label">Size</p>
           <div class="size-buttons" role="group" aria-label="Select size">
-            {Object.entries(product.prices).map(([size, price], i) => (
-              <button
-                class={`size-btn${i === 0 ? ' active' : ''}`}
-                data-size={size}
-                data-price={price}
-                aria-pressed={i === 0 ? 'true' : 'false'}
-              >
-                {size}
-                <span class="size-price">${price}</span>
-              </button>
-            ))}
+            {Object.entries(product.prices).map(([size, price], i) => {
+              const isGround = size.toLowerCase().includes('ground');
+              const imgSrc = isGround && product.secondaryImage ? product.secondaryImage : product.image;
+              return (
+                <button
+                  class={`size-btn${i === 0 ? ' active' : ''}`}
+                  data-size={size}
+                  data-price={price}
+                  data-image={imgSrc}
+                  aria-pressed={i === 0 ? 'true' : 'false'}
+                >
+                  {size}
+                  <span class="size-price">${price}</span>
+                </button>
+              );
+            })}
           </div>
         </div>
 
@@ -607,7 +612,7 @@ const bundleTotal = Object.values(product.prices)[0] + bundleItems.reduce((s, i)
   </div>
 </BaseLayout>
 
-<script define:vars={{ slug: product.slug, prices: product.prices, primaryImage: product.image, secondaryImage: product.secondaryImage ?? null }}>
+<script define:vars={{ slug: product.slug, prices: product.prices }}>
   // Price & qty logic
   let selectedSize = Object.keys(prices)[0];
   let qty = 1;
@@ -635,14 +640,10 @@ const bundleTotal = Object.values(product.prices)[0] + bundleItems.reduce((s, i)
       selectedSize = btn.dataset.size;
       updatePrice();
 
-      // Swap main image based on format when secondaryImage is set
-      if (secondaryImage) {
-        const main = document.getElementById('galleryMain') as HTMLImageElement;
-        if (main) {
-          const isGround = (btn.getAttribute('data-size') ?? '').toLowerCase().includes('ground');
-          main.src = isGround ? secondaryImage : primaryImage;
-        }
-      }
+      // Swap main image if button carries a data-image
+      const imgSrc = btn.getAttribute('data-image');
+      const main = document.getElementById('galleryMain') as HTMLImageElement;
+      if (imgSrc && main) main.src = imgSrc;
     });
   });
 
