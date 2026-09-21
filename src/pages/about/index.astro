@@ -32,7 +32,7 @@ import { products } from '../../data/products';
     <div class="container">
       <div class="story-grid">
         <div class="story-image">
-          <div class="story-img-placeholder" aria-hidden="true">🏔️</div>
+          <img src="/images/about-land.jpg" alt="Copán ruins with coffee trees and Balam jaguar stone — Honduras high valley 1,300–1,700m" class="story-img" />
         </div>
         <div class="story-text">
           <h2>The Land Behind the Cup</h2>
@@ -213,15 +213,10 @@ import { products } from '../../data/products';
     align-items: center;
   }
 
-  .story-img-placeholder {
-    aspect-ratio: 1 / 1;
-    background: var(--cream);
+  .story-img {
+    width: 100%;
     border-radius: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 6rem;
-    border: 1px solid var(--border);
+    display: block;
   }
 
   .story-text h2 { font-size: clamp(1.4rem, 2.5vw, 1.9rem); margin-bottom: 1rem; }
