@@ -9,6 +9,26 @@ import { products } from '../../data/products';
   description="Browse our three single-origin coffees from Copán, Honduras — Balam dark roast, Ixchel light roast, and Kukulkan medium roast. Every order packed fresh."
 >
 
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "CollectionPage",
+        "@id": "https://mayanorigin.com/shop/",
+        "name": "Shop All Coffees — Mayan Origin Coffee",
+        "description": "Browse single-origin specialty coffees from Honduras — dark, light, and medium roasts from Copán.",
+        "url": "https://mayanorigin.com/shop/",
+        "breadcrumb": {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://mayanorigin.com/" },
+            { "@type": "ListItem", "position": 2, "name": "Shop", "item": "https://mayanorigin.com/shop/" }
+          ]
+        }
+      }
+    ]
+  })} />
+
   <section class="shop-hero">
     <div class="container">
       <nav class="breadcrumb" aria-label="Breadcrumb">

@@ -27,6 +27,26 @@ const categoryLabels: Record<string, string> = {
   description="Stories from the highlands of Copán. Mayan gods, ancient recipes, brew guides, and the people behind the coffee."
 >
 
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "CollectionPage",
+        "@id": "https://mayanorigin.com/blog/",
+        "name": "Journal — Mayan Origin Coffee",
+        "description": "Stories from the highlands of Copán. Mayan gods, ancient recipes, brew guides, and the people behind the coffee.",
+        "url": "https://mayanorigin.com/blog/",
+        "breadcrumb": {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://mayanorigin.com/" },
+            { "@type": "ListItem", "position": 2, "name": "Journal", "item": "https://mayanorigin.com/blog/" }
+          ]
+        }
+      }
+    ]
+  })} />
+
   <section class="blog-hero">
     <div class="container">
       <nav class="breadcrumb" aria-label="Breadcrumb">

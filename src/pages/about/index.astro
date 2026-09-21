@@ -9,6 +9,40 @@ import { products } from '../../data/products';
   description="Mayan Origin Coffee was born in the highlands of Copán, Honduras — where ancient Mayan civilization once thrived and exceptional coffee grows today. This is our story."
 >
 
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "AboutPage",
+        "@id": "https://mayanorigin.com/about/",
+        "name": "Our Story — Mayan Origin Coffee",
+        "url": "https://mayanorigin.com/about/",
+        "breadcrumb": {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://mayanorigin.com/" },
+            { "@type": "ListItem", "position": 2, "name": "Our Story", "item": "https://mayanorigin.com/about/" }
+          ]
+        }
+      },
+      {
+        "@type": "Organization",
+        "@id": "https://mayanorigin.com/#organization",
+        "name": "Mayan Origin Coffee",
+        "url": "https://mayanorigin.com",
+        "logo": "https://mayanorigin.com/logo.png",
+        "description": "Direct-to-consumer specialty coffee sourced from CAFICO and COCAFCAL cooperatives in Copán, Honduras. Named after Mayan gods. Packed fresh in Honduras, shipped worldwide.",
+        "foundingLocation": {
+          "@type": "Place",
+          "name": "Copán, Honduras"
+        },
+        "areaServed": "Worldwide",
+        "slogan": "Coffee Rooted in Ancient Highlands",
+        "knowsAbout": ["Honduran specialty coffee", "Mayan history", "Direct trade coffee", "Single-origin coffee"]
+      }
+    ]
+  })} />
+
   <!-- Hero -->
   <section class="about-hero">
     <div class="container">

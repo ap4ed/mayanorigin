@@ -46,6 +46,27 @@ const brandProducts = products.filter(p => {
   description={config.description}
 >
 
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "CollectionPage",
+        "@id": `https://mayanorigin.com/shop/brand/${brand}/`,
+        "name": `${config.name} — Honduras Specialty Coffee | Mayan Origin`,
+        "description": config.description,
+        "url": `https://mayanorigin.com/shop/brand/${brand}/`,
+        "breadcrumb": {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://mayanorigin.com/" },
+            { "@type": "ListItem", "position": 2, "name": "Coffee", "item": "https://mayanorigin.com/shop/" },
+            { "@type": "ListItem", "position": 3, "name": config.name, "item": `https://mayanorigin.com/shop/brand/${brand}/` }
+          ]
+        }
+      }
+    ]
+  })} />
+
   <section class="brand-hero">
     <div class="container">
       <nav class="breadcrumb" aria-label="Breadcrumb">
