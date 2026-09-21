@@ -30,6 +30,8 @@ const bundleMap: Record<string, { name: string; description: string; price: numb
   'welchez-santa-isabel': [],
   'welchez-seasonal-blend': [],
   'welchez-signature-blend': [],
+  'mythoz-classic': [],
+  'mythoz-special-reserve': [],
 };
 
 const bundleItems = bundleMap[product.slug] ?? [];
@@ -83,6 +85,20 @@ const brewGuide: Record<string, string[]> = {
     'Water temp: 93°C / 200°F',
     'Brew time: 3–4 min pour-over, 4 min drip',
     'The citrus notes come through beautifully with a clean pour-over',
+  ],
+  'mythoz-classic': [
+    'Grind: Medium for drip or pour-over, fine for espresso',
+    'Ratio: 1:15 coffee to water (e.g., 20g coffee → 300ml water)',
+    'Water temp: 93°C / 200°F',
+    'Brew time: 3–4 min pour-over, 4 min drip, 25–30 sec espresso',
+    'Versatile — the creamy, nutty profile works beautifully in milk-based drinks too',
+  ],
+  'mythoz-special-reserve': [
+    'Grind: Medium-fine for pour-over to highlight origin character',
+    'Ratio: 1:16 coffee to water (e.g., 18g coffee → 288ml water)',
+    'Water temp: 91–93°C / 196–200°F',
+    'Brew time: 3 min pour-over',
+    'Best black — a reserve-grade single origin deserves to be tasted without additives',
   ],
 };
 
@@ -138,6 +154,20 @@ const highlights: Record<string, string[]> = {
     'Tasting notes: chocolate, citrus, caramelized sugars, marked acidity',
     'Medium roast — exceptional as pour-over or drip',
     'Roasted by Café Welchez — Honduras Specialty Coffee',
+  ],
+  'mythoz-classic': [
+    'National Winner — Global Coffee Awards 2025 (Silver & Bronze medals)',
+    'Sourced from 109+ producer families across 5 Honduran regions',
+    'Tasting notes: creamy, nutty, clean citrus acidity',
+    'Direct trade — farmers paid above-market prices',
+    'Roasted by Mythoz Café — Honduras',
+  ],
+  'mythoz-special-reserve': [
+    'Limited special edition single-origin from Honduras',
+    'Sourced from 109+ producer families — direct trade',
+    'Reserve-grade lot roasted to highlight full origin character',
+    'Roasted by Mythoz Café — National Award-Winning Roaster',
+    'Limited availability — seasonal release',
   ],
 };
 
@@ -204,6 +234,26 @@ const specs: Record<string, Record<string, string>> = {
     Variety: 'Java, Catuaí, Parainema',
     'Tasting Notes': 'Chocolate, citrus, caramelized sugars',
     Brand: 'Café Welchez',
+  },
+  'mythoz-classic': {
+    Origin: 'Honduras (5 regions)',
+    Roast: 'Medium',
+    Process: 'Washed',
+    Altitude: 'Up to 1,800 masl',
+    Variety: 'Arabica — multi-region blend',
+    'Tasting Notes': 'Creamy, nutty, clean citrus acidity',
+    Award: 'National Winner — Global Coffee Awards 2025',
+    Brand: 'Mythoz Café',
+  },
+  'mythoz-special-reserve': {
+    Origin: 'Honduras',
+    Roast: 'Medium',
+    Process: 'Washed',
+    Altitude: 'Up to 1,800 masl',
+    Variety: 'Arabica — single origin',
+    'Tasting Notes': 'Seasonal — varies by lot',
+    Edition: 'Limited / Special Reserve',
+    Brand: 'Mythoz Café',
   },
 };
 
@@ -424,6 +474,7 @@ const bundleTotal = Object.values(product.prices)[0] + bundleItems.reduce((s, i)
               const cups: Record<string, string> = {
                 '250g': '~25 cups', '500g': '~50 cups', '1kg': '~100 cups',
                 '12oz': '~34 cups', '48oz': '~135 cups',
+                '340g': '~34 cups', '454g': '~45 cups',
               };
               return (
                 <tr>

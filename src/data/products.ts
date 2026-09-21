@@ -108,6 +108,34 @@ export const products: Product[] = [
     image: '/images/welchez-signature-blend.webp',
     brand: 'Café Welchez',
   },
+  {
+    slug: 'mythoz-classic',
+    name: 'Mythoz Classic',
+    subtitle: 'Legacy Blend',
+    description:
+      'National Winner at the Global Coffee Awards 2025. A carefully developed medium roast sourced from 109+ producer families across five Honduran regions. Creamy and nutty character with clean citrus acidity — an award-winning cup built on direct trade.',
+    roast: 'Medium Roast',
+    origin: 'Honduras (5 regions)',
+    process: 'Washed',
+    altitude: 'Various — up to 1,800 masl',
+    prices: { '454g': 22 },
+    image: '/images/mythoz-classic.jpg',
+    brand: 'Mythoz Café',
+  },
+  {
+    slug: 'mythoz-special-reserve',
+    name: 'Mythoz Special Reserve',
+    subtitle: 'Single Origin',
+    description:
+      'A limited special edition single-origin from Honduras. Mythoz sources from 109+ producer families using direct trade practices — this reserve lot represents the best of a single harvest, roasted to showcase the full character of the origin.',
+    roast: 'Medium Roast',
+    origin: 'Honduras',
+    process: 'Washed',
+    altitude: 'Various — up to 1,800 masl',
+    prices: { '340g': 20 },
+    image: '/images/mythoz-special-reserve.jpg',
+    brand: 'Mythoz Café',
+  },
 ];
 
 export function getProductBySlug(slug: string): Product | undefined {
