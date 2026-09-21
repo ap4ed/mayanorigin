@@ -1,6 +1,13 @@
 ---
+const brands = [
+  { slug: 'mayan-origin', name: 'Mayan Origin' },
+  { slug: 'cafe-welchez', name: 'Café Welchez' },
+  { slug: 'cafe-maya', name: 'Café Maya' },
+  { slug: 'sigua-coffee', name: 'Sigua Coffee' },
+  { slug: 'mythoz-cafe', name: 'Mythoz Café' },
+];
+
 const nav = [
-  { label: 'Shop', href: '/shop/' },
   { label: 'Journal', href: '/blog/' },
   { label: 'Our Story', href: '/about/' },
 ];
@@ -19,6 +26,20 @@ const { pathname } = Astro.url;
     <!-- Desktop nav -->
     <nav class="desktop-nav" aria-label="Main navigation">
       <ul>
+        <!-- Coffee dropdown -->
+        <li class="has-dropdown">
+          <a href="/shop/" class={pathname.startsWith('/shop/') ? 'active' : ''}>
+            Coffee
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true" class="chevron"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <div class="dropdown-menu">
+            <a href="/shop/">All Coffees</a>
+            <div class="dropdown-divider"></div>
+            {brands.map(b => (
+              <a href={`/shop/brand/${b.slug}/`} class={pathname === `/shop/brand/${b.slug}/` ? 'active' : ''}>{b.name}</a>
+            ))}
+          </div>
+        </li>
         {nav.map(({ label, href }) => (
           <li>
             <a href={href} class={pathname.startsWith(href) ? 'active' : ''}>{label}</a>
@@ -49,6 +70,18 @@ const { pathname } = Astro.url;
   <div class="mobile-nav" id="mobileNav" aria-hidden="true">
     <nav aria-label="Mobile navigation">
       <ul>
+        <li class="mobile-dropdown">
+          <button class="mobile-dropdown-trigger" id="mobileCoffeeToggle" aria-expanded="false">
+            Coffee
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true" class="chevron"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <ul class="mobile-submenu" id="mobileCoffeeMenu" hidden>
+            <li><a href="/shop/">All Coffees</a></li>
+            {brands.map(b => (
+              <li><a href={`/shop/brand/${b.slug}/`}>{b.name}</a></li>
+            ))}
+          </ul>
+        </li>
         {nav.map(({ label, href }) => (
           <li>
             <a href={href} class={pathname.startsWith(href) ? 'active' : ''}>{label}</a>
@@ -234,6 +267,103 @@ const { pathname } = Astro.url;
   }
   .mobile-nav a.active { color: #c9943a; font-weight: 600; }
 
+  /* Dropdown */
+  .has-dropdown {
+    position: relative;
+  }
+  .has-dropdown > a {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+  }
+  .chevron {
+    transition: transform 0.2s;
+    flex-shrink: 0;
+  }
+  .has-dropdown:hover .chevron {
+    transform: rotate(180deg);
+  }
+  .dropdown-menu {
+    display: none;
+    position: absolute;
+    top: calc(100% + 6px);
+    left: 0;
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+    min-width: 190px;
+    padding: 0.4rem 0;
+    z-index: 200;
+  }
+  .has-dropdown:hover .dropdown-menu,
+  .has-dropdown:focus-within .dropdown-menu {
+    display: block;
+  }
+  .dropdown-menu a {
+    display: block;
+    padding: 0.55rem 1.1rem;
+    color: #4b4b4b;
+    text-decoration: none;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.875rem;
+    font-weight: 500;
+    transition: background 0.12s, color 0.12s;
+    white-space: nowrap;
+  }
+  .dropdown-menu a:first-child {
+    font-weight: 600;
+    color: var(--green);
+  }
+  .dropdown-menu a:hover { background: #faf8f4; color: var(--green); }
+  .dropdown-menu a.active { color: var(--gold); }
+  .dropdown-divider {
+    height: 1px;
+    background: var(--border);
+    margin: 0.3rem 0;
+  }
+
+  /* Mobile dropdown */
+  .mobile-dropdown-trigger {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    width: 100%;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.75rem 1.5rem;
+    color: #4b4b4b;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 500;
+    text-align: left;
+    transition: color 0.15s;
+  }
+  .mobile-dropdown-trigger:hover { color: var(--green); }
+  .mobile-dropdown-trigger[aria-expanded="true"] .chevron { transform: rotate(180deg); }
+  .mobile-submenu {
+    list-style: none;
+    margin: 0;
+    padding: 0 0 0.25rem;
+    background: #faf8f4;
+  }
+  .mobile-submenu li a {
+    display: block;
+    padding: 0.6rem 2.25rem;
+    color: #4b4b4b;
+    text-decoration: none;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.875rem;
+    font-weight: 500;
+    transition: color 0.15s;
+  }
+  .mobile-submenu li:first-child a {
+    font-weight: 600;
+    color: var(--green);
+  }
+  .mobile-submenu li a:hover { color: var(--gold); }
+
   /* Mobile breakpoint */
   @media (max-width: 640px) {
     .hamburger { display: flex; }
@@ -263,6 +393,18 @@ const { pathname } = Astro.url;
     }
     updateCartCount();
     window.addEventListener('mo:cart-updated', updateCartCount);
+  })();
+
+  // Mobile coffee submenu toggle
+  (function() {
+    const trigger = document.getElementById('mobileCoffeeToggle');
+    const menu = document.getElementById('mobileCoffeeMenu');
+    if (!trigger || !menu) return;
+    trigger.addEventListener('click', () => {
+      const isOpen = menu.hidden === false;
+      menu.hidden = isOpen;
+      trigger.setAttribute('aria-expanded', String(!isOpen));
+    });
   })();
 
   // Mobile hamburger

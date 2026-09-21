@@ -1,0 +1,133 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import ProductCard from '../../../components/ProductCard.astro';
+import { products } from '../../../data/products';
+
+const brandConfig: Record<string, { name: string; subtitle: string; description: string }> = {
+  'mayan-origin': {
+    name: 'Mayan Origin',
+    subtitle: 'Our House Coffees',
+    description: 'Single-origin specialty coffees sourced directly from CAFICO and COCAFCAL cooperatives in Copán, Honduras. Named after Mayan gods. Grown at 1,350–1,700 masl, packed fresh and shipped from Honduras.',
+  },
+  'cafe-welchez': {
+    name: 'Café Welchez',
+    subtitle: 'Fifth-Generation Coffee Farmers',
+    description: 'Roasted by Café Welchez, fifth-generation coffee farmers from Copán, Honduras. Small-batch arabica grown at 1,000–1,300 masl — farm-direct, traceable to the estate.',
+  },
+  'cafe-maya': {
+    name: 'Café Maya',
+    subtitle: '63 Years of Honduran Roasting Tradition',
+    description: 'Produced by Café Maya in Valle de Amarateca, Honduras — over 63 years of roasting tradition. 100% arabica, Mayan Roast profile. Available whole bean and ground.',
+  },
+  'sigua-coffee': {
+    name: 'Sigua Coffee',
+    subtitle: 'Farming & Roasting in Honduras Since 2013',
+    description: 'Sigua Coffee has been farming and roasting specialty coffee in Honduras since 2013. Regenerative agriculture, direct-trade relationships, and full traceability back to the farm.',
+  },
+  'mythoz-cafe': {
+    name: 'Mythoz Café',
+    subtitle: 'National Winner — Global Coffee Awards 2025',
+    description: 'National Winner at the Global Coffee Awards 2025. Sourced direct-trade from 109+ producer families across five Honduran regions. Grown up to 1,800 masl.',
+  },
+};
+
+const { brand } = Astro.params;
+const config = brandConfig[brand!];
+if (!config) return Astro.redirect('/shop/');
+
+const brandProducts = products.filter(p => {
+  if (brand === 'mayan-origin') return !p.brand;
+  return p.brand === config.name;
+});
+---
+
+<BaseLayout
+  title={`${config.name} — Honduras Specialty Coffee | Mayan Origin`}
+  description={config.description}
+>
+
+  <section class="brand-hero">
+    <div class="container">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="/">Home</a>
+        <span aria-hidden="true">›</span>
+        <a href="/shop/">Coffee</a>
+        <span aria-hidden="true">›</span>
+        <span aria-current="page">{config.name}</span>
+      </nav>
+      <p class="eyebrow">{config.subtitle}</p>
+      <h1>{config.name}</h1>
+      <p class="hero-sub">{config.description}</p>
+    </div>
+  </section>
+
+  <section class="brand-products">
+    <div class="container">
+      <div class="products-grid">
+        {brandProducts.map(p => <ProductCard product={p} />)}
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+  .brand-hero {
+    background: var(--green);
+    color: #fff;
+    padding: 4rem 0 3.5rem;
+  }
+
+  .breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.82rem;
+    color: rgba(255,255,255,0.5);
+    font-family: 'DM Sans', sans-serif;
+    margin-bottom: 1rem;
+  }
+  .breadcrumb a { color: rgba(255,255,255,0.5); text-decoration: none; }
+  .breadcrumb a:hover { color: var(--gold); }
+
+  .eyebrow {
+    font-size: 0.78rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--gold);
+    margin: 0 0 0.75rem;
+    font-family: 'DM Sans', sans-serif;
+  }
+
+  .brand-hero h1 {
+    color: #fff;
+    font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+    margin: 0 0 1rem;
+  }
+
+  .hero-sub {
+    color: rgba(255,255,255,0.75);
+    font-size: 1rem;
+    line-height: 1.75;
+    margin: 0;
+    max-width: 640px;
+  }
+
+  .brand-products {
+    padding: 4rem 0 5rem;
+  }
+
+  .products-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.75rem;
+  }
+
+  @media (max-width: 900px) {
+    .products-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 560px) {
+    .products-grid { grid-template-columns: 1fr; }
+  }
+</style>
