@@ -99,6 +99,12 @@ import { products } from '../../data/products';
     balam: 'Balam — Dark Roast',
     ixchel: 'Ixchel — Light Roast',
     kukulkan: 'Kukulkan — Medium Roast',
+    'welchez-house-blend': 'House Blend — Café Welchez',
+    'welchez-santa-isabel': 'Santa Isabel — Café Welchez',
+    'cafe-maya-coffee-club': 'Coffee Club — Café Maya',
+    'cafe-maya-reserva': 'Reserva — Café Maya',
+    'sigua-finca-el-zapote': 'Finca El Zapote — Sigua Coffee',
+    'mythoz-classic': 'Mythoz Classic — Legacy Blend',
   };
 
   function loadCart(): CartItem[] {
@@ -271,7 +277,7 @@ import { products } from '../../data/products';
   /* Items */
   .cart-items { display: flex; flex-direction: column; gap: 1rem; }
 
-  .cart-item {
+  :global(.cart-item) {
     display: flex;
     align-items: center;
     gap: 1rem;
@@ -281,7 +287,7 @@ import { products } from '../../data/products';
     border: 1px solid var(--border);
   }
 
-  .item-image {
+  :global(.item-image) {
     width: 60px;
     height: 60px;
     background: var(--cream);
@@ -293,17 +299,17 @@ import { products } from '../../data/products';
     flex-shrink: 0;
   }
 
-  .item-info { flex: 1; }
-  .item-name {
+  :global(.item-info) { flex: 1; }
+  :global(.item-name) {
     font-weight: 600;
     font-family: 'DM Sans', sans-serif;
     font-size: 0.95rem;
     margin: 0 0 0.2rem;
     color: var(--text);
   }
-  .item-size { font-size: 0.82rem; color: var(--muted); margin: 0; font-family: 'DM Sans', sans-serif; }
+  :global(.item-size) { font-size: 0.82rem; color: var(--muted); margin: 0; font-family: 'DM Sans', sans-serif; }
 
-  .item-qty {
+  :global(.item-qty) {
     display: flex;
     align-items: center;
     gap: 0;
@@ -311,7 +317,7 @@ import { products } from '../../data/products';
     border-radius: 6px;
     overflow: hidden;
   }
-  .qty-btn {
+  :global(.qty-btn) {
     width: 32px;
     height: 32px;
     background: #fff;
@@ -325,8 +331,8 @@ import { products } from '../../data/products';
     align-items: center;
     justify-content: center;
   }
-  .qty-btn:hover { background: var(--cream); }
-  .item-qty span {
+  :global(.qty-btn:hover) { background: var(--cream); }
+  :global(.item-qty span) {
     min-width: 32px;
     text-align: center;
     font-family: 'DM Sans', sans-serif;
@@ -338,7 +344,7 @@ import { products } from '../../data/products';
     line-height: 32px;
   }
 
-  .item-price {
+  :global(.item-price) {
     font-weight: 700;
     font-family: 'DM Sans', sans-serif;
     color: var(--green);
@@ -347,7 +353,7 @@ import { products } from '../../data/products';
     text-align: right;
   }
 
-  .remove-btn {
+  :global(.remove-btn) {
     background: none;
     border: none;
     cursor: pointer;
@@ -358,7 +364,7 @@ import { products } from '../../data/products';
     transition: color 0.15s;
     line-height: 1;
   }
-  .remove-btn:hover { color: #c0392b; }
+  :global(.remove-btn:hover) { color: #c0392b; }
 
   /* Summary */
   .cart-summary {
@@ -372,7 +378,7 @@ import { products } from '../../data/products';
 
   .cart-summary h2 { font-size: 1.1rem; margin-bottom: 1.25rem; }
 
-  .summary-row {
+  :global(.summary-row) {
     display: flex;
     justify-content: space-between;
     font-size: 0.85rem;
