@@ -275,6 +275,7 @@ const { pathname } = Astro.url;
     display: flex;
     align-items: center;
     gap: 0.3rem;
+    position: relative;
   }
   .chevron {
     transition: transform 0.2s;
@@ -295,6 +296,16 @@ const { pathname } = Astro.url;
     min-width: 190px;
     padding: 0.4rem 0;
     z-index: 200;
+  }
+
+  /* Invisible bridge fills the gap between link and dropdown so hover doesn't break */
+  .has-dropdown > a::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+    right: 0;
+    height: 8px;
   }
   .has-dropdown:hover .dropdown-menu,
   .has-dropdown:focus-within .dropdown-menu {
