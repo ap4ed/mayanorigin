@@ -30,6 +30,8 @@ const bundleMap: Record<string, { name: string; description: string; price: numb
   'welchez-santa-isabel': [],
   'welchez-seasonal-blend': [],
   'welchez-signature-blend': [],
+  'cafe-maya-coffee-club': [],
+  'cafe-maya-reserva': [],
   'sigua-finca-el-zapote': [],
   'mythoz-classic': [],
 };
@@ -85,6 +87,20 @@ const brewGuide: Record<string, string[]> = {
     'Water temp: 93°C / 200°F',
     'Brew time: 3–4 min pour-over, 4 min drip',
     'The citrus notes come through beautifully with a clean pour-over',
+  ],
+  'cafe-maya-coffee-club': [
+    'Grind: Medium for drip or Moka pot, coarse for French press',
+    'Ratio: 1:15 coffee to water (e.g., 20g coffee → 300ml water)',
+    'Water temp: 93°C / 200°F',
+    'Brew time: 4 min drip or French press',
+    'Works well black or with milk — a versatile everyday roast',
+  ],
+  'cafe-maya-reserva': [
+    'Grind: Medium for drip or pour-over',
+    'Ratio: 1:15 coffee to water (e.g., 20g coffee → 300ml water)',
+    'Water temp: 93°C / 200°F',
+    'Brew time: 3–4 min pour-over, 4 min drip',
+    'Best enjoyed your way — black, with milk, or over ice',
   ],
   'sigua-finca-el-zapote': [
     'Grind: Medium for drip or pour-over',
@@ -154,6 +170,20 @@ const highlights: Record<string, string[]> = {
     'Tasting notes: chocolate, citrus, caramelized sugars, marked acidity',
     'Medium roast — exceptional as pour-over or drip',
     'Roasted by Café Welchez — Honduras Specialty Coffee',
+  ],
+  'cafe-maya-coffee-club': [
+    '100% Honduran arabica — "Mayan Roast" medium profile',
+    'Available in whole bean or ground — same price, your choice',
+    '63+ years of Honduran coffee roasting tradition',
+    'Produced in Valle de Amarateca, Honduras',
+    'Roasted by Café Maya — Honduras',
+  ],
+  'cafe-maya-reserva': [
+    '100% Honduran arabica — Mayan Medium Roast',
+    'The premium tier of the Café Maya lineup',
+    '63+ years of Honduran coffee roasting tradition',
+    'Produced in Valle de Amarateca, Honduras',
+    '"Tu Café. A Tu Manera." — your coffee, your way',
   ],
   'sigua-finca-el-zapote': [
     'Single origin from Finca El Zapote, Siguatepeque, Honduras — 1,550 masl',
@@ -234,6 +264,22 @@ const specs: Record<string, Record<string, string>> = {
     Variety: 'Java, Catuaí, Parainema',
     'Tasting Notes': 'Chocolate, citrus, caramelized sugars',
     Brand: 'Café Welchez',
+  },
+  'cafe-maya-coffee-club': {
+    Origin: 'Honduras',
+    Roast: 'Medium (Mayan Roast)',
+    Process: 'Washed',
+    Format: 'Whole Bean or Ground — 340g',
+    Variety: 'Arabica',
+    Brand: 'Café Maya (Est. 63+ years)',
+  },
+  'cafe-maya-reserva': {
+    Origin: 'Honduras',
+    Roast: 'Medium (Mayan Medium Roast)',
+    Process: 'Washed',
+    Variety: 'Arabica',
+    'Net Weight': '340g',
+    Brand: 'Café Maya (Est. 63+ years)',
   },
   'sigua-finca-el-zapote': {
     Origin: 'Finca El Zapote, Siguatepeque, Honduras',
