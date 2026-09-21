@@ -394,16 +394,6 @@ const bundleTotal = Object.values(product.prices)[0] + bundleItems.reduce((s, i)
           />
           <span class="roast-badge">{product.roast}</span>
         </div>
-        {product.secondaryImage && (
-          <div class="gallery-thumbs">
-            <button class="thumb active" data-src={product.image} aria-label="View image 1">
-              <img src={product.image} alt={`${product.name} whole bean`} />
-            </button>
-            <button class="thumb" data-src={product.secondaryImage} aria-label="View image 2">
-              <img src={product.secondaryImage} alt={`${product.name} ground`} />
-            </button>
-          </div>
-        )}
       </div>
 
       <!-- Right: purchase module -->
@@ -617,7 +607,7 @@ const bundleTotal = Object.values(product.prices)[0] + bundleItems.reduce((s, i)
   </div>
 </BaseLayout>
 
-<script define:vars={{ slug: product.slug, prices: product.prices }}>
+<script define:vars={{ slug: product.slug, prices: product.prices, primaryImage: product.image, secondaryImage: product.secondaryImage ?? null }}>
   // Price & qty logic
   let selectedSize = Object.keys(prices)[0];
   let qty = 1;
@@ -644,6 +634,15 @@ const bundleTotal = Object.values(product.prices)[0] + bundleItems.reduce((s, i)
       btn.setAttribute('aria-pressed', 'true');
       selectedSize = btn.dataset.size;
       updatePrice();
+
+      // Swap main image based on format when secondaryImage is set
+      if (secondaryImage) {
+        const main = document.getElementById('galleryMain') as HTMLImageElement;
+        if (main) {
+          const isGround = selectedSize?.toLowerCase().includes('ground');
+          main.src = isGround ? secondaryImage : primaryImage;
+        }
+      }
     });
   });
 
@@ -709,15 +708,6 @@ const bundleTotal = Object.values(product.prices)[0] + bundleItems.reduce((s, i)
 
   updatePrice();
 
-  // Gallery thumbnail switcher
-  document.querySelectorAll('.thumb').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const main = document.getElementById('galleryMain') as HTMLImageElement;
-      if (main) main.src = (btn as HTMLElement).dataset.src ?? '';
-      document.querySelectorAll('.thumb').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-    });
-  });
 </script>
 
 <style>
@@ -766,33 +756,6 @@ const bundleTotal = Object.values(product.prices)[0] + bundleItems.reduce((s, i)
     display: block;
   }
 
-  .gallery-thumbs {
-    display: flex;
-    gap: 0.5rem;
-    margin-top: 0.75rem;
-  }
-
-  .thumb {
-    width: 72px;
-    height: 72px;
-    border-radius: 8px;
-    overflow: hidden;
-    border: 2px solid var(--border);
-    background: #e8e0d4;
-    cursor: pointer;
-    padding: 0;
-    transition: border-color 0.15s;
-  }
-
-  .thumb img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-  }
-
-  .thumb.active { border-color: var(--green); }
-  .thumb:hover { border-color: var(--green); }
 
   .roast-badge {
     position: absolute;
