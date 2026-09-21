@@ -13,6 +13,7 @@ export interface Product {
   metaTitle?: string;
   metaDescription?: string;
   ingredients?: string;
+  secondaryImage?: string;
 }
 
 export const products: Product[] = [
@@ -192,6 +193,7 @@ export const products: Product[] = [
     altitude: 'Up to 1,800 masl',
     prices: { 'Whole Bean 12oz': 20, 'Whole Bean 16oz': 24, 'Ground 12oz': 20, 'Ground 16oz': 24 },
     image: '/images/mythoz-classic-whole-bean.webp',
+    secondaryImage: '/images/mythoz-classic-ground.webp',
     brand: 'Mythoz Café',
     metaTitle: 'Mythoz Classic — Award-Winning Honduras Specialty Coffee | Mayan Origin',
     metaDescription: 'Mythoz Classic Legacy Blend — National Winner, Global Coffee Awards 2025. Small-batch Honduras specialty coffee sourced direct-trade from 109+ producer families. Creamy, nutty, clean citrus acidity.',
