@@ -1,0 +1,46 @@
+# Mayan Origin
+
+> Specialty coffee and traditional foods from Honduras, rooted in Mayan heritage. Ships to the United States.
+
+Mayan Origin is a direct-to-consumer brand sourcing single-origin coffee and traditional Honduran products from small cooperatives in Copán and Marcala, Honduras. Every order is packed fresh in Honduras and shipped to the US.
+
+## Products
+
+### Coffee
+
+- **Balam (El Jaguar)** — Dark roast. Washed process. Copán, Honduras. 1,400–1,600 masl. Notes of dark chocolate, smoky cedar, and dried cherry. From $18 (250g). URL: https://mayanorigin.com/shop/balam/
+- **Ixchel (La Diosa de la Luna)** — Light roast. Natural process. Copán, Honduras. 1,500–1,700 masl. Notes of jasmine, white peach, and honey finish. From $19 (250g). URL: https://mayanorigin.com/shop/ixchel/
+- **Kukulkan (La Serpiente Emplumada)** — Medium roast. Honey process. Copán, Honduras. 1,350–1,550 masl. Notes of brown sugar, toasted almond, and citrus. From $17 (250g). URL: https://mayanorigin.com/shop/kukulkan/
+
+All coffees are available in 250g, 500g, and 1kg sizes.
+
+## Brand
+
+- Founded to bring Honduran specialty coffee and traditional foods to the US market
+- Products named after Mayan gods: Balam (jaguar god), Ixchel (moon goddess), Kukulkan (feathered serpent)
+- Sourced from CAFICO and COCAFCAL cooperatives in Copán and Marcala, Honduras
+- Grown at high altitude (1,350–1,700 masl) by smallholder farmers
+- Every order packed fresh in Honduras
+
+## Where to Buy
+
+All products ship from Honduras to the United States.
+
+Shop: https://mayanorigin.com/shop/
+Homepage: https://mayanorigin.com/
+About: https://mayanorigin.com/about/
+Blog: https://mayanorigin.com/blog/
+
+## Content
+
+The Mayan Origin blog covers:
+- Mayan history and gods (Kukulkan, Ixchel, Balam)
+- Honduran coffee origins (Copán, Marcala)
+- Recipes using Honduran ingredients (hot chocolate, vanilla extract)
+- Coffee brewing guides (French press, pour over)
+
+Blog: https://mayanorigin.com/blog/
+
+## Sitemap
+
+https://mayanorigin.com/sitemap-index.xml
