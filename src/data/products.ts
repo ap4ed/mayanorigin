@@ -130,6 +130,23 @@ export const products: Product[] = [
     ingredients: '100% Arabica Coffee — Copán, Honduras. Varieties: Java, Catuaí, Parainema. Nothing added.',
   },
   {
+    slug: 'sigua-finca-el-zapote',
+    name: 'Finca El Zapote',
+    subtitle: 'Sigua Coffee',
+    description:
+      'A single origin specialty coffee from Finca El Zapote in Siguatepeque, Honduras — grown at 1,550 masl and hand-selected at harvest. Sigua Coffee has been farming and roasting in Honduras since 2013, using regenerative agriculture and direct-trade relationships to produce 100% arabica beans with full traceability back to the farm.',
+    roast: 'Medium Roast',
+    origin: 'Finca El Zapote, Siguatepeque, Honduras',
+    process: 'Washed',
+    altitude: '1,550 masl',
+    prices: { '1lb': 18 },
+    image: '/images/sigua-finca-el-zapote.webp',
+    brand: 'Sigua Coffee',
+    metaTitle: 'Sigua Coffee Finca El Zapote — Single Origin Honduras Coffee | Mayan Origin',
+    metaDescription: 'Sigua Coffee Finca El Zapote — single origin specialty coffee from Siguatepeque, Honduras. 1,550 masl, hand-selected arabica. Farmers & roasters since 2013. Direct-trade, small-batch.',
+    ingredients: '100% Single-Origin Arabica Coffee — Finca El Zapote, Siguatepeque, Honduras. Hand-selected at harvest. Nothing added.',
+  },
+  {
     slug: 'mythoz-classic',
     name: 'Mythoz Classic',
     subtitle: 'Legacy Blend',
@@ -145,23 +162,6 @@ export const products: Product[] = [
     metaTitle: 'Mythoz Classic — Award-Winning Honduras Specialty Coffee | Mayan Origin',
     metaDescription: 'Mythoz Classic Legacy Blend — National Winner, Global Coffee Awards 2025. Small-batch Honduras specialty coffee sourced direct-trade from 109+ producer families. Creamy, nutty, clean citrus acidity.',
     ingredients: '100% Arabica Coffee — Honduras (multi-region blend). Direct-trade from 109+ producer families. Nothing added.',
-  },
-  {
-    slug: 'mythoz-special-reserve',
-    name: 'Mythoz Special Reserve',
-    subtitle: 'Single Origin',
-    description:
-      'A limited single origin specialty coffee from Honduras by award-winning roaster Mythoz Café. Sourced direct-trade from 109+ producer families — this reserve lot is roasted to showcase the full character of a single Honduras harvest. Small-batch, seasonal availability.',
-    roast: 'Medium Roast',
-    origin: 'Honduras',
-    process: 'Washed',
-    altitude: 'Up to 1,800 masl',
-    prices: { '340g': 24 },
-    image: '/images/mythoz-special-reserve.jpg',
-    brand: 'Mythoz Café',
-    metaTitle: 'Mythoz Special Reserve — Single Origin Honduras Coffee | Mayan Origin',
-    metaDescription: 'Mythoz Special Reserve — limited single origin Honduras specialty coffee from National Award-winning roaster Mythoz Café. Direct-trade, small-batch, seasonal. 340g.',
-    ingredients: '100% Single-Origin Arabica Coffee — Honduras. Direct-trade from 109+ producer families. Nothing added.',
   },
 ];
 
