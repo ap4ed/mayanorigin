@@ -67,9 +67,9 @@ import { products } from '../../data/products';
           </ul>
 
           <div class="shipping-info">
-            <p class="shipping-title">Shipping to the United States</p>
-            <p>Orders ship from Honduras via DHL Express. Estimated delivery: 7–14 business days to the continental US.</p>
-            <p>Free shipping on orders over $60.</p>
+            <p class="shipping-title">Worldwide Shipping</p>
+            <p>Orders ship from Honduras via FedEx/DHL Express. Estimated delivery: 7–14 business days.</p>
+            <p>Free Express shipping on orders over $100.</p>
           </div>
         </div>
 
@@ -135,7 +135,7 @@ import { products } from '../../data/products';
     filledEl.hidden = false;
 
     const subtotal = cart.reduce((s, i) => s + i.price * i.qty, 0);
-    const freeShipping = subtotal >= 60;
+    const freeShipping = subtotal >= 100;
 
     // Render items
     itemsEl.innerHTML = cart.map((item, idx) => `

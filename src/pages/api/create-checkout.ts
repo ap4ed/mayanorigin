@@ -51,7 +51,7 @@ export const POST: APIRoute = async ({ request }) => {
   }));
 
   const subtotal = items.reduce((s, i) => s + i.price * i.qty, 0);
-  const freeShipping = subtotal >= 60;
+  const freeShipping = subtotal >= 100;
 
   try {
     const session = await stripe.checkout.sessions.create({
