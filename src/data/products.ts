@@ -175,7 +175,7 @@ export const products: Product[] = [
     origin: 'Finca El Zapote, Siguatepeque, Honduras',
     process: 'Washed',
     altitude: '1,550 masl',
-    prices: { '1lb': 18 },
+    prices: { '16oz': 18 },
     image: '/images/sigua-finca-el-zapote.webp',
     brand: 'Sigua Coffee',
     metaTitle: 'Sigua Coffee Finca El Zapote — Single Origin Honduras Coffee | Mayan Origin',
