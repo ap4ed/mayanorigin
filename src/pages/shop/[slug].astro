@@ -639,7 +639,7 @@ const bundleTotal = Object.values(product.prices)[0] + bundleItems.reduce((s, i)
       if (secondaryImage) {
         const main = document.getElementById('galleryMain') as HTMLImageElement;
         if (main) {
-          const isGround = selectedSize?.toLowerCase().includes('ground');
+          const isGround = (btn.getAttribute('data-size') ?? '').toLowerCase().includes('ground');
           main.src = isGround ? secondaryImage : primaryImage;
         }
       }

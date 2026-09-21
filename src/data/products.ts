@@ -191,7 +191,7 @@ export const products: Product[] = [
     origin: 'Honduras (5 regions)',
     process: 'Washed',
     altitude: 'Up to 1,800 masl',
-    prices: { 'Whole Bean 12oz': 20, 'Whole Bean 16oz': 24, 'Ground 12oz': 20, 'Ground 16oz': 24 },
+    prices: { 'Whole Bean 16oz': 24, 'Ground 16oz': 24 },
     image: '/images/mythoz-classic-whole-bean.webp',
     secondaryImage: '/images/mythoz-classic-ground.webp',
     brand: 'Mythoz Café',
