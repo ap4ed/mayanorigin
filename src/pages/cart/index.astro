@@ -90,6 +90,12 @@ const productImageMap = Object.fromEntries(products.map(p => [p.slug, p.image]))
 </BaseLayout>
 
 <script define:vars={{ productImageMap }}>
+  window.__productImageMap = productImageMap;
+</script>
+
+<script>
+  const productImageMap: Record<string, string> = (window as any).__productImageMap || {};
+
   interface CartItem {
     slug: string;
     size: string;
