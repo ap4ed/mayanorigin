@@ -612,17 +612,28 @@ const bundleTotal = Object.values(product.prices)[0] + bundleItems.reduce((s, i)
   </div>
 </BaseLayout>
 
-<script define:vars={{ slug: product.slug, prices: product.prices }}>
-  // Price & qty logic
-  let selectedSize = Object.keys(prices)[0];
+<script define:vars={{ slug: product.slug }}>
+  // Read all state from the DOM — no prices object needed
   let qty = 1;
 
   const priceDisplay = document.getElementById('priceDisplay');
   const priceNote = document.getElementById('priceNote');
   const qtyValue = document.getElementById('qtyValue');
 
+  function getActiveBtn() {
+    return document.querySelector('.size-btn.active');
+  }
+
+  function getSelectedSize() {
+    return getActiveBtn()?.getAttribute('data-size') ?? '';
+  }
+
+  function getUnitPrice() {
+    return Number(getActiveBtn()?.getAttribute('data-price') ?? 0);
+  }
+
   function updatePrice() {
-    const unitPrice = prices[selectedSize];
+    const unitPrice = getUnitPrice();
     const total = unitPrice * qty;
     if (priceDisplay) priceDisplay.textContent = `$${total}`;
     if (priceNote) priceNote.textContent = qty > 1 ? `($${unitPrice} × ${qty})` : '';
@@ -637,33 +648,34 @@ const bundleTotal = Object.values(product.prices)[0] + bundleItems.reduce((s, i)
       });
       btn.classList.add('active');
       btn.setAttribute('aria-pressed', 'true');
-      selectedSize = btn.dataset.size;
       updatePrice();
 
       // Swap main image if button carries a data-image
       const imgSrc = btn.getAttribute('data-image');
-      const main = document.getElementById('galleryMain') as HTMLImageElement;
+      const main = document.getElementById('galleryMain');
       if (imgSrc && main) main.src = imgSrc;
     });
   });
 
   // Qty
   document.getElementById('qtyMinus')?.addEventListener('click', () => {
-    if (qty > 1) { qty--; if (qtyValue) qtyValue.textContent = qty; updatePrice(); }
+    if (qty > 1) { qty--; if (qtyValue) qtyValue.textContent = String(qty); updatePrice(); }
   });
   document.getElementById('qtyPlus')?.addEventListener('click', () => {
-    if (qty < 10) { qty++; if (qtyValue) qtyValue.textContent = qty; updatePrice(); }
+    if (qty < 10) { qty++; if (qtyValue) qtyValue.textContent = String(qty); updatePrice(); }
   });
 
   // Add to Cart
   document.getElementById('addToCart')?.addEventListener('click', () => {
     try {
       const cart = JSON.parse(localStorage.getItem('mo_cart') || '[]');
+      const selectedSize = getSelectedSize();
+      const price = getUnitPrice();
       const existing = cart.find(i => i.slug === slug && i.size === selectedSize);
       if (existing) {
         existing.qty = Math.min(10, existing.qty + qty);
       } else {
-        cart.push({ slug, size: selectedSize, qty, price: prices[selectedSize] });
+        cart.push({ slug, size: selectedSize, qty, price });
       }
       localStorage.setItem('mo_cart', JSON.stringify(cart));
       window.dispatchEvent(new Event('mo:cart-updated'));
@@ -677,7 +689,7 @@ const bundleTotal = Object.values(product.prices)[0] + bundleItems.reduce((s, i)
 
   // Buy Now — direct to Stripe checkout
   document.getElementById('buyNow')?.addEventListener('click', async () => {
-    const btn = document.getElementById('buyNow') as HTMLButtonElement;
+    const btn = document.getElementById('buyNow');
     btn.textContent = 'Redirecting…';
     btn.disabled = true;
 
@@ -685,7 +697,7 @@ const bundleTotal = Object.values(product.prices)[0] + bundleItems.reduce((s, i)
       const res = await fetch('/api/create-checkout', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ items: [{ slug, size: selectedSize, qty, price: prices[selectedSize] }] }),
+        body: JSON.stringify({ items: [{ slug, size: getSelectedSize(), qty, price: getUnitPrice() }] }),
       });
       const data = await res.json();
       if (data.url) {
