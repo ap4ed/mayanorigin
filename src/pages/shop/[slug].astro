@@ -26,6 +26,10 @@ const bundleMap: Record<string, { name: string; description: string; price: numb
     { name: 'Cacao Nibs', description: 'Raw Honduran cacao nibs', price: 12 },
     { name: 'Vanilla Beans', description: 'Whole vanilla beans, Grade A', price: 16 },
   ],
+  'welchez-house-blend': [],
+  'welchez-santa-isabel': [],
+  'welchez-seasonal-blend': [],
+  'welchez-signature-blend': [],
 };
 
 const bundleItems = bundleMap[product.slug] ?? [];
@@ -51,6 +55,34 @@ const brewGuide: Record<string, string[]> = {
     'Water temp: 93°C / 200°F',
     'Brew time: 4 min drip, 25–30 sec espresso',
     'Versatile — works equally well black or with milk',
+  ],
+  'welchez-house-blend': [
+    'Grind: Fine for espresso, medium for drip',
+    'Ratio: 1:2 for espresso (e.g., 18g coffee → 36g output), 1:15 for drip',
+    'Water temp: 93°C / 200°F',
+    'Brew time: 25–30 sec espresso, 4 min drip',
+    'Designed for espresso — also excellent as a flat white or latte',
+  ],
+  'welchez-santa-isabel': [
+    'Grind: Medium-fine for pour-over or drip',
+    'Ratio: 1:16 coffee to water (e.g., 18g coffee → 288ml water)',
+    'Water temp: 90–92°C / 194–198°F — preserve the delicate sweetness',
+    'Brew time: 3 min pour-over',
+    'Best enjoyed black to let the chocolatey and sweet-acidic notes shine',
+  ],
+  'welchez-seasonal-blend': [
+    'Grind: Medium for drip or pour-over',
+    'Ratio: 1:15 coffee to water (e.g., 20g coffee → 300ml water)',
+    'Water temp: 93°C / 200°F',
+    'Brew time: 3–4 min pour-over, 4 min drip',
+    'Experiment with brewing methods — each harvest has its own character',
+  ],
+  'welchez-signature-blend': [
+    'Grind: Medium for drip, medium-fine for pour-over',
+    'Ratio: 1:15 coffee to water (e.g., 20g coffee → 300ml water)',
+    'Water temp: 93°C / 200°F',
+    'Brew time: 3–4 min pour-over, 4 min drip',
+    'The citrus notes come through beautifully with a clean pour-over',
   ],
 };
 
@@ -78,6 +110,34 @@ const highlights: Record<string, string[]> = {
     'Works beautifully as drip, espresso, or Moka pot',
     'Packed fresh to order in Honduras',
     'Direct from COCAFCAL cooperative farmers',
+  ],
+  'welchez-house-blend': [
+    'Honduras arabica grown at 1,000–1,300 masl',
+    'Natural + washed blend — fruity body meets refined elegance',
+    'Tasting notes: dark chocolate, caramel, bright acidity',
+    'Crafted specifically for espresso machines',
+    'Roasted by Café Welchez — Honduras Specialty Coffee',
+  ],
+  'welchez-santa-isabel': [
+    'From Santa Isabel Farm, Honduras — 1,000–1,300 masl',
+    'Varieties: Parainema, Catuaí, and Caturra',
+    'Tasting notes: sweet, acidic, rich chocolatey aroma',
+    'Light roast — ideal for pour-over or drip',
+    'Roasted by Café Welchez — Honduras Specialty Coffee',
+  ],
+  'welchez-seasonal-blend': [
+    'Honduras arabica grown at 1,000–1,300 masl',
+    'Process varies by harvest: washed, honey, natural, or soaking',
+    'Tasting notes: change with each harvest — always bright and balanced',
+    'Medium roast — great for drip or pour-over',
+    'Roasted by Café Welchez — Honduras Specialty Coffee',
+  ],
+  'welchez-signature-blend': [
+    'Microlot blend from Honduras — 1,400–1,500 masl',
+    'Varieties: Java, Catuaí, and Parainema',
+    'Tasting notes: chocolate, citrus, caramelized sugars, marked acidity',
+    'Medium roast — exceptional as pour-over or drip',
+    'Roasted by Café Welchez — Honduras Specialty Coffee',
   ],
 };
 
@@ -108,6 +168,42 @@ const specs: Record<string, Record<string, string>> = {
     Variety: 'Arabica (Catuaí, IHCAFE 90)',
     'Tasting Notes': 'Brown sugar, toasted almond, clean citrus',
     'Packed': 'Fresh to order in Honduras',
+  },
+  'welchez-house-blend': {
+    Origin: 'Honduras',
+    Roast: 'Medium',
+    Process: 'Natural + Washed blend',
+    Altitude: '1,000–1,300 masl',
+    Variety: 'Arabica',
+    'Tasting Notes': 'Dark chocolate, caramel, bright acidity',
+    Brand: 'Café Welchez',
+  },
+  'welchez-santa-isabel': {
+    Origin: 'Santa Isabel Farm, Honduras',
+    Roast: 'Light',
+    Process: 'Washed',
+    Altitude: '1,000–1,300 masl',
+    Variety: 'Parainema, Catuaí, Caturra',
+    'Tasting Notes': 'Sweet, acidic, rich chocolate aroma',
+    Brand: 'Café Welchez',
+  },
+  'welchez-seasonal-blend': {
+    Origin: 'Honduras',
+    Roast: 'Medium',
+    Process: 'Varies by harvest',
+    Altitude: '1,000–1,300 masl',
+    Variety: 'Arabica (seasonal selection)',
+    'Tasting Notes': 'Changes each harvest — always bright and balanced',
+    Brand: 'Café Welchez',
+  },
+  'welchez-signature-blend': {
+    Origin: 'Honduras',
+    Roast: 'Medium',
+    Process: 'Washed',
+    Altitude: '1,400–1,500 masl',
+    Variety: 'Java, Catuaí, Parainema',
+    'Tasting Notes': 'Chocolate, citrus, caramelized sugars',
+    Brand: 'Café Welchez',
   },
 };
 
@@ -319,30 +415,24 @@ const bundleTotal = Object.values(product.prices)[0] + bundleItems.reduce((s, i)
           <thead>
             <tr>
               <th>Size</th>
-              <th>Imperial</th>
               <th>Approx. Cups</th>
               <th>Price</th>
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>250g</td>
-              <td>8.8 oz</td>
-              <td>~25 cups</td>
-              <td>${product.prices['250g']}</td>
-            </tr>
-            <tr>
-              <td>500g</td>
-              <td>17.6 oz</td>
-              <td>~50 cups</td>
-              <td>${product.prices['500g']}</td>
-            </tr>
-            <tr>
-              <td>1kg</td>
-              <td>35.3 oz</td>
-              <td>~100 cups</td>
-              <td>${product.prices['1kg']}</td>
-            </tr>
+            {Object.entries(product.prices).map(([size, price]) => {
+              const cups: Record<string, string> = {
+                '250g': '~25 cups', '500g': '~50 cups', '1kg': '~100 cups',
+                '12oz': '~34 cups', '48oz': '~135 cups',
+              };
+              return (
+                <tr>
+                  <td>{size}</td>
+                  <td>{cups[size] ?? '—'}</td>
+                  <td>${price}</td>
+                </tr>
+              );
+            })}
           </tbody>
         </table>
       </section>
