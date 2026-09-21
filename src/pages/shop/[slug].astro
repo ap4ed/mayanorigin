@@ -264,8 +264,8 @@ const bundleTotal = Object.values(product.prices)[0] + bundleItems.reduce((s, i)
 ---
 
 <BaseLayout
-  title={`${product.name} — ${product.roast} | Mayan Origin Coffee`}
-  description={product.description}
+  title={product.metaTitle ?? `${product.name} — ${product.roast} | Mayan Origin Coffee`}
+  description={product.metaDescription ?? product.description}
   ogType="product"
 >
   <slot name="head">
@@ -276,7 +276,7 @@ const bundleTotal = Object.values(product.prices)[0] + bundleItems.reduce((s, i)
       "name": `${product.name} — ${product.roast} Coffee`,
       "description": product.description,
       "image": `https://mayanorigin.com${product.image}`,
-      "brand": { "@type": "Brand", "name": "Mayan Origin Coffee" },
+      "brand": { "@type": "Brand", "name": product.brand ?? "Mayan Origin Coffee" },
       "countryOfOrigin": { "@type": "Country", "name": "Honduras" },
       "category": "Coffee",
       "offers": Object.entries(product.prices).map(([size, price]) => ({
@@ -340,7 +340,7 @@ const bundleTotal = Object.values(product.prices)[0] + bundleItems.reduce((s, i)
         <div class="gallery-main">
           <img
             src={product.image}
-            alt={`${product.name} — ${product.subtitle} coffee bag`}
+            alt={`${product.name} — ${product.subtitle} Honduras specialty coffee bag`}
             width="600"
             height="600"
             loading="eager"
@@ -442,7 +442,7 @@ const bundleTotal = Object.values(product.prices)[0] + bundleItems.reduce((s, i)
       <!-- Ingredients -->
       <section class="pdp-section">
         <h2>Ingredients</h2>
-        <p>100% Single-Origin Arabica Coffee — Copán, Honduras. Nothing added. Nothing removed.</p>
+        <p>{product.ingredients ?? '100% Single-Origin Arabica Coffee — Copán, Honduras. Nothing added. Nothing removed.'}</p>
       </section>
 
       <!-- Item Details -->

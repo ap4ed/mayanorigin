@@ -10,6 +10,9 @@ export interface Product {
   prices: Record<string, number>;
   image: string;
   brand?: string;
+  metaTitle?: string;
+  metaDescription?: string;
+  ingredients?: string;
 }
 
 export const products: Product[] = [
@@ -25,6 +28,8 @@ export const products: Product[] = [
     altitude: '1,400–1,600 masl',
     prices: { '250g': 18, '500g': 32, '1kg': 58 },
     image: '/images/balam.jpg',
+    metaTitle: 'Balam Dark Roast — Single Origin Honduras Coffee | Mayan Origin',
+    metaDescription: 'Balam is a single origin dark roast specialty coffee from Copán, Honduras — 1,400–1,600 masl. Dark chocolate, smoky cedar, dried cherry. Direct trade from CAFICO cooperative. Free shipping over $60.',
   },
   {
     slug: 'ixchel',
@@ -38,6 +43,8 @@ export const products: Product[] = [
     altitude: '1,500–1,700 masl',
     prices: { '250g': 19, '500g': 34, '1kg': 62 },
     image: '/images/ixchel.jpg',
+    metaTitle: 'Ixchel Light Roast — Single Origin Honduras Coffee | Mayan Origin',
+    metaDescription: 'Ixchel is a single origin light roast specialty coffee from Copán, Honduras — natural process, 1,500–1,700 masl. Jasmine, white peach, honey finish. Direct trade from CAFICO. Free shipping over $60.',
   },
   {
     slug: 'kukulkan',
@@ -51,41 +58,49 @@ export const products: Product[] = [
     altitude: '1,350–1,550 masl',
     prices: { '250g': 17, '500g': 30, '1kg': 55 },
     image: '/images/kukulkan.jpg',
+    metaTitle: 'Kukulkan Medium Roast — Single Origin Honduras Coffee | Mayan Origin',
+    metaDescription: 'Kukulkan is a single origin medium roast specialty coffee from Copán, Honduras — honey process, 1,350–1,550 masl. Brown sugar, toasted almond, clean citrus. Direct trade from COCAFCAL. Free shipping over $60.',
   },
   {
     slug: 'welchez-house-blend',
     name: 'House Blend',
     subtitle: 'Café Welchez',
     description:
-      'Exclusively crafted for espresso machines, this blend marries the fruity body of natural process coffee with the refined elegance of washed coffee. Dark sweet chocolate aromas with caramel notes and a bright, well-balanced cup.',
+      'A Honduras specialty coffee blend crafted for espresso. This small-batch arabica marries the fruity body of natural process with the refined elegance of washed — dark chocolate, caramel, and clean citrus acidity in every cup. Roasted by Café Welchez, fifth-generation coffee farmers in Copán, Honduras.',
     roast: 'Medium Roast',
-    origin: 'Honduras',
+    origin: 'Copán, Honduras',
     process: 'Natural + Washed',
     altitude: '1,000–1,300 masl',
     prices: { '12oz': 12, '48oz': 48 },
     image: '/images/welchez-house-blend.webp',
     brand: 'Café Welchez',
+    metaTitle: 'Café Welchez House Blend — Honduras Specialty Coffee | Mayan Origin',
+    metaDescription: 'Café Welchez House Blend — small-batch Honduras specialty coffee from Copán. Natural + washed arabica blend: dark chocolate, caramel, bright acidity. Fifth-generation family farm. Ships from Honduras.',
+    ingredients: '100% Arabica Coffee — Copán, Honduras. Blend of natural and washed process beans. Nothing added.',
   },
   {
     slug: 'welchez-santa-isabel',
     name: 'Santa Isabel',
     subtitle: 'Café Welchez',
     description:
-      'A combination of Parainema, Catuaí, and Caturra varieties from the Santa Isabel Farm. Sweet and acidic notes highlight a rich profile with a notably chocolatey aroma — a cup that rewards slow mornings.',
+      'A single origin specialty coffee from Santa Isabel Farm in Honduras. Parainema, Catuaí, and Caturra varieties grown at 1,000–1,300 masl — sweet and acidic notes with a rich chocolatey aroma. Small-batch Honduras coffee at its most direct, roasted by Café Welchez.',
     roast: 'Light Roast',
-    origin: 'Santa Isabel Farm, Honduras',
+    origin: 'Santa Isabel Farm, Copán, Honduras',
     process: 'Washed',
     altitude: '1,000–1,300 masl',
     prices: { '12oz': 10, '48oz': 38 },
     image: '/images/welchez-santa-isabel.webp',
     brand: 'Café Welchez',
+    metaTitle: 'Café Welchez Santa Isabel — Single Origin Honduras Coffee | Mayan Origin',
+    metaDescription: 'Santa Isabel is a single origin light roast from Santa Isabel Farm, Copán, Honduras. Varieties: Parainema, Catuaí, Caturra. Sweet, acidic, chocolatey aroma. Small-batch, direct-trade Honduras coffee.',
+    ingredients: '100% Single-Origin Arabica Coffee — Santa Isabel Farm, Copán, Honduras. Varieties: Parainema, Catuaí, Caturra. Nothing added.',
   },
   {
     slug: 'welchez-seasonal-blend',
     name: 'Seasonal Blend',
     subtitle: 'Café Welchez',
     description:
-      'A blend of ideas and varieties particular to the current harvest — it changes every year. The process varies too: washed, honey, natural, or soaking, depending on what the season delivers. No two years taste exactly alike.',
+      'Honduras specialty coffee that changes with every harvest. Sourced by Café Welchez from arabica farms at 1,000–1,300 masl — process varies (washed, honey, natural, or soaking) to showcase what each season delivers. A small-batch Honduras coffee experience that is never quite the same twice.',
     roast: 'Medium Roast',
     origin: 'Honduras',
     process: 'Varies by harvest (washed, honey, natural)',
@@ -93,48 +108,60 @@ export const products: Product[] = [
     prices: { '12oz': 12, '48oz': 48 },
     image: '/images/welchez-seasonal-blend.webp',
     brand: 'Café Welchez',
+    metaTitle: 'Café Welchez Seasonal Blend — Small-Batch Honduras Coffee | Mayan Origin',
+    metaDescription: 'Café Welchez Seasonal Blend — a small-batch Honduras specialty coffee that changes each harvest. Process varies: washed, honey, or natural. Grown at 1,000–1,300 masl. Ships from Honduras.',
+    ingredients: '100% Arabica Coffee — Honduras. Process and variety vary by harvest season. Nothing added.',
   },
   {
     slug: 'welchez-signature-blend',
     name: 'Signature Blend',
     subtitle: 'Café Welchez',
     description:
-      'A special blend of Java, Catuaí, and Parainema varieties from microlots at 1,400–1,500 meters. Medium roast brings caramelized sugars to the surface — chocolaty flavor with surprising hints of citrus, good body, and marked acidity.',
+      'A Honduras specialty coffee from microlots at 1,400–1,500 masl. This small-batch blend of Java, Catuaí, and Parainema brings caramelized sugars to the surface — chocolaty flavor with surprising citrus notes, good body, and marked acidity. Roasted by Café Welchez, direct-trade from Copán.',
     roast: 'Medium Roast',
-    origin: 'Honduras',
+    origin: 'Copán, Honduras',
     process: 'Washed',
     altitude: '1,400–1,500 masl',
     prices: { '12oz': 15, '48oz': 60 },
     image: '/images/welchez-signature-blend.webp',
     brand: 'Café Welchez',
+    metaTitle: 'Café Welchez Signature Blend — Honduras Specialty Coffee | Mayan Origin',
+    metaDescription: 'Café Welchez Signature Blend — microlot Honduras specialty coffee from Copán, 1,400–1,500 masl. Java, Catuaí, Parainema. Chocolate, citrus, caramelized sugars. Small-batch, direct-trade.',
+    ingredients: '100% Arabica Coffee — Copán, Honduras. Varieties: Java, Catuaí, Parainema. Nothing added.',
   },
   {
     slug: 'mythoz-classic',
     name: 'Mythoz Classic',
     subtitle: 'Legacy Blend',
     description:
-      'National Winner at the Global Coffee Awards 2025. A carefully developed medium roast sourced from 109+ producer families across five Honduran regions. Creamy and nutty character with clean citrus acidity — an award-winning cup built on direct trade.',
+      'National Winner at the Global Coffee Awards 2025. This Honduras specialty coffee is sourced direct-trade from 109+ producer families across five Honduran regions. A small-batch medium roast with creamy, nutty character and clean citrus acidity — award-winning Honduras coffee available in 12oz and 16oz.',
     roast: 'Medium Roast',
     origin: 'Honduras (5 regions)',
     process: 'Washed',
-    altitude: 'Various — up to 1,800 masl',
-    prices: { '454g': 22 },
+    altitude: 'Up to 1,800 masl',
+    prices: { '12oz': 20, '16oz': 24 },
     image: '/images/mythoz-classic.jpg',
     brand: 'Mythoz Café',
+    metaTitle: 'Mythoz Classic — Award-Winning Honduras Specialty Coffee | Mayan Origin',
+    metaDescription: 'Mythoz Classic Legacy Blend — National Winner, Global Coffee Awards 2025. Small-batch Honduras specialty coffee sourced direct-trade from 109+ producer families. Creamy, nutty, clean citrus acidity.',
+    ingredients: '100% Arabica Coffee — Honduras (multi-region blend). Direct-trade from 109+ producer families. Nothing added.',
   },
   {
     slug: 'mythoz-special-reserve',
     name: 'Mythoz Special Reserve',
     subtitle: 'Single Origin',
     description:
-      'A limited special edition single-origin from Honduras. Mythoz sources from 109+ producer families using direct trade practices — this reserve lot represents the best of a single harvest, roasted to showcase the full character of the origin.',
+      'A limited single origin specialty coffee from Honduras by award-winning roaster Mythoz Café. Sourced direct-trade from 109+ producer families — this reserve lot is roasted to showcase the full character of a single Honduras harvest. Small-batch, seasonal availability.',
     roast: 'Medium Roast',
     origin: 'Honduras',
     process: 'Washed',
-    altitude: 'Various — up to 1,800 masl',
-    prices: { '340g': 20 },
+    altitude: 'Up to 1,800 masl',
+    prices: { '340g': 24 },
     image: '/images/mythoz-special-reserve.jpg',
     brand: 'Mythoz Café',
+    metaTitle: 'Mythoz Special Reserve — Single Origin Honduras Coffee | Mayan Origin',
+    metaDescription: 'Mythoz Special Reserve — limited single origin Honduras specialty coffee from National Award-winning roaster Mythoz Café. Direct-trade, small-batch, seasonal. 340g.',
+    ingredients: '100% Single-Origin Arabica Coffee — Honduras. Direct-trade from 109+ producer families. Nothing added.',
   },
 ];
 
