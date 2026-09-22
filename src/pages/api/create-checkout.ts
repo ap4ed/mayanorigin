@@ -71,7 +71,7 @@ export const POST: APIRoute = async ({ request }) => {
   const totalQty = items.reduce((s, i) => s + i.qty, 0);
 
   function calcShipping(qty: number, sub: number): number {
-    if (sub >= 120) return 0;
+    if (sub >= 100) return 0;
     if (qty >= 3) return 20;
     if (qty >= 2) return 25;
     return 35;

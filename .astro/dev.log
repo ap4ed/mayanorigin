@@ -1,0 +1,164 @@
+{"message":"connected.","label":"vite","level":"info"}
+{"message":"Generated 1ms","label":"types","level":"info"}
+{"message":"connected.","label":"vite","level":"info"}
+{"message":"Syncing content","label":"content","level":"info"}
+{"message":"Synced content","label":"content","level":"info"}
+{"message":"Re-optimizing dependencies because vite config has changed","label":"vite","level":"info"}
+{"message":" astro  v7.3.3 ready in 2300 ms\n┃ Local    http://localhost:4321/\n┃ Network  use --host to expose","label":"SKIP_FORMAT","level":"info"}
+{"message":"watching for file changes...","label":null,"level":"info"}
+{"message":"[200] /blog/ 135ms","label":null,"level":"info"}
+{"message":"[404] /images/blog/cacao-ceremony.jpg/ 72ms","label":null,"level":"info"}
+{"message":"[404] /images/blog/coffee-grind.jpg/ 73ms","label":null,"level":"info"}
+{"message":"[404] /images/blog/mayan-food.jpg/ 60ms","label":null,"level":"info"}
+{"message":"[404] /images/blog/pour-over.jpg/ 25ms","label":null,"level":"info"}
+{"message":"[404] /images/blog/mayan-gods.jpg/ 24ms","label":null,"level":"info"}
+{"message":"[404] /images/blog/balam.jpg/ 19ms","label":null,"level":"info"}
+{"message":"[404] /images/blog/copan.jpg/ 1ms","label":null,"level":"info"}
+{"message":"[200] /blog/ 7ms","label":null,"level":"info"}
+{"message":"[404] /images/blog/cacao-ceremony.jpg/ 2ms","label":null,"level":"info"}
+{"message":"[404] /images/blog/pour-over.jpg/ 1ms","label":null,"level":"info"}
+{"message":"[404] /images/blog/mayan-gods.jpg/ 1ms","label":null,"level":"info"}
+{"message":"[404] /images/blog/balam.jpg/ 2ms","label":null,"level":"info"}
+{"message":"[404] /images/blog/coffee-grind.jpg/ 0ms","label":null,"level":"info"}
+{"message":"[404] /images/blog/mayan-food.jpg/ 1ms","label":null,"level":"info"}
+{"message":"[404] /images/blog/copan.jpg/ 0ms","label":null,"level":"info"}
+{"message":"[404] /images/blog/french-press.jpg/ 0ms","label":null,"level":"info"}
+{"message":"[404] /images/blog/ixchel.jpg/ 0ms","label":null,"level":"info"}
+{"message":"[404] /images/blog/cacao-ceremony.jpg/ 2ms","label":null,"level":"info"}
+{"message":"[404] /images/blog/coffee-grind.jpg/ 0ms","label":null,"level":"info"}
+{"message":"[404] /images/blog/mayan-food.jpg/ 0ms","label":null,"level":"info"}
+{"message":"[404] /images/blog/pour-over.jpg/ 1ms","label":null,"level":"info"}
+{"message":"[404] /images/blog/mayan-gods.jpg/ 0ms","label":null,"level":"info"}
+{"message":"[404] /images/blog/balam.jpg/ 0ms","label":null,"level":"info"}
+{"message":"[404] /images/blog/copan.jpg/ 1ms","label":null,"level":"info"}
+{"message":"[404] /images/blog/french-press.jpg/ 0ms","label":null,"level":"info"}
+{"message":"[404] /images/blog/ixchel.jpg/ 1ms","label":null,"level":"info"}
+{"message":"[404] /images/blog/kukulkan.jpg/ 1ms","label":null,"level":"info"}
+{"message":"[404] /images/blog/mayan-hot-chocolate.jpg/ 1ms","label":null,"level":"info"}
+{"message":"[404] /images/blog/kukulkan.jpg/ 0ms","label":null,"level":"info"}
+{"message":"[404] /images/blog/mayan-hot-chocolate.jpg/ 1ms","label":null,"level":"info"}
+{"message":"[200] /blog/cacao-ceremony/ 19ms","label":null,"level":"info"}
+{"message":"[404] /images/blog/cacao-ceremony.jpg/ 0ms","label":null,"level":"info"}
+{"message":"[404] /images/blog/cacao-ceremony.jpg/ 0ms","label":null,"level":"info"}
+{"message":"[404] /images/blog/cacao-ceremony.jpg/ 1ms","label":null,"level":"info"}
+{"message":"[404] /images/blog/coffee-grind.jpg/ 1ms","label":null,"level":"info"}
+{"message":"[404] /images/blog/mayan-food.jpg/ 1ms","label":null,"level":"info"}
+{"message":"[404] /images/blog/cacao-ceremony.jpg/ 1ms","label":null,"level":"info"}
+{"message":"[404] /images/blog/coffee-grind.jpg/ 1ms","label":null,"level":"info"}
+{"message":"[404] /images/blog/mayan-food.jpg/ 1ms","label":null,"level":"info"}
+{"message":"[200] /blog/coffee-grind-size-guide/ 11ms","label":null,"level":"info"}
+{"message":"[404] /images/blog/coffee-grind.jpg/ 0ms","label":null,"level":"info"}
+{"message":"[404] /images/blog/coffee-grind.jpg/ 1ms","label":null,"level":"info"}
+{"message":"[404] /images/blog/cacao-ceremony.jpg/ 0ms","label":null,"level":"info"}
+{"message":"[404] /images/blog/coffee-grind.jpg/ 0ms","label":null,"level":"info"}
+{"message":"[404] /images/blog/mayan-food.jpg/ 1ms","label":null,"level":"info"}
+{"message":"[404] /images/blog/cacao-ceremony.jpg/ 0ms","label":null,"level":"info"}
+{"message":"[404] /images/blog/coffee-grind.jpg/ 9ms","label":null,"level":"info"}
+{"message":"[404] /images/blog/mayan-food.jpg/ 1ms","label":null,"level":"info"}
+{"message":"[200] / 26ms","label":null,"level":"info"}
+{"message":"[200] /blog/ 11ms","label":null,"level":"info"}
+{"message":"[404] /images/blog/cacao-ceremony.jpg/ 1ms","label":null,"level":"info"}
+{"message":"[404] /images/blog/coffee-grind.jpg/ 1ms","label":null,"level":"info"}
+{"message":"[404] /images/blog/mayan-food.jpg/ 1ms","label":null,"level":"info"}
+{"message":"[404] /images/blog/mayan-gods.jpg/ 1ms","label":null,"level":"info"}
+{"message":"[404] /images/blog/pour-over.jpg/ 1ms","label":null,"level":"info"}
+{"message":"[404] /images/blog/balam.jpg/ 1ms","label":null,"level":"info"}
+{"message":"[404] /images/blog/copan.jpg/ 1ms","label":null,"level":"info"}
+{"message":"[404] /images/blog/french-press.jpg/ 1ms","label":null,"level":"info"}
+{"message":"[404] /images/blog/ixchel.jpg/ 0ms","label":null,"level":"info"}
+{"message":"[404] /images/blog/cacao-ceremony.jpg/ 0ms","label":null,"level":"info"}
+{"message":"[404] /images/blog/coffee-grind.jpg/ 1ms","label":null,"level":"info"}
+{"message":"[404] /images/blog/mayan-food.jpg/ 2ms","label":null,"level":"info"}
+{"message":"[404] /images/blog/pour-over.jpg/ 0ms","label":null,"level":"info"}
+{"message":"[404] /images/blog/mayan-gods.jpg/ 1ms","label":null,"level":"info"}
+{"message":"[404] /images/blog/balam.jpg/ 0ms","label":null,"level":"info"}
+{"message":"[404] /images/blog/copan.jpg/ 0ms","label":null,"level":"info"}
+{"message":"[404] /images/blog/french-press.jpg/ 1ms","label":null,"level":"info"}
+{"message":"[404] /images/blog/ixchel.jpg/ 0ms","label":null,"level":"info"}
+{"message":"[404] /images/blog/kukulkan.jpg/ 0ms","label":null,"level":"info"}
+{"message":"[404] /images/blog/mayan-hot-chocolate.jpg/ 0ms","label":null,"level":"info"}
+{"message":"[404] /images/blog/kukulkan.jpg/ 0ms","label":null,"level":"info"}
+{"message":"[404] /images/blog/mayan-hot-chocolate.jpg/ 1ms","label":null,"level":"info"}
+{"message":"[200] /blog/ 22ms","label":null,"level":"info"}
+{"message":"[404] /images/blog/cacao-ceremony.jpg/ 1ms","label":null,"level":"info"}
+{"message":"[404] /images/blog/coffee-grind.jpg/ 2ms","label":null,"level":"info"}
+{"message":"[404] /images/blog/mayan-food.jpg/ 0ms","label":null,"level":"info"}
+{"message":"[404] /images/blog/pour-over.jpg/ 0ms","label":null,"level":"info"}
+{"message":"[404] /images/blog/mayan-gods.jpg/ 0ms","label":null,"level":"info"}
+{"message":"[404] /images/blog/cacao-ceremony.jpg/ 0ms","label":null,"level":"info"}
+{"message":"[404] /images/blog/coffee-grind.jpg/ 1ms","label":null,"level":"info"}
+{"message":"[404] /images/blog/mayan-food.jpg/ 1ms","label":null,"level":"info"}
+{"message":"[404] /images/blog/pour-over.jpg/ 2ms","label":null,"level":"info"}
+{"message":"[404] /images/blog/mayan-gods.jpg/ 0ms","label":null,"level":"info"}
+{"message":"[404] /images/blog/kukulkan.jpg/ 1ms","label":null,"level":"info"}
+{"message":"[404] /images/blog/mayan-hot-chocolate.jpg/ 0ms","label":null,"level":"info"}
+{"message":"[404] /images/blog/kukulkan.jpg/ 0ms","label":null,"level":"info"}
+{"message":"[404] /images/blog/mayan-hot-chocolate.jpg/ 0ms","label":null,"level":"info"}
+{"message":"[200] /blog/copan-honduras-coffee/ 12ms","label":null,"level":"info"}
+{"message":"[404] /images/blog/cacao-ceremony.jpg/ 0ms","label":null,"level":"info"}
+{"message":"[404] /images/blog/coffee-grind.jpg/ 0ms","label":null,"level":"info"}
+{"message":"[404] /images/blog/mayan-food.jpg/ 0ms","label":null,"level":"info"}
+{"message":"[404] /images/blog/cacao-ceremony.jpg/ 3ms","label":null,"level":"info"}
+{"message":"[404] /images/blog/coffee-grind.jpg/ 1ms","label":null,"level":"info"}
+{"message":"[404] /images/blog/mayan-food.jpg/ 1ms","label":null,"level":"info"}
+{"message":"Reloaded data from coffee-grind-size-guide.md","label":"glob-loader","level":"info"}
+{"message":"Reloaded data from mayan-civilization-food.md","label":"glob-loader","level":"info"}
+{"message":"[200] /blog/balam-jaguar-god/ 14ms","label":null,"level":"info"}
+{"message":"[200] /blog/balam-jaguar-god/ 47ms","label":null,"level":"info"}
+{"message":"[200] /blog/copan-honduras-coffee/ 15ms","label":null,"level":"info"}
+{"message":"getStaticPaths() ignored in dynamic page /src/pages/shop/[slug].astro. Add `export const prerender = true;` to prerender the page as static HTML during the build process.","label":"router","level":"warn"}
+{"message":"[200] /shop/balam/ 19ms","label":null,"level":"info"}
+{"message":"[200] /blog/balam-jaguar-god/ 10ms","label":null,"level":"info"}
+{"message":"Reloaded data from french-press-guide.md","label":"glob-loader","level":"info"}
+{"message":"Reloaded data from pour-over-coffee-guide.md","label":"glob-loader","level":"info"}
+{"message":"Reloaded data from pour-over-coffee-guide.md","label":"glob-loader","level":"info"}
+{"message":"Reloaded data from coffee-grind-size-guide.md","label":"glob-loader","level":"info"}
+{"message":"Reloaded data from coffee-grind-size-guide.md","label":"glob-loader","level":"info"}
+{"message":"/src/pages/blog/[slug].astro?astro&type=style&index=0&lang.css","label":"watch","level":"info"}
+{"message":"[200] /blog/balam-jaguar-god/ 21ms","label":null,"level":"info"}
+{"message":"public/googleed28bb2fba068c5e.html","label":"watch","level":"info"}
+{"message":"/src/layouts/BaseLayout.astro?astro&type=style&index=0&lang.css","label":"watch","level":"info"}
+{"message":"[200] /blog/balam-jaguar-god/ 82ms","label":null,"level":"info"}
+{"message":"[200] /blog/balam-jaguar-god/ 34ms","label":null,"level":"info"}
+{"message":"[200] /blog/ 39ms","label":null,"level":"info"}
+{"message":"[200] /blog/coffee-grind-size-guide/ 9ms","label":null,"level":"info"}
+{"message":"[200] /blog/mayan-civilization-food/ 7ms","label":null,"level":"info"}
+{"message":"[200] /blog/cacao-ceremony/ 9ms","label":null,"level":"info"}
+{"message":"[200] /blog/mayan-gods-complete-guide/ 15ms","label":null,"level":"info"}
+{"message":"[200] /blog/pour-over-coffee-guide/ 12ms","label":null,"level":"info"}
+{"message":"[200] /shop/mut/ 37ms","label":null,"level":"info"}
+{"message":"Reloaded data from coffee-grind-size-guide.md","label":"glob-loader","level":"info"}
+{"message":"Reloaded data from mayan-civilization-food.md","label":"glob-loader","level":"info"}
+{"message":"[200] /about/ 21ms","label":null,"level":"info"}
+{"message":"Reloaded data from copan-honduras-coffee.md","label":"glob-loader","level":"info"}
+{"message":"Reloaded data from mayan-gods-complete-guide.md","label":"glob-loader","level":"info"}
+{"message":"[200] /about/ 48ms","label":null,"level":"info"}
+{"message":"Reloaded data from copan-honduras-coffee.md","label":"glob-loader","level":"info"}
+{"message":"Reloaded data from copan-honduras-coffee.md","label":"glob-loader","level":"info"}
+{"message":"[200] /about/ 34ms","label":null,"level":"info"}
+{"message":"Reloaded data from mayan-gods-complete-guide.md","label":"glob-loader","level":"info"}
+{"message":"Reloaded data from balam-jaguar-god.md","label":"glob-loader","level":"info"}
+{"message":"Reloaded data from kukulkan-feathered-serpent-god.md","label":"glob-loader","level":"info"}
+{"message":"[200] /about/ 44ms","label":null,"level":"info"}
+{"message":"Reloaded data from ixchel-moon-goddess.md","label":"glob-loader","level":"info"}
+{"message":"[200] /about/ 21ms","label":null,"level":"info"}
+{"message":"Reloaded data from cacao-ceremony.md","label":"glob-loader","level":"info"}
+{"message":"Reloaded data from mayan-civilization-food.md","label":"glob-loader","level":"info"}
+{"message":"Reloaded data from mayan-civilization-food.md","label":"glob-loader","level":"info"}
+{"message":"Reloaded data from mayan-hot-chocolate-recipe.md","label":"glob-loader","level":"info"}
+{"message":"Reloaded data from mayan-hot-chocolate-recipe.md","label":"glob-loader","level":"info"}
+{"message":"Reloaded data from french-press-guide.md","label":"glob-loader","level":"info"}
+{"message":"[200] /about/ 273ms","label":null,"level":"info"}
+{"message":".env changed, restarting server...","label":"vite","level":"info"}
+{"message":"connected.","label":"vite","level":"info"}
+{"message":"connected.","label":"vite","level":"info"}
+{"message":"server restarted.","label":"vite","level":"info"}
+{"message":"[200] /about/ 61ms","label":null,"level":"info"}
+{"message":".env changed, restarting server...","label":"vite","level":"info"}
+{"message":"connected.","label":"vite","level":"info"}
+{"message":"connected.","label":"vite","level":"info"}
+{"message":"server restarted.","label":"vite","level":"info"}
+{"message":"[200] /about/ 35ms","label":null,"level":"info"}
+{"message":"[200] / 23ms","label":null,"level":"info"}
+{"message":"[200] /cart/ 19ms","label":null,"level":"info"}
+{"message":"[200] /cart/ 8ms","label":null,"level":"info"}

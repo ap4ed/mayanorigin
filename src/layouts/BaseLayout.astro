@@ -126,7 +126,7 @@ const ogImageUrl = ogImage
 
     <script is:inline>
       (function() {
-        var FREE_THRESHOLD = 120;
+        var FREE_THRESHOLD = 100;
         var MIN_PRODUCT_PRICE = 27;
 
         function updateBanner() {
@@ -142,7 +142,7 @@ const ogImageUrl = ogImage
           if (cart.length === 0) {
             banner.hidden = false;
             banner.classList.remove('is-free');
-            text.innerHTML = 'Free DHL Express shipping worldwide when you spend <span class="banner-amount">$120</span> or more!';
+            text.innerHTML = 'Free FedEx/DHL Express shipping worldwide on orders over <span class="banner-amount">$100</span>!';
             return;
           }
 
