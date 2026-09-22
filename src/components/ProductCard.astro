@@ -28,7 +28,7 @@ const startingPrice = getStartingPrice(product);
     <a href={`/shop/${product.slug}/`} class="card-name-link">
       <h2 class="card-name">{product.name}</h2>
     </a>
-    <p class="card-subtitle">{product.subtitle}</p>
+    <p class="card-subtitle">{product.brand ?? product.subtitle}</p>
     <p class="card-price">From <strong>${startingPrice}</strong></p>
     <a href={`/shop/${product.slug}/`} class="btn btn-primary card-cta">Shop Now</a>
   </div>

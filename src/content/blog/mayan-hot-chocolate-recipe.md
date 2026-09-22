@@ -116,7 +116,7 @@ Our [Balam](/shop/balam/), [Mut](/shop/mut/), and [Kukulkan](/shop/kukulkan/) co
 
 Two crops, one origin. The Maya planted cacao in these valleys. We grow coffee in the same mountains, carrying the same tradition of care for what the land produces.
 
-Our wider collection includes [Mythoz Classic](/shop/mythoz-classic/), winner of the Global Coffee Awards 2025, sourced direct-trade from 109+ producer families across five Honduran regions — another expression of what this land produces when tradition meets quality.
+Our wider collection includes [Mythoz](/shop/mythoz-classic/), winner of the Global Coffee Awards 2025, sourced direct-trade from 109+ producer families across five Honduran regions — another expression of what this land produces when tradition meets quality.
 
 ---
 

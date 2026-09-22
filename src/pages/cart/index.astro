@@ -85,7 +85,7 @@ const minProductPrice = Math.min(...products.map(p => Math.min(...Object.values(
           <div class="shipping-info">
             <p class="shipping-title">Worldwide Shipping</p>
             <p>Orders ship from Honduras via DHL Express. Estimated delivery: 5–10 business days.</p>
-            <p>1 bag: $35 · 2 bags: $25 · 3 bags: $20 · Free over $100 · FedEx/DHL Express</p>
+            <p>1 bag: $35 · 2 bags: $25 · 3 bags: $20 · Free over $120 · FedEx/DHL Express</p>
           </div>
         </div>
 
@@ -128,7 +128,7 @@ const minProductPrice = Math.min(...products.map(p => Math.min(...Object.values(
     'cafe-maya-coffee-club': 'Coffee Club — Café Maya',
     'cafe-maya-reserva': 'Reserva — Café Maya',
     'sigua-finca-el-zapote': 'Finca El Zapote — Sigua Coffee',
-    'mythoz-classic': 'Mythoz Classic — Legacy Blend',
+    'mythoz-classic': 'Mythoz — Legacy Blend',
   };
 
   function loadCart(): CartItem[] {
@@ -169,16 +169,16 @@ const minProductPrice = Math.min(...products.map(p => Math.min(...Object.values(
     const totalQty = cart.reduce((s, i) => s + i.qty, 0);
 
     function calcShipping(qty: number, sub: number): number {
-      if (sub >= 100) return 0;
+      if (sub >= 120) return 0;
       if (qty >= 3) return 20;
       if (qty >= 2) return 25;
       return 35;
     }
 
     function shippingNudge(qty: number, sub: number): string {
-      if (sub >= 100) return '';
-      const remaining = 100 - sub;
-      const oneMoreGetsFree = sub + minProductPrice >= 100;
+      if (sub >= 120) return '';
+      const remaining = 120 - sub;
+      const oneMoreGetsFree = sub + minProductPrice >= 120;
       if (qty === 1) {
         if (oneMoreGetsFree) return 'Add 1 more bag and get <strong>free shipping!</strong>';
         return 'Add 1 more bag and save <strong>$10</strong> on shipping';
@@ -248,18 +248,18 @@ const minProductPrice = Math.min(...products.map(p => Math.min(...Object.values(
     const progressBar = document.getElementById('progressBar') as HTMLElement;
 
     if (progressEl && progressLabel && progressBar) {
-      const pct = Math.min((subtotal / 100) * 100, 100);
+      const pct = Math.min((subtotal / 120) * 120, 120);
       progressBar.style.width = `${pct}%`;
 
-      if (subtotal >= 100) {
+      if (subtotal >= 120) {
         progressEl.hidden = false;
         progressEl.classList.add('is-unlocked');
         progressLabel.innerHTML = '🎉 Free shipping unlocked!';
       } else {
         progressEl.hidden = false;
         progressEl.classList.remove('is-unlocked');
-        const remaining = (100 - subtotal).toFixed(2);
-        const oneMoreGetsFree = subtotal + minProductPrice >= 100;
+        const remaining = (120 - subtotal).toFixed(2);
+        const oneMoreGetsFree = subtotal + minProductPrice >= 120;
         if (oneMoreGetsFree) {
           progressLabel.innerHTML = `Add 1 more bag and unlock <strong>free shipping!</strong>`;
         } else if (subtotal >= 80) {
@@ -448,8 +448,8 @@ const minProductPrice = Math.min(...products.map(p => Math.min(...Object.values(
     overflow: hidden;
   }
   :global(.item-image img) {
-    width: 100%;
-    height: 100%;
+    width: 120%;
+    height: 120%;
     object-fit: cover;
     border-radius: 6px;
   }
@@ -528,7 +528,7 @@ const minProductPrice = Math.min(...products.map(p => Math.min(...Object.values(
     border-radius: 8px;
     padding: 1.5rem;
     position: sticky;
-    top: 100px;
+    top: 120px;
   }
 
   .cart-summary h2 { font-size: 1.1rem; margin-bottom: 1.25rem; }
@@ -577,7 +577,7 @@ const minProductPrice = Math.min(...products.map(p => Math.min(...Object.values(
     margin-bottom: 1.25rem;
   }
 
-  .btn-full { width: 100%; text-align: center; }
+  .btn-full { width: 120%; text-align: center; }
 
   .checkout-note {
     text-align: center;
@@ -638,7 +638,7 @@ const minProductPrice = Math.min(...products.map(p => Math.min(...Object.values(
     overflow: hidden;
   }
   .progress-bar {
-    height: 100%;
+    height: 120%;
     background: var(--gold);
     border-radius: 99px;
     transition: width 0.4s ease;

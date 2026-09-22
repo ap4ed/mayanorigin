@@ -155,7 +155,7 @@ When you drink our coffee, you're tasting a place with one of the deepest cultur
 - **[Mut Light Roast](/shop/mut/):** the luminous spirit of the sacred bird and moon goddess. Jasmine, orange blossom, stone fruit.
 - **[Kukulkan Dark Roast](/shop/kukulkan/):** the commanding force of the feathered serpent. Dark chocolate, smoky cedar, dried cherry.
 
-We also carry a wider selection of Honduras coffees from producers with deep roots in the region. [Café Maya Coffee Club](/shop/cafe-maya-coffee-club/) is a 100% Honduran arabica — their "Mayan Roast" — crafted by a producer with over 63 years of tradition in Honduras. [Mythoz Classic](/shop/mythoz-classic/) won the Global Coffee Awards 2025 and is sourced direct-trade from 109+ producer families across five Honduran regions.
+We also carry a wider selection of Honduras coffees from producers with deep roots in the region. [Café Maya Coffee Club](/shop/cafe-maya-coffee-club/) is a 100% Honduran arabica — their "Mayan Roast" — crafted by a producer with over 63 years of tradition in Honduras. [Mythoz](/shop/mythoz-classic/) won the Global Coffee Awards 2025 and is sourced direct-trade from 109+ producer families across five Honduran regions.
 
 For a deeper look at what the ancient Maya ate and drank alongside their sacred drinks, see our guide to [Mayan civilization food](/blog/mayan-civilization-food/).
 
