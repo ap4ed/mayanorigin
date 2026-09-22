@@ -12,7 +12,7 @@ export const POST: APIRoute = async ({ request }) => {
     });
   }
 
-  const stripe = new Stripe(stripeKey, { apiVersion: '2026-08-26.dahlia' as any });
+  const stripe = new Stripe(stripeKey, { apiVersion: '2026-08-26.dahlia' });
 
   let body: { items: { slug: string; size: string; qty: number }[] };
   try {
@@ -100,7 +100,7 @@ export const POST: APIRoute = async ({ request }) => {
       cancel_url: `${new URL(request.url).origin}/cart/`,
       metadata: { source: 'mayanorigin.com' },
       integration_identifier: 'mayanorigin-checkout-kqzprwxy',
-    } as any);
+    });
 
     return new Response(JSON.stringify({ url: session.url }), {
       status: 200,

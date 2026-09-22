@@ -308,7 +308,7 @@ const minProductPrice = Math.min(...products.map(p => Math.min(...Object.values(
     btn.disabled = true;
 
     try {
-      const res = await fetch('/api/create-checkout', {
+      const res = await fetch('/api/create-checkout/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ items: cart }),

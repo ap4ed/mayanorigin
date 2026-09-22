@@ -9,7 +9,7 @@ export const POST: APIRoute = async ({ request }) => {
     return new Response('Webhook not configured.', { status: 503 });
   }
 
-  const stripe = new Stripe(stripeKey, { apiVersion: '2026-08-26.dahlia' as any });
+  const stripe = new Stripe(stripeKey, { apiVersion: '2026-08-26.dahlia' });
 
   const sig = request.headers.get('stripe-signature');
   if (!sig) {
