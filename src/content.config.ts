@@ -13,6 +13,7 @@ const blog = defineCollection({
     category: z.enum(['culture', 'recipes', 'brew-guides', 'origin']),
     keywords: z.array(z.string()).default([]),
     relatedProduct: z.string().optional(),
+    faqs: z.array(z.object({ q: z.string(), a: z.string() })).optional(),
   }),
 });
 

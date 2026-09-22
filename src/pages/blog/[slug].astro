@@ -1,14 +1,21 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import ProductCard from '../../components/ProductCard.astro';
-import { getCollection, getEntry } from 'astro:content';
+import { getCollection, getEntry, render } from 'astro:content';
 import { getProductBySlug, products } from '../../data/products';
+
+export const prerender = true;
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  return posts.map(post => ({ params: { slug: post.id } }));
+}
 
 const { slug } = Astro.params;
 const entry = await getEntry('blog', slug!);
 if (!entry) return Astro.redirect('/blog/');
 
-const { Content } = await entry.render();
+const { Content } = await render(entry);
 
 const relatedProduct = entry.data.relatedProduct
   ? getProductBySlug(entry.data.relatedProduct)
@@ -64,6 +71,19 @@ const categoryLabels: Record<string, string> = {
         { "@type": "ListItem", "position": 3, "name": entry.data.title, "item": `https://mayanorigin.com/blog/${slug}/` }
       ]
     })} />
+
+    <!-- FAQ schema -->
+    {entry.data.faqs && entry.data.faqs.length > 0 && (
+      <script type="application/ld+json" set:html={JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": entry.data.faqs.map((faq: { q: string; a: string }) => ({
+          "@type": "Question",
+          "name": faq.q,
+          "acceptedAnswer": { "@type": "Answer", "text": faq.a }
+        }))
+      })} />
+    )}
 
     <!-- Recipe schema for hot chocolate post -->
     {slug === 'mayan-hot-chocolate-recipe' && (
