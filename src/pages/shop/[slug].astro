@@ -339,7 +339,7 @@ const bundleTotal = Object.values(product.prices)[0] + bundleItems.reduce((s, i)
           "shippingRate": {
             "@type": "MonetaryAmount",
             "currency": "USD",
-            "value": price >= 100 ? "0.00" : "35.00"
+            "value": price >= 120 ? "0.00" : "35.00"
           },
           "deliveryTime": {
             "@type": "ShippingDeliveryTime",
@@ -378,7 +378,7 @@ const bundleTotal = Object.values(product.prices)[0] + bundleItems.reduce((s, i)
         {
           "@type": "Question",
           "name": `How long does shipping take for ${product.name}?`,
-          "acceptedAnswer": { "@type": "Answer", "text": `${product.name} ships directly from Honduras via DHL Express. Delivery to the United States typically takes 5 to 10 business days. Shipping costs $35 per order, or is free on orders over $100.` }
+          "acceptedAnswer": { "@type": "Answer", "text": `${product.name} ships directly from Honduras via DHL Express. Delivery to the United States typically takes 5 to 10 business days. Shipping costs $35 per order, or is free on orders over $120.` }
         },
         {
           "@type": "Question",
@@ -491,7 +491,7 @@ const bundleTotal = Object.values(product.prices)[0] + bundleItems.reduce((s, i)
 
         <!-- Reassurance -->
         <ul class="reassurance">
-          <li><span class="check">✓</span> Free FedEx/DHL Express shipping worldwide on orders over $100</li>
+          <li><span class="check">✓</span> Free FedEx/DHL Express shipping worldwide on orders over $120</li>
           <li><span class="check">✓</span> Every order packed fresh in Honduras</li>
           <li><span class="check">✓</span> 30-day satisfaction guarantee</li>
         </ul>
@@ -582,7 +582,7 @@ const bundleTotal = Object.values(product.prices)[0] + bundleItems.reduce((s, i)
         <h2>Shipping &amp; Returns</h2>
         <ul class="shipping-list">
           <li><span class="check">✓</span> Ships worldwide from Honduras via FedEx/DHL Express — 7–14 business days</li>
-          <li><span class="check">✓</span> Free Express shipping on orders over $100</li>
+          <li><span class="check">✓</span> Free Express shipping on orders over $120</li>
           <li><span class="check">✓</span> 30-day satisfaction guarantee — if you're not happy, we'll make it right</li>
           <li><span class="check">✓</span> Tracking number sent by email once shipped</li>
         </ul>
