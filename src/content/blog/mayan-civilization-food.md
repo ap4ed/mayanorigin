@@ -5,8 +5,6 @@ pubDate: 2026-09-22
 category: culture
 keywords: ["mayan civilization food", "what did the maya eat", "ancient mayan food", "mayan diet", "mayan cacao", "mayan drinks", "mayan agriculture"]
 relatedProduct: "kukulkan"
-image: "/images/blog/mayan-food.jpg"
-imageAlt: "Ancient Mayan cacao pods and traditional foods from Mesoamerica"
 faqs:
   - q: "What did the ancient Maya eat?"
     a: "The Maya diet centered on maize, black beans, squash, and chili peppers. Cacao was a sacred beverage for royalty. Turkey, deer, fish, and insects were common protein sources depending on region."
