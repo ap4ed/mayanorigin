@@ -67,7 +67,7 @@ For French press, your grind should look like coarse sea salt or rough breadcrum
 
 Why? Because French press steeps for 4 minutes with no filter. Fine grounds extract too fast and too much, producing bitter, astringent coffee. Coarse grounds extract at the right speed for a full immersion brew.
 
-A good burr grinder makes this easy. A cheap blade grinder makes it difficult, since blade grinders chop inconsistently, creating a mix of fine and coarse particles that extract at different rates.
+A good burr grinder makes this easy. A cheap blade grinder makes it difficult, since blade grinders chop inconsistently, creating a mix of fine and coarse particles that extract at different rates. For a full breakdown of every grind size and which brew method it suits, see our [coffee grind size guide](/blog/coffee-grind-size-guide/).
 
 **Quick test:** After the plunge, if the plunger meets heavy resistance and is hard to push down, your grind is too fine. If it falls through easily with no resistance, your grind is too coarse. You want steady, moderate resistance over 20–30 seconds.
 

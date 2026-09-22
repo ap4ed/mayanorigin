@@ -32,9 +32,15 @@ export const POST: APIRoute = async ({ request }) => {
   }
 
   const PRODUCT_NAMES: Record<string, string> = {
-    balam: 'Balam — Dark Roast',
-    ixchel: 'Ixchel — Light Roast',
-    kukulkan: 'Kukulkan — Medium Roast',
+    balam: 'Balam — Medium Roast',
+    mut: 'Mut — Light Roast',
+    kukulkan: 'Kukulkan — Dark Roast',
+    'welchez-house-blend': 'House Blend — Café Welchez',
+    'welchez-santa-isabel': 'Santa Isabel — Café Welchez',
+    'cafe-maya-coffee-club': 'Coffee Club — Café Maya',
+    'cafe-maya-reserva': 'Reserva — Café Maya',
+    'sigua-finca-el-zapote': 'Finca El Zapote — Sigua Coffee',
+    'mythoz-classic': 'Mythoz Classic — Legacy Blend',
   };
 
   const lineItems = items.map(item => ({
@@ -51,7 +57,17 @@ export const POST: APIRoute = async ({ request }) => {
   }));
 
   const subtotal = items.reduce((s, i) => s + i.price * i.qty, 0);
-  const freeShipping = subtotal >= 100;
+  const totalQty = items.reduce((s, i) => s + i.qty, 0);
+
+  function calcShipping(qty: number, sub: number): number {
+    if (sub >= 120) return 0;
+    if (qty >= 3) return 20;
+    if (qty >= 2) return 25;
+    return 35;
+  }
+
+  const shippingFee = calcShipping(totalQty, subtotal);
+  const shippingLabel = shippingFee === 0 ? 'Free Shipping' : 'DHL Express International';
 
   try {
     const session = await stripe.checkout.sessions.create({
@@ -59,9 +75,7 @@ export const POST: APIRoute = async ({ request }) => {
       line_items: lineItems,
       mode: 'payment',
       shipping_address_collection: { allowed_countries: ['US'] },
-      shipping_options: freeShipping
-        ? [{ shipping_rate_data: { type: 'fixed_amount', fixed_amount: { amount: 0, currency: 'usd' }, display_name: 'Free Shipping', delivery_estimate: { minimum: { unit: 'business_day', value: 7 }, maximum: { unit: 'business_day', value: 14 } } } }]
-        : [{ shipping_rate_data: { type: 'fixed_amount', fixed_amount: { amount: 1500, currency: 'usd' }, display_name: 'Standard Shipping (DHL)', delivery_estimate: { minimum: { unit: 'business_day', value: 7 }, maximum: { unit: 'business_day', value: 14 } } } }],
+      shipping_options: [{ shipping_rate_data: { type: 'fixed_amount', fixed_amount: { amount: shippingFee * 100, currency: 'usd' }, display_name: shippingLabel, delivery_estimate: { minimum: { unit: 'business_day', value: 5 }, maximum: { unit: 'business_day', value: 10 } } } }],
       success_url: `${new URL(request.url).origin}/order-confirmed/?session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${new URL(request.url).origin}/cart/`,
       metadata: {

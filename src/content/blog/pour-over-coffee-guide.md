@@ -68,7 +68,7 @@ Do not eyeball this. A scale that cost $10 will improve your pour over more than
 
 ## Grind Size: Medium-Fine
 
-Pour over needs a **medium-fine grind**, finer than drip, coarser than espresso.
+Pour over needs a **medium-fine grind**, finer than drip, coarser than espresso. For a complete breakdown of grind sizes across all brew methods, see our [coffee grind size guide](/blog/coffee-grind-size-guide/).
 
 Think table salt. A particle size where you can see individual grains but they feel smooth, not gritty, between your fingers. On most grinders, this is roughly in the middle of the range, slightly toward the fine end.
 
@@ -149,7 +149,7 @@ Our [Mut light roast](/shop/mut/) was built for this method. Grown in Marcala, H
 
 If you prefer something more grounded, our [Balam medium roast](/shop/balam/) also excels in pour over. The medium roast brings out caramel sweetness and toasted almond that develop beautifully through a paper filter.
 
-Pour over is not the right method for a dark roast. Save Kukulkan for French press or espresso, methods where the body and intensity can be fully expressed.
+Pour over is not the right method for a dark roast. Save Kukulkan for [French press](/blog/french-press-guide/) or espresso, methods where the body and intensity can be fully expressed.
 
 ---
 

@@ -69,7 +69,7 @@ The moka pot is a stovetop brewer that uses steam pressure (not as high as espre
 Avoid packing the basket too tightly. The moka pot needs some airflow to work.
 
 ### Pour Over (V60, Chemex, Kalita): Medium-Fine
-Pour over uses gravity. Water flows through the grounds at a pace controlled by the grind size and the filter. Medium-fine is the sweet spot: water drains at a steady speed, giving 2:30–3:30 of total brew time.
+Pour over uses gravity. Water flows through the grounds at a pace controlled by the grind size and the filter. Medium-fine is the sweet spot: water drains at a steady speed, giving 2:30–3:30 of total brew time. See our full [pour over guide](/blog/pour-over-coffee-guide/) for the complete step-by-step technique.
 
 Go too coarse and your brew rushes through in under 2 minutes (under-extracted, sour). Too fine and it chokes, taking 5+ minutes (over-extracted, bitter).
 
@@ -84,7 +84,7 @@ Aeropress is the most versatile brewer in terms of grind size. Because you contr
 Start at medium-fine for a 1:30–2:00 brew time. Adjust from there.
 
 ### French Press: Coarse
-French press is full-immersion brewing: grounds sit in hot water for 4 minutes before being separated by the plunger's metal mesh. A coarse grind is essential.
+French press is full-immersion brewing: grounds sit in hot water for 4 minutes before being separated by the plunger's metal mesh. A coarse grind is essential. For the full technique, ratios, and troubleshooting, see our [French press guide](/blog/french-press-guide/).
 
 Fine grounds steep too quickly and extract too much bitterness. They also slip through the mesh, giving you a gritty, muddy cup. Coarse grounds extract at the right pace and stay above the plunger.
 

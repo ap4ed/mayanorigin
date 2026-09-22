@@ -88,7 +88,7 @@ const ogImageUrl = ogImage
       "@type": "WebSite",
       "name": "Mayan Origin Coffee",
       "url": "https://mayanorigin.com",
-      "description": "Premium single-origin coffee from Copán, Honduras. Three roasts named after Mayan gods — Balam, Ixchel, and Kukulkan.",
+      "description": "Premium single-origin coffee from Copán, Honduras. Private label roasts named after Mayan gods — Balam, Mut, and Kukulkan.",
       "potentialAction": {
         "@type": "SearchAction",
         "target": {
@@ -106,6 +106,9 @@ const ogImageUrl = ogImage
     <noscript><link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" /></noscript>
   </head>
   <body>
+    <div id="shippingBanner" class="shipping-banner" hidden>
+      <span id="shippingBannerText"></span>
+    </div>
     <Header />
     <main>
       <slot />
@@ -113,6 +116,59 @@ const ogImageUrl = ogImage
     <Footer />
 
     <button class="back-to-top" id="backToTop" aria-label="Back to top" hidden>↑</button>
+
+    <script is:inline>
+      (function() {
+        var FREE_THRESHOLD = 120;
+        var MIN_PRODUCT_PRICE = 27;
+
+        function updateBanner() {
+          var banner = document.getElementById('shippingBanner');
+          var text = document.getElementById('shippingBannerText');
+          if (!banner || !text) return;
+
+          var cart = [];
+          try { cart = JSON.parse(localStorage.getItem('mo_cart') || '[]'); } catch(e) {}
+
+          var subtotal = cart.reduce(function(s, i) { return s + i.price * i.qty; }, 0);
+
+          if (cart.length === 0) {
+            banner.hidden = false;
+            banner.classList.remove('is-free');
+            text.innerHTML = 'Free DHL Express shipping worldwide when you spend <span class="banner-amount">$120</span> or more!';
+            return;
+          }
+
+          banner.hidden = false;
+
+          var totalQty = cart.reduce(function(s, i) { return s + i.qty; }, 0);
+
+          var oneMoreGetsFree = (subtotal + MIN_PRODUCT_PRICE) >= FREE_THRESHOLD;
+
+          if (subtotal >= FREE_THRESHOLD) {
+            banner.classList.add('is-free');
+            text.innerHTML = '🎉 You\'ve unlocked free shipping!';
+          } else if (oneMoreGetsFree) {
+            banner.classList.remove('is-free');
+            text.innerHTML = 'Add 1 more bag and get <span class="banner-amount">free shipping!</span>';
+          } else if (totalQty === 1) {
+            banner.classList.remove('is-free');
+            text.innerHTML = 'Add 1 more bag and save <span class="banner-amount">$10</span> on shipping!';
+          } else if (totalQty === 2) {
+            banner.classList.remove('is-free');
+            text.innerHTML = 'Add 1 more bag and save <span class="banner-amount">$5</span> on shipping!';
+          } else {
+            banner.classList.remove('is-free');
+            var remaining = (FREE_THRESHOLD - subtotal).toFixed(2);
+            text.innerHTML = 'Add <span class="banner-amount">$' + remaining + '</span> more to your order and get free shipping!';
+          }
+        }
+
+        updateBanner();
+        window.addEventListener('mo:cart-updated', updateBanner);
+        window.addEventListener('storage', updateBanner);
+      })();
+    </script>
     <script is:inline>
       (function() {
         var btn = document.getElementById('backToTop');
@@ -126,6 +182,29 @@ const ogImageUrl = ogImage
 
 <style is:global>
   *, *::before, *::after { box-sizing: border-box; }
+
+  .shipping-banner {
+    background: var(--green);
+    color: #fff;
+    text-align: center;
+    padding: 0.55rem 1rem;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+    transition: background 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .shipping-banner.is-free {
+    background: #2d6a2d;
+  }
+  .shipping-banner[hidden] { display: none; }
+  .banner-amount {
+    color: var(--gold);
+    font-weight: 700;
+  }
 
   :root {
     --green:  #1b2e1b;

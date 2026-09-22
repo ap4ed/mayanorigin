@@ -4,6 +4,7 @@ import ProductCard from '../../components/ProductCard.astro';
 import { products } from '../../data/products';
 
 const productImageMap = Object.fromEntries(products.map(p => [p.slug, p.image]));
+const minProductPrice = Math.min(...products.map(p => Math.min(...Object.values(p.prices))));
 ---
 
 <BaseLayout
@@ -46,10 +47,23 @@ const productImageMap = Object.fromEntries(products.map(p => [p.slug, p.image]))
             <!-- Populated by JS -->
           </div>
 
+          <div class="summary-subtotal">
+            <span>Subtotal</span>
+            <span id="cartSubtotal">$0</span>
+          </div>
+
+          <div id="shippingProgress" class="shipping-progress" hidden>
+            <p id="shippingProgressLabel" class="shipping-progress-label"></p>
+            <div class="progress-track">
+              <div id="progressBar" class="progress-bar"></div>
+            </div>
+          </div>
+
           <div class="summary-shipping">
             <span>Shipping</span>
-            <span id="shippingCost">Calculated at checkout</span>
+            <span id="shippingCost">$35.00</span>
           </div>
+          <p id="shippingSavings" class="shipping-savings" hidden></p>
 
           <div class="summary-total">
             <span>Total</span>
@@ -70,8 +84,8 @@ const productImageMap = Object.fromEntries(products.map(p => [p.slug, p.image]))
 
           <div class="shipping-info">
             <p class="shipping-title">Worldwide Shipping</p>
-            <p>Orders ship from Honduras via FedEx/DHL Express. Estimated delivery: 7–14 business days.</p>
-            <p>Free Express shipping on orders over $100.</p>
+            <p>Orders ship from Honduras via DHL Express. Estimated delivery: 5–10 business days.</p>
+            <p>1 bag: $35 · 2 bags: $25 · 3 bags: $20 · Free over $120</p>
           </div>
         </div>
 
@@ -89,12 +103,14 @@ const productImageMap = Object.fromEntries(products.map(p => [p.slug, p.image]))
   </div>
 </BaseLayout>
 
-<script define:vars={{ productImageMap }}>
+<script define:vars={{ productImageMap, minProductPrice }}>
   window.__productImageMap = productImageMap;
+  window.__minProductPrice = minProductPrice;
 </script>
 
 <script>
   const productImageMap: Record<string, string> = (window as any).__productImageMap || {};
+  const minProductPrice: number = (window as any).__minProductPrice || 27;
 
   interface CartItem {
     slug: string;
@@ -104,9 +120,9 @@ const productImageMap = Object.fromEntries(products.map(p => [p.slug, p.image]))
   }
 
   const PRODUCT_NAMES: Record<string, string> = {
-    balam: 'Balam — Dark Roast',
-    ixchel: 'Ixchel — Light Roast',
-    kukulkan: 'Kukulkan — Medium Roast',
+    balam: 'Balam — Medium Roast',
+    mut: 'Mut — Light Roast',
+    kukulkan: 'Kukulkan — Dark Roast',
     'welchez-house-blend': 'House Blend — Café Welchez',
     'welchez-santa-isabel': 'Santa Isabel — Café Welchez',
     'cafe-maya-coffee-club': 'Coffee Club — Café Maya',
@@ -136,6 +152,7 @@ const productImageMap = Object.fromEntries(products.map(p => [p.slug, p.image]))
     const summaryEl = document.getElementById('summaryRows');
     const totalEl = document.getElementById('cartTotal');
     const shippingEl = document.getElementById('shippingCost');
+    const subtotalEl = document.getElementById('cartSubtotal');
 
     if (!emptyEl || !filledEl || !itemsEl || !summaryEl || !totalEl) return;
 
@@ -149,7 +166,33 @@ const productImageMap = Object.fromEntries(products.map(p => [p.slug, p.image]))
     filledEl.hidden = false;
 
     const subtotal = cart.reduce((s, i) => s + i.price * i.qty, 0);
-    const freeShipping = subtotal >= 100;
+    const totalQty = cart.reduce((s, i) => s + i.qty, 0);
+
+    function calcShipping(qty: number, sub: number): number {
+      if (sub >= 120) return 0;
+      if (qty >= 3) return 20;
+      if (qty >= 2) return 25;
+      return 35;
+    }
+
+    function shippingNudge(qty: number, sub: number): string {
+      if (sub >= 120) return '';
+      const remaining = 120 - sub;
+      const oneMoreGetsFree = sub + minProductPrice >= 120;
+      if (qty === 1) {
+        if (oneMoreGetsFree) return 'Add 1 more bag and get <strong>free shipping!</strong>';
+        return 'Add 1 more bag and save <strong>$10</strong> on shipping';
+      }
+      if (qty === 2) {
+        if (oneMoreGetsFree) return 'Add 1 more bag and get <strong>free shipping!</strong>';
+        return 'Add 1 more bag and save <strong>$5</strong> on shipping';
+      }
+      if (oneMoreGetsFree) return 'Add 1 more bag and get <strong>free shipping!</strong>';
+      return `Spend <strong>$${remaining.toFixed(2)}</strong> more to get free shipping`;
+    }
+
+    const shippingFee = calcShipping(totalQty, subtotal);
+    const nudge = shippingNudge(totalQty, subtotal);
 
     // Render items
     itemsEl.innerHTML = cart.map((item, idx) => `
@@ -179,9 +222,52 @@ const productImageMap = Object.fromEntries(products.map(p => [p.slug, p.image]))
       </div>
     `).join('');
 
-    totalEl.textContent = `$${subtotal.toFixed(2)}`;
+    if (subtotalEl) subtotalEl.textContent = `$${subtotal.toFixed(2)}`;
+
+    const savingsEl = document.getElementById('shippingSavings');
+    if (savingsEl) {
+      if (shippingFee === 0) {
+        savingsEl.hidden = true;
+      } else if (totalQty === 2) {
+        savingsEl.hidden = false;
+        savingsEl.innerHTML = `2 bags — you saved <strong>$10</strong> on shipping`;
+      } else if (totalQty >= 3) {
+        savingsEl.hidden = false;
+        savingsEl.innerHTML = `3 bags — you saved <strong>$15</strong> on shipping`;
+      } else {
+        savingsEl.hidden = true;
+      }
+    }
+    totalEl.textContent = `$${(subtotal + shippingFee).toFixed(2)}`;
     if (shippingEl) {
-      shippingEl.textContent = freeShipping ? 'Free' : 'Calculated at checkout';
+      shippingEl.textContent = shippingFee === 0 ? 'Free' : `$${shippingFee}.00`;
+    }
+
+    const progressEl = document.getElementById('shippingProgress') as HTMLElement;
+    const progressLabel = document.getElementById('shippingProgressLabel');
+    const progressBar = document.getElementById('progressBar') as HTMLElement;
+
+    if (progressEl && progressLabel && progressBar) {
+      const pct = Math.min((subtotal / 120) * 100, 100);
+      progressBar.style.width = `${pct}%`;
+
+      if (subtotal >= 120) {
+        progressEl.hidden = false;
+        progressEl.classList.add('is-unlocked');
+        progressLabel.innerHTML = '🎉 Free shipping unlocked!';
+      } else {
+        progressEl.hidden = false;
+        progressEl.classList.remove('is-unlocked');
+        const remaining = (120 - subtotal).toFixed(2);
+        const oneMoreGetsFree = subtotal + minProductPrice >= 120;
+        if (oneMoreGetsFree) {
+          progressLabel.innerHTML = `Add 1 more bag and unlock <strong>free shipping!</strong>`;
+        } else if (subtotal >= 80) {
+          progressLabel.innerHTML = `So close! Just <strong>$${remaining}</strong> more for free shipping`;
+        } else {
+          progressLabel.innerHTML = `You're <strong>$${remaining}</strong> away from free shipping`;
+        }
+      }
     }
 
     // Qty / remove handlers
@@ -240,6 +326,58 @@ const productImageMap = Object.fromEntries(products.map(p => [p.slug, p.image]))
       btn.textContent = 'Proceed to Checkout';
       btn.disabled = false;
     }
+  });
+
+  // Zip / shipping rate lookup
+  document.getElementById('zipBtn')?.addEventListener('click', async () => {
+    const zipInput = document.getElementById('zipInput') as HTMLInputElement;
+    const ratesEl = document.getElementById('ratesResult') as HTMLDivElement;
+    const zipBtn = document.getElementById('zipBtn') as HTMLButtonElement;
+    const zip = zipInput?.value.trim();
+
+    if (!zip || !/^\d{5}$/.test(zip)) {
+      ratesEl.hidden = false;
+      ratesEl.innerHTML = '<p class="rate-error">Enter a valid 5-digit US ZIP code.</p>';
+      return;
+    }
+
+    const cart = loadCart();
+    if (cart.length === 0) return;
+
+    zipBtn.textContent = 'Loading…';
+    zipBtn.disabled = true;
+    ratesEl.hidden = true;
+
+    try {
+      const res = await fetch('/api/shipping-rate/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ items: cart, zipCode: zip }),
+      });
+      const data = await res.json();
+
+      if (data.error) {
+        ratesEl.hidden = false;
+        ratesEl.innerHTML = `<p class="rate-error">${data.error}</p>`;
+      } else if (!data.rates || data.rates.length === 0) {
+        ratesEl.hidden = false;
+        ratesEl.innerHTML = '<p class="rate-error">No rates found for this ZIP code.</p>';
+      } else {
+        ratesEl.hidden = false;
+        ratesEl.innerHTML = data.rates.slice(0, 5).map((r: { provider: string; service: string; amount: number; days: number | null }) => `
+          <div class="rate-row">
+            <span class="rate-name">${r.provider} ${r.service}</span>
+            <span class="rate-price">$${r.amount.toFixed(2)}${r.days ? ` · ${r.days}d` : ''}</span>
+          </div>
+        `).join('');
+      }
+    } catch {
+      ratesEl.hidden = false;
+      ratesEl.innerHTML = '<p class="rate-error">Connection error. Try again.</p>';
+    }
+
+    zipBtn.textContent = 'Get Rates';
+    zipBtn.disabled = false;
   });
 
   renderCart();
@@ -404,7 +542,7 @@ const productImageMap = Object.fromEntries(products.map(p => [p.slug, p.image]))
     margin-bottom: 0.5rem;
   }
 
-  .summary-shipping {
+  .summary-subtotal {
     display: flex;
     justify-content: space-between;
     font-size: 0.88rem;
@@ -413,6 +551,17 @@ const productImageMap = Object.fromEntries(products.map(p => [p.slug, p.image]))
     padding-top: 0.75rem;
     margin-top: 0.75rem;
     border-top: 1px solid var(--border);
+    margin-bottom: 0.5rem;
+  }
+
+  .summary-shipping {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.88rem;
+    font-family: 'DM Sans', sans-serif;
+    color: var(--muted);
+    padding-top: 0.5rem;
+    margin-top: 0;
   }
 
   .summary-total {
@@ -457,6 +606,109 @@ const productImageMap = Object.fromEntries(products.map(p => [p.slug, p.image]))
     color: var(--text);
   }
   .check { color: var(--gold); font-weight: 700; }
+
+  .shipping-savings {
+    font-size: 0.75rem;
+    font-family: 'DM Sans', sans-serif;
+    color: #2d6a2d;
+    margin: 0.1rem 0 0;
+    text-align: right;
+  }
+  .shipping-savings strong { font-weight: 700; }
+
+  .shipping-progress {
+    margin: 0 0 0.75rem;
+  }
+  .shipping-progress-label {
+    font-size: 0.78rem;
+    font-family: 'DM Sans', sans-serif;
+    color: var(--muted);
+    margin: 0 0 0.4rem;
+    text-align: center;
+  }
+  .shipping-progress-label strong { color: var(--gold); }
+  .shipping-progress.is-unlocked .shipping-progress-label {
+    color: #2d6a2d;
+    font-weight: 600;
+  }
+  .progress-track {
+    height: 6px;
+    background: var(--border);
+    border-radius: 99px;
+    overflow: hidden;
+  }
+  .progress-bar {
+    height: 100%;
+    background: var(--gold);
+    border-radius: 99px;
+    transition: width 0.4s ease;
+  }
+  .shipping-progress.is-unlocked .progress-bar {
+    background: #2d6a2d;
+  }
+
+  .zip-lookup {
+    margin-bottom: 0.75rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .zip-label {
+    display: block;
+    font-size: 0.78rem;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 0.4rem;
+  }
+  .zip-row {
+    display: flex;
+    gap: 0.5rem;
+  }
+  .zip-input {
+    flex: 1;
+    padding: 0.4rem 0.6rem;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    font-size: 0.85rem;
+    font-family: 'DM Sans', sans-serif;
+    color: var(--text);
+    background: #fff;
+    outline: none;
+  }
+  .zip-input:focus { border-color: var(--gold); }
+  .zip-btn {
+    padding: 0.4rem 0.75rem;
+    background: var(--green);
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    font-size: 0.82rem;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 600;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: opacity 0.15s;
+  }
+  .zip-btn:hover:not(:disabled) { opacity: 0.85; }
+  .zip-btn:disabled { opacity: 0.6; cursor: not-allowed; }
+  .rates-result {
+    margin-top: 0.6rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+  }
+  .rate-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.8rem;
+    font-family: 'DM Sans', sans-serif;
+    color: var(--text);
+    padding: 0.3rem 0;
+  }
+  .rate-name { color: var(--muted); }
+  .rate-price { font-weight: 700; color: var(--green); }
+  .rate-error { font-size: 0.8rem; color: #c0392b; font-family: 'DM Sans', sans-serif; margin: 0; }
 
   .shipping-info {
     background: var(--cream);

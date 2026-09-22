@@ -18,7 +18,7 @@ const bundleMap: Record<string, { name: string; description: string; price: numb
     { name: 'Cacao Nibs', description: 'Raw Honduran cacao nibs', price: 12 },
     { name: 'Jimerito Honey', description: 'Raw highland honey from Copán', price: 14 },
   ],
-  ixchel: [
+  mut: [
     { name: 'Vanilla Beans', description: 'Whole vanilla beans, Grade A', price: 16 },
     { name: 'Jimerito Honey', description: 'Raw highland honey from Copán', price: 14 },
   ],
@@ -40,25 +40,25 @@ const bundleItems = bundleMap[product.slug] ?? [];
 
 const brewGuide: Record<string, string[]> = {
   balam: [
-    'Grind: Coarse for French press, medium-coarse for drip',
-    'Ratio: 1:15 coffee to water (e.g., 20g coffee → 300ml water)',
-    'Water temp: 96°C / 205°F',
-    'Brew time: 4 min French press, 3–4 min pour-over',
-    'Best black — bold enough to stand on its own',
-  ],
-  ixchel: [
-    'Grind: Medium-fine for pour-over or Aeropress',
-    'Ratio: 1:16 coffee to water (e.g., 18g coffee → 288ml water)',
-    'Water temp: 91°C / 196°F — lower temp preserves floral notes',
-    'Brew time: 2.5–3 min pour-over',
-    'Outstanding as a cold brew — steep 18h at room temperature',
-  ],
-  kukulkan: [
     'Grind: Medium for drip, espresso, or Moka pot',
     'Ratio: 1:15 coffee to water (e.g., 20g coffee → 300ml water)',
     'Water temp: 93°C / 200°F',
     'Brew time: 4 min drip, 25–30 sec espresso',
-    'Versatile — works equally well black or with milk',
+    'Versatile — works beautifully black or with milk',
+  ],
+  mut: [
+    'Grind: Medium-fine for pour-over or Aeropress',
+    'Ratio: 1:16 coffee to water (e.g., 18g coffee → 288ml water)',
+    'Water temp: 90°C / 194°F — lower temp preserves floral notes',
+    'Brew time: 2.5–3 min pour-over',
+    'Outstanding as a cold brew — steep 18h at room temperature',
+  ],
+  kukulkan: [
+    'Grind: Coarse for French press, medium-coarse for drip',
+    'Ratio: 1:15 coffee to water (e.g., 20g coffee → 300ml water)',
+    'Water temp: 96°C / 205°F',
+    'Brew time: 4 min French press, 3–4 min pour-over',
+    'Best black — bold and intense on its own',
   ],
   'welchez-house-blend': [
     'Grind: Fine for espresso, medium for drip',
@@ -120,28 +120,28 @@ const brewGuide: Record<string, string[]> = {
 
 const highlights: Record<string, string[]> = {
   balam: [
-    'Single-origin from Copán, Honduras — 1,400–1,600 masl',
-    'Washed process — clean, intense, zero defects',
-    'Tasting notes: dark chocolate, smoky cedar, dried cherry',
-    'Ideal for French press, drip, or cold brew',
+    'Private label by Mayan Origin Coffee Co.',
+    'Single-origin from the Mayan Highlands of Copán, Honduras — 1,300–1,700 masl',
+    'Washed process — clean, balanced, zero defects',
+    'Tasting notes: brown sugar, toasted almond, clean citrus finish',
     'Packed fresh to order in Honduras',
-    'Direct from CAFICO cooperative farmers',
+    'Not available in any US store — exclusive to mayanorigin.com',
   ],
-  ixchel: [
-    'Single-origin from Copán, Honduras — 1,500–1,700 masl',
-    'Natural process — fruit-forward, complex, bright',
-    'Tasting notes: jasmine, white peach, honey finish',
-    'Best with pour-over or Aeropress — showcases delicate notes',
+  mut: [
+    'Private label by Mayan Origin Coffee Co.',
+    'Single-origin from the Mayan Highlands of Copán, Honduras — 1,300–1,700 masl',
+    'Natural process — fruit-forward, bright, complex',
+    'Tasting notes: jasmine, orange blossom, stone fruit, honey finish',
     'Packed fresh to order in Honduras',
-    'Direct from CAFICO cooperative farmers',
+    'Not available in any US store — exclusive to mayanorigin.com',
   ],
   kukulkan: [
-    'Single-origin from Copán, Honduras — 1,350–1,550 masl',
-    'Honey process — balanced sweetness, clean finish',
-    'Tasting notes: brown sugar, toasted almond, citrus',
-    'Works beautifully as drip, espresso, or Moka pot',
+    'Private label by Mayan Origin Coffee Co.',
+    'Single-origin from the Mayan Highlands of Copán, Honduras — 1,300–1,700 masl',
+    'Washed process — bold, intense, full-bodied',
+    'Tasting notes: dark chocolate, smoky cedar, dried cherry',
     'Packed fresh to order in Honduras',
-    'Direct from COCAFCAL cooperative farmers',
+    'Not available in any US store — exclusive to mayanorigin.com',
   ],
   'welchez-house-blend': [
     'Honduras arabica grown at 1,000–1,300 masl',
@@ -203,30 +203,33 @@ const highlights: Record<string, string[]> = {
 
 const specs: Record<string, Record<string, string>> = {
   balam: {
-    Origin: 'Copán, Honduras',
-    Roast: 'Dark',
+    Origin: 'Mayan Highlands, Copán, Honduras',
+    Roast: 'Medium',
     Process: 'Washed',
-    Altitude: '1,400–1,600 masl',
+    Altitude: '1,300–1,700 masl',
     Variety: 'Arabica (Catuaí, Lempira)',
-    'Tasting Notes': 'Dark chocolate, smoky cedar, dried cherry',
+    'Tasting Notes': 'Brown sugar, toasted almond, clean citrus',
+    'Net Weight': '16oz (454g)',
     'Packed': 'Fresh to order in Honduras',
   },
-  ixchel: {
-    Origin: 'Copán, Honduras',
+  mut: {
+    Origin: 'Mayan Highlands, Copán, Honduras',
     Roast: 'Light',
     Process: 'Natural',
-    Altitude: '1,500–1,700 masl',
+    Altitude: '1,300–1,700 masl',
     Variety: 'Arabica (Bourbon, Catuaí)',
-    'Tasting Notes': 'Jasmine, white peach, honey finish',
+    'Tasting Notes': 'Jasmine, orange blossom, stone fruit, honey finish',
+    'Net Weight': '16oz (454g)',
     'Packed': 'Fresh to order in Honduras',
   },
   kukulkan: {
-    Origin: 'Copán, Honduras',
-    Roast: 'Medium',
-    Process: 'Honey',
-    Altitude: '1,350–1,550 masl',
+    Origin: 'Mayan Highlands, Copán, Honduras',
+    Roast: 'Dark',
+    Process: 'Washed',
+    Altitude: '1,300–1,700 masl',
     Variety: 'Arabica (Catuaí, IHCAFE 90)',
-    'Tasting Notes': 'Brown sugar, toasted almond, clean citrus',
+    'Tasting Notes': 'Dark chocolate, smoky cedar, dried cherry',
+    'Net Weight': '16oz (454g)',
     'Packed': 'Fresh to order in Honduras',
   },
   'welchez-house-blend': {
@@ -333,7 +336,15 @@ const bundleTotal = Object.values(product.prices)[0] + bundleItems.reduce((s, i)
         "shippingDetails": {
           "@type": "OfferShippingDetails",
           "shippingDestination": { "@type": "DefinedRegion", "addressCountry": "US" },
-          "deliveryTime": { "@type": "ShippingDeliveryTime", "businessDays": { "@type": "QuantitativeValue", "minValue": 7, "maxValue": 14 } }
+          "shippingRate": {
+            "@type": "MonetaryAmount",
+            "currency": "USD",
+            "value": price >= 120 ? "0.00" : "35.00"
+          },
+          "deliveryTime": {
+            "@type": "ShippingDeliveryTime",
+            "businessDays": { "@type": "QuantitativeValue", "minValue": 5, "maxValue": 10 }
+          }
         },
         "url": `https://mayanorigin.com/shop/${product.slug}/`
       }))
@@ -350,19 +361,36 @@ const bundleTotal = Object.values(product.prices)[0] + bundleItems.reduce((s, i)
       ]
     })} />
 
-    <!-- FAQ schema (brew guide) -->
+    <!-- FAQ schema (brew guide + shipping) -->
     <script type="application/ld+json" set:html={JSON.stringify({
       "@context": "https://schema.org",
       "@type": "FAQPage",
-      "mainEntity": productBrewGuide.map((step, i) => ({
-        "@type": "Question",
-        "name": i === 0 ? `How do I grind ${product.name} coffee?` :
-                i === 1 ? `What is the coffee-to-water ratio for ${product.name}?` :
-                i === 2 ? `What water temperature should I use for ${product.name}?` :
-                i === 3 ? `How long should I brew ${product.name}?` :
-                `Best brewing tip for ${product.name}?`,
-        "acceptedAnswer": { "@type": "Answer", "text": step }
-      }))
+      "mainEntity": [
+        ...productBrewGuide.map((step, i) => ({
+          "@type": "Question",
+          "name": i === 0 ? `How do I grind ${product.name} coffee?` :
+                  i === 1 ? `What is the coffee-to-water ratio for ${product.name}?` :
+                  i === 2 ? `What water temperature should I use for ${product.name}?` :
+                  i === 3 ? `How long should I brew ${product.name}?` :
+                  `Best brewing tip for ${product.name}?`,
+          "acceptedAnswer": { "@type": "Answer", "text": step }
+        })),
+        {
+          "@type": "Question",
+          "name": `How long does shipping take for ${product.name}?`,
+          "acceptedAnswer": { "@type": "Answer", "text": `${product.name} ships directly from Honduras via DHL Express. Delivery to the United States typically takes 5 to 10 business days. Shipping costs $35 per order, or is free on orders over $120.` }
+        },
+        {
+          "@type": "Question",
+          "name": `Where does ${product.name} ship from?`,
+          "acceptedAnswer": { "@type": "Answer", "text": `${product.name} is packed and ships directly from Honduras. Every order is packed fresh before shipping via DHL Express international to the United States.` }
+        },
+        {
+          "@type": "Question",
+          "name": `Is ${product.name} available in the United States?`,
+          "acceptedAnswer": { "@type": "Answer", "text": `${product.name} is exclusively available through Mayan Origin at mayanorigin.com. It is not sold in US retail stores. Orders ship directly from Honduras to your door via DHL Express.` }
+        }
+      ]
     })} />
   </slot>
 
