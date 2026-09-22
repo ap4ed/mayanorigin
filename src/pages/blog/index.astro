@@ -75,7 +75,7 @@ const categoryLabels: Record<string, string> = {
       <div class="posts-grid" id="postsGrid">
         {posts.map(post => (
           <article class="post-card" data-category={post.data.category}>
-            <a href={`/blog/${post.slug}/`} class="post-image-link" tabindex="-1" aria-hidden="true">
+            <a href={`/blog/${post.id}/`} class="post-image-link" tabindex="-1" aria-hidden="true">
               <div class="post-image">
                 {post.data.image
                   ? <img src={post.data.image} alt={post.data.imageAlt ?? post.data.title} loading="lazy" width="600" height="380" />
@@ -88,11 +88,11 @@ const categoryLabels: Record<string, string> = {
               <time class="post-date" datetime={post.data.pubDate.toISOString()}>
                 {post.data.pubDate.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
               </time>
-              <a href={`/blog/${post.slug}/`} class="post-title-link">
+              <a href={`/blog/${post.id}/`} class="post-title-link">
                 <h2 class="post-title">{post.data.title}</h2>
               </a>
               <p class="post-desc">{post.data.description}</p>
-              <a href={`/blog/${post.slug}/`} class="read-more">Read more →</a>
+              <a href={`/blog/${post.id}/`} class="read-more">Read more →</a>
             </div>
           </article>
         ))}

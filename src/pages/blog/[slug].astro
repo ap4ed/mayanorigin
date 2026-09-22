@@ -194,7 +194,7 @@ const categoryLabels: Record<string, string> = {
         <div class="related-grid">
           {allPosts.map(post => (
             <article class="related-card">
-              <a href={`/blog/${post.slug}/`} class="related-image-link">
+              <a href={`/blog/${post.id}/`} class="related-image-link">
                 <div class="related-image">
                   {post.data.image
                     ? <img src={post.data.image} alt={post.data.imageAlt ?? post.data.title} loading="lazy" width="400" height="250" />
@@ -204,7 +204,7 @@ const categoryLabels: Record<string, string> = {
               </a>
               <div class="related-body">
                 <span class="cat-tag small">{categoryLabels[post.data.category]}</span>
-                <a href={`/blog/${post.slug}/`}>
+                <a href={`/blog/${post.id}/`}>
                   <h3>{post.data.title}</h3>
                 </a>
               </div>
