@@ -17,6 +17,7 @@ export interface Product {
 }
 
 export const products: Product[] = [
+  // --- Mayan Origin private label (own brand, highest margin) ---
   {
     slug: 'balam',
     name: 'Balam',
@@ -62,6 +63,25 @@ export const products: Product[] = [
     metaTitle: 'Kukulkan Dark Roast — Single Origin Honduras Coffee | Mayan Origin',
     metaDescription: 'Kukulkan Dark Roast — single origin specialty coffee from the Mayan Highlands of Copán, Honduras. 1,300–1,700 masl. Dark chocolate, smoky cedar, dried cherry. Private label by Mayan Origin Coffee Co. Ships direct from Honduras.',
   },
+  // --- Curated partners (price high → low for anchoring) ---
+  {
+    slug: 'mythoz-classic',
+    name: 'Mythoz Classic',
+    subtitle: 'Legacy Blend',
+    description:
+      'National Winner at the Global Coffee Awards 2025. This Honduras specialty coffee is sourced direct-trade from 109+ producer families across five Honduran regions. A small-batch medium roast with creamy, nutty character and clean citrus acidity — award-winning Honduras coffee available in 12oz and 16oz.',
+    roast: 'Medium Roast',
+    origin: 'Honduras (5 regions)',
+    process: 'Washed',
+    altitude: 'Up to 1,800 masl',
+    prices: { 'Whole Bean 16oz': 56, 'Ground 16oz': 56 },
+    image: '/images/mythoz-classic-whole-bean.webp',
+    secondaryImage: '/images/mythoz-classic-ground.webp',
+    brand: 'Mythoz Café',
+    metaTitle: 'Mythoz Classic — Award-Winning Honduras Specialty Coffee | Mayan Origin',
+    metaDescription: 'Mythoz Classic Legacy Blend — National Winner, Global Coffee Awards 2025. Small-batch Honduras specialty coffee sourced direct-trade from 109+ producer families. Creamy, nutty, clean citrus acidity.',
+    ingredients: '100% Arabica Coffee — Honduras (multi-region blend). Direct-trade from 109+ producer families. Nothing added.',
+  },
   {
     slug: 'welchez-house-blend',
     name: 'House Blend',
@@ -78,6 +98,23 @@ export const products: Product[] = [
     metaTitle: 'Café Welchez House Blend — Honduras Specialty Coffee | Mayan Origin',
     metaDescription: 'Café Welchez House Blend — small-batch Honduras specialty coffee from Copán. Natural + washed arabica blend: dark chocolate, caramel, bright acidity. Fifth-generation family farm. Ships from Honduras.',
     ingredients: '100% Arabica Coffee — Copán, Honduras. Blend of natural and washed process beans. Nothing added.',
+  },
+  {
+    slug: 'sigua-finca-el-zapote',
+    name: 'Finca El Zapote',
+    subtitle: 'Sigua Coffee',
+    description:
+      'A single origin specialty coffee from Finca El Zapote in Siguatepeque, Honduras — grown at 1,550 masl and hand-selected at harvest. Sigua Coffee has been farming and roasting in Honduras since 2013, using regenerative agriculture and direct-trade relationships to produce 100% arabica beans with full traceability back to the farm.',
+    roast: 'Medium Roast',
+    origin: 'Finca El Zapote, Siguatepeque, Honduras',
+    process: 'Washed',
+    altitude: '1,550 masl',
+    prices: { 'Ground 16oz': 38 },
+    image: '/images/sigua-finca-el-zapote.webp',
+    brand: 'Sigua Coffee',
+    metaTitle: 'Sigua Coffee Finca El Zapote — Single Origin Honduras Coffee | Mayan Origin',
+    metaDescription: 'Sigua Coffee Finca El Zapote — single origin specialty coffee from Siguatepeque, Honduras. 1,550 masl, hand-selected arabica. Farmers & roasters since 2013. Direct-trade, small-batch.',
+    ingredients: '100% Single-Origin Arabica Coffee — Finca El Zapote, Siguatepeque, Honduras. Hand-selected at harvest. Nothing added.',
   },
   {
     slug: 'welchez-santa-isabel',
@@ -130,41 +167,6 @@ export const products: Product[] = [
     metaTitle: 'Café Maya Reserva — Premium Honduras Coffee | Mayan Origin',
     metaDescription: 'Café Maya Reserva — 100% Honduran arabica, Mayan Medium Roast, 340g. The premium line from Café Maya, with 63+ years of Honduran coffee tradition. "Tu Café. A Tu Manera."',
     ingredients: '100% Arabica Coffee — Honduras. Nothing added.',
-  },
-  {
-    slug: 'sigua-finca-el-zapote',
-    name: 'Finca El Zapote',
-    subtitle: 'Sigua Coffee',
-    description:
-      'A single origin specialty coffee from Finca El Zapote in Siguatepeque, Honduras — grown at 1,550 masl and hand-selected at harvest. Sigua Coffee has been farming and roasting in Honduras since 2013, using regenerative agriculture and direct-trade relationships to produce 100% arabica beans with full traceability back to the farm.',
-    roast: 'Medium Roast',
-    origin: 'Finca El Zapote, Siguatepeque, Honduras',
-    process: 'Washed',
-    altitude: '1,550 masl',
-    prices: { 'Ground 16oz': 38 },
-    image: '/images/sigua-finca-el-zapote.webp',
-    brand: 'Sigua Coffee',
-    metaTitle: 'Sigua Coffee Finca El Zapote — Single Origin Honduras Coffee | Mayan Origin',
-    metaDescription: 'Sigua Coffee Finca El Zapote — single origin specialty coffee from Siguatepeque, Honduras. 1,550 masl, hand-selected arabica. Farmers & roasters since 2013. Direct-trade, small-batch.',
-    ingredients: '100% Single-Origin Arabica Coffee — Finca El Zapote, Siguatepeque, Honduras. Hand-selected at harvest. Nothing added.',
-  },
-  {
-    slug: 'mythoz-classic',
-    name: 'Mythoz Classic',
-    subtitle: 'Legacy Blend',
-    description:
-      'National Winner at the Global Coffee Awards 2025. This Honduras specialty coffee is sourced direct-trade from 109+ producer families across five Honduran regions. A small-batch medium roast with creamy, nutty character and clean citrus acidity — award-winning Honduras coffee available in 12oz and 16oz.',
-    roast: 'Medium Roast',
-    origin: 'Honduras (5 regions)',
-    process: 'Washed',
-    altitude: 'Up to 1,800 masl',
-    prices: { 'Whole Bean 16oz': 56, 'Ground 16oz': 56 },
-    image: '/images/mythoz-classic-whole-bean.webp',
-    secondaryImage: '/images/mythoz-classic-ground.webp',
-    brand: 'Mythoz Café',
-    metaTitle: 'Mythoz Classic — Award-Winning Honduras Specialty Coffee | Mayan Origin',
-    metaDescription: 'Mythoz Classic Legacy Blend — National Winner, Global Coffee Awards 2025. Small-batch Honduras specialty coffee sourced direct-trade from 109+ producer families. Creamy, nutty, clean citrus acidity.',
-    ingredients: '100% Arabica Coffee — Honduras (multi-region blend). Direct-trade from 109+ producer families. Nothing added.',
   },
 ];
 
