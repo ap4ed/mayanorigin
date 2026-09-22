@@ -109,10 +109,12 @@ const ogImageUrl = ogImage
     <noscript><link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" /></noscript>
   </head>
   <body>
-    <div id="shippingBanner" class="shipping-banner" hidden>
-      <span id="shippingBannerText"></span>
+    <div class="site-top">
+      <div id="shippingBanner" class="shipping-banner" hidden>
+        <span id="shippingBannerText"></span>
+      </div>
+      <Header />
     </div>
-    <Header />
     <main>
       <slot />
     </main>
@@ -185,6 +187,12 @@ const ogImageUrl = ogImage
 
 <style is:global>
   *, *::before, *::after { box-sizing: border-box; }
+
+  .site-top {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
 
   .shipping-banner {
     background: var(--green);
