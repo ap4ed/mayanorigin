@@ -5,6 +5,7 @@ pubDate: 2026-09-22
 category: brew-guides
 keywords: ["coffee grind size", "coffee grind size chart", "coffee grind settings", "what grind for french press", "what grind for pour over", "burr grinder vs blade grinder", "coffee grinding guide"]
 relatedProduct: "balam"
+image: "/images/blog/coffee-grind-size.jpg"
 faqs:
   - q: "What grind size for French press?"
     a: "Coarse, like rough sea salt or rough breadcrumbs. This is the most common grind mistake: people grind too fine and get bitter, gritty coffee."

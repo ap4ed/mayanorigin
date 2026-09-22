@@ -68,7 +68,9 @@ Our [Mut light roast](/shop/mut/) carries that spirit: luminous, delicate, alive
 
 **Jasmine. Orange blossom. Stone fruit. A honey finish that lingers.**
 
-It's the coffee for pour-over lovers, for slow mornings, for those who want to taste what's actually in the cup. Like Ixchel herself: gentle on the surface, complex underneath.
+It's the coffee for pour-over lovers, for slow mornings, for those who want to taste what's actually in the cup. For technique on getting the most out of Mut, see our [pour over guide](/blog/pour-over-coffee-guide/). To explore Ixchel's place in the full Mayan pantheon, see our [complete guide to the Mayan deities](/blog/mayan-gods-complete-guide/).
+
+Like Ixchel herself: gentle on the surface, complex underneath.
 
 ---
 

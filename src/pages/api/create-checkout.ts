@@ -1,5 +1,6 @@
 import type { APIRoute } from 'astro';
 import Stripe from 'stripe';
+import { products } from '../../data/products';
 
 export const POST: APIRoute = async ({ request }) => {
   const stripeKey = import.meta.env.STRIPE_SECRET_KEY;
@@ -11,9 +12,9 @@ export const POST: APIRoute = async ({ request }) => {
     });
   }
 
-  const stripe = new Stripe(stripeKey, { apiVersion: '2024-06-20' });
+  const stripe = new Stripe(stripeKey, { apiVersion: '2026-08-26.dahlia' as any });
 
-  let body: { items: { slug: string; size: string; qty: number; price: number }[] };
+  let body: { items: { slug: string; size: string; qty: number }[] };
   try {
     body = await request.json();
   } catch {
@@ -31,32 +32,42 @@ export const POST: APIRoute = async ({ request }) => {
     });
   }
 
-  const PRODUCT_NAMES: Record<string, string> = {
-    balam: 'Balam — Medium Roast',
-    mut: 'Mut — Light Roast',
-    kukulkan: 'Kukulkan — Dark Roast',
-    'welchez-house-blend': 'House Blend — Café Welchez',
-    'welchez-santa-isabel': 'Santa Isabel — Café Welchez',
-    'cafe-maya-coffee-club': 'Coffee Club — Café Maya',
-    'cafe-maya-reserva': 'Reserva — Café Maya',
-    'sigua-finca-el-zapote': 'Finca El Zapote — Sigua Coffee',
-    'mythoz-classic': 'Mythoz Classic — Legacy Blend',
-  };
-
-  const lineItems = items.map(item => ({
-    price_data: {
-      currency: 'usd',
-      product_data: {
-        name: `${PRODUCT_NAMES[item.slug] ?? item.slug} (${item.size})`,
-        description: 'Single-origin coffee from Copán, Honduras. Packed fresh.',
-        images: [`https://mayanorigin.com/images/${item.slug}.jpg`],
+  // Validate and price items server-side — never trust client-supplied prices
+  const lineItems = [];
+  for (const item of items) {
+    const product = products.find(p => p.slug === item.slug);
+    if (!product) {
+      return new Response(JSON.stringify({ error: `Unknown product: ${item.slug}` }), {
+        status: 400,
+        headers: { 'Content-Type': 'application/json' },
+      });
+    }
+    const price = product.prices[item.size];
+    if (price === undefined) {
+      return new Response(JSON.stringify({ error: `Invalid size "${item.size}" for ${item.slug}` }), {
+        status: 400,
+        headers: { 'Content-Type': 'application/json' },
+      });
+    }
+    lineItems.push({
+      price_data: {
+        currency: 'usd',
+        product_data: {
+          name: `${product.name} — ${product.subtitle} (${item.size})`,
+          description: `${product.roast} · ${product.origin} · ${product.process}. Packed fresh in Honduras.`,
+          images: [`https://mayanorigin.com${product.image}`],
+        },
+        unit_amount: Math.round(price * 100),
       },
-      unit_amount: Math.round(item.price * 100),
-    },
-    quantity: item.qty,
-  }));
+      quantity: item.qty,
+    });
+  }
 
-  const subtotal = items.reduce((s, i) => s + i.price * i.qty, 0);
+  // Server-side shipping calculation
+  const subtotal = items.reduce((sum, item) => {
+    const product = products.find(p => p.slug === item.slug)!;
+    return sum + product.prices[item.size] * item.qty;
+  }, 0);
   const totalQty = items.reduce((s, i) => s + i.qty, 0);
 
   function calcShipping(qty: number, sub: number): number {
@@ -71,17 +82,25 @@ export const POST: APIRoute = async ({ request }) => {
 
   try {
     const session = await stripe.checkout.sessions.create({
-      payment_method_types: ['card'],
       line_items: lineItems,
       mode: 'payment',
       shipping_address_collection: { allowed_countries: ['US'] },
-      shipping_options: [{ shipping_rate_data: { type: 'fixed_amount', fixed_amount: { amount: shippingFee * 100, currency: 'usd' }, display_name: shippingLabel, delivery_estimate: { minimum: { unit: 'business_day', value: 5 }, maximum: { unit: 'business_day', value: 10 } } } }],
+      shipping_options: [{
+        shipping_rate_data: {
+          type: 'fixed_amount',
+          fixed_amount: { amount: shippingFee * 100, currency: 'usd' },
+          display_name: shippingLabel,
+          delivery_estimate: {
+            minimum: { unit: 'business_day', value: 5 },
+            maximum: { unit: 'business_day', value: 10 },
+          },
+        },
+      }],
       success_url: `${new URL(request.url).origin}/order-confirmed/?session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${new URL(request.url).origin}/cart/`,
-      metadata: {
-        source: 'mayanorigin.com',
-      },
-    });
+      metadata: { source: 'mayanorigin.com' },
+      integration_identifier: 'mayanorigin-checkout-kqzprwxy',
+    } as any);
 
     return new Response(JSON.stringify({ url: session.url }), {
       status: 200,

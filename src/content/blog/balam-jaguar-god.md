@@ -40,7 +40,7 @@ Look at almost any major Mayan archaeological site, Copán, Tikal, Palenque, and
 
 The [Copán ruins](/blog/copan-honduras-coffee/) in western Honduras, where our coffee is grown, contain some of the finest jaguar imagery in the entire Mayan world. The Jaguar Stairway at Copán is considered one of the greatest works of pre-Columbian art ever created. Hundreds of carved glyphs line the steps, and jaguar motifs appear throughout the site's altars and stelae.
 
-Copán was one of the most powerful city-states in the Classic Maya period (250–900 CE), and its kings, including the famous 18 Rabbit, invoked Balam's power through elaborate ceremony and stone carving.
+Copán was one of the most powerful city-states in the Classic Maya period (250–900 CE), and its kings, including the famous 18 Rabbit, invoked Balam's power through elaborate ceremony and stone carving. For the full story of Balam's place in the Mayan pantheon alongside Kukulkan, Ixchel, and the other great gods, see our [complete guide to the Mayan deities](/blog/mayan-gods-complete-guide/).
 
 ## What the Jaguar Meant to Everyday Maya People
 

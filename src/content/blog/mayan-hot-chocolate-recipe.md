@@ -51,6 +51,8 @@ When Hernán Cortés arrived in Mexico in 1519 and encountered the Aztec emperor
 
 The sweetened version spread across Europe within decades. The original Mayan version nearly disappeared.
 
+For the ritual practice the Maya built around cacao, see our guide to the [Mayan cacao ceremony](/blog/cacao-ceremony/). And for a complete picture of what the ancient Maya ate and drank, see our guide to [Mayan civilization food](/blog/mayan-civilization-food/).
+
 ## Ingredients
 
 This is the most accurate recreation of the original drink that's still enjoyable for modern palates. You can control the bitterness by adjusting the cacao amount and the sweetness by adjusting the honey.
@@ -113,6 +115,8 @@ There's a connection between this ancient Mayan drink and the coffee we ship fro
 Our [Balam](/shop/balam/), [Mut](/shop/mut/), and [Kukulkan](/shop/kukulkan/) coffees all grow in the highlands of Copán, Honduras, the same mountainous region where the ancient Maya cultivated cacao for thousands of years. The volcanic soil and high altitude that make Copán's cacao exceptional are the same conditions that produce our specialty arabica coffee.
 
 Two crops, one origin. The Maya planted cacao in these valleys. We grow coffee in the same mountains, carrying the same tradition of care for what the land produces.
+
+Our wider collection includes [Mythoz Classic](/shop/mythoz-classic/), winner of the Global Coffee Awards 2025, sourced direct-trade from 109+ producer families across five Honduran regions — another expression of what this land produces when tradition meets quality.
 
 ---
 

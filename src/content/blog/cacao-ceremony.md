@@ -122,9 +122,11 @@ The best cacao ceremonies feel less like a product experience and more like a qu
 
 The same mountain valleys of Honduras and Guatemala that produced ancient Mayan cacao culture now produce some of the world's finest coffee.
 
-Our coffees come from the Copán and Marcala highlands, the heart of the ancient Maya world. The farmers who grow them are the descendants of the same people who first cultivated cacao in these forests.
+Our coffees come from the Copán and Marcala highlands, the heart of the ancient Maya world. The farmers who grow them are the descendants of the same people who first cultivated cacao in these forests. Our collection includes [Sigua Coffee Finca El Zapote](/shop/sigua-finca-el-zapote/), a single-origin specialty from Siguatepeque, Honduras — grown at 1,550 masl on land that has sustained Honduran communities for centuries.
 
 A morning coffee can carry that same quality of intentional pause that a cacao ceremony offers. The [Mut light roast](/shop/mut/) brewed in a pour over, held with both hands, drunk slowly. That's a ceremony too, in its way.
+
+For the ancient recipe that started it all, see our [Mayan hot chocolate recipe](/blog/mayan-hot-chocolate-recipe/). And for a wider look at what the ancient Maya ate and drank alongside cacao, see our guide to [Mayan civilization food](/blog/mayan-civilization-food/).
 
 ---
 

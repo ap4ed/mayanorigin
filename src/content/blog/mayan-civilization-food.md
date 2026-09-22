@@ -5,6 +5,7 @@ pubDate: 2026-09-22
 category: culture
 keywords: ["mayan civilization food", "what did the maya eat", "ancient mayan food", "mayan diet", "mayan cacao", "mayan drinks", "mayan agriculture"]
 relatedProduct: "kukulkan"
+image: "/images/blog/mayan-civilization-food.jpg"
 faqs:
   - q: "What did the ancient Maya eat?"
     a: "The Maya diet centered on maize, black beans, squash, and chili peppers. Cacao was a sacred beverage for royalty. Turkey, deer, fish, and insects were common protein sources depending on region."
@@ -47,6 +48,8 @@ The Maya had been cultivating and consuming cacao for over 3,000 years by the ti
 This drink, called *kakaw* in the Maya language, was bitter, spicy, and complex. It was served cold or at room temperature, not hot. It was reserved primarily for royalty, warriors, and ritual occasions.
 
 Cacao beans also functioned as currency. You could buy a turkey for 100 cacao beans. A tamale cost a few beans. The value of cacao was so high that counterfeit beans, shells filled with clay, were documented by Spanish chroniclers.
+
+We've recreated this ancient drink in our [Mayan hot chocolate recipe](/blog/mayan-hot-chocolate-recipe/), and explore the ritual context behind cacao consumption in our guide to the [Mayan cacao ceremony](/blog/cacao-ceremony/).
 
 The cacao tree was sacred and associated with [Ixchel](/blog/ixchel-moon-goddess/), the moon goddess of fertility and weaving, and with the rain deity Chaac, who was believed to be the original guardian of cacao groves. Maya murals at sites like Copán show nobles drinking from cacao vessels at ceremonies and coronations.
 
@@ -99,6 +102,8 @@ The Maya heartland of western Honduras, particularly the [Copán](/blog/copan-ho
 Tortillas made on a comal over an open fire, black beans simmered with herbs, caldo de res (beef broth with yuca and plantain), tamales for celebrations, and cacao-based drinks at festivals all trace direct lines back to pre-Columbian practice.
 
 And the coffee that grows in these same mountains, on land the ancient Maya farmed, under the shade of trees they first cultivated, carries something of that history in every cup.
+
+Our [Café Maya Reserva](/shop/cafe-maya-reserva/) — named for the Maya tradition it honors — is a premium Honduran arabica from producers with over 63 years of roasting history in this country.
 
 Our coffees are sourced from cooperatives in the Copán and Marcala regions of Honduras. The farmers who grow them work land where the Maya civilization once flourished. The [Kukulkan dark roast](/shop/kukulkan/), [Balam medium roast](/shop/balam/), and [Mut light roast](/shop/mut/) each carry something of that soil.
 

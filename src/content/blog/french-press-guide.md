@@ -126,6 +126,8 @@ Our [Balam medium roast](/shop/balam/) also performs beautifully in French press
 
 If you prefer lighter coffee and want to try it in French press, our [Mut light roast](/shop/mut/) works well at a slightly shorter steep time (3:30–3:45) and slightly lower temperature (91°C). The natural process brings enough body to hold up.
 
+Prefer to compare brew methods? See how light roasts perform differently in our [pour over guide](/blog/pour-over-coffee-guide/).
+
 ---
 
 ## Frequently Asked Questions

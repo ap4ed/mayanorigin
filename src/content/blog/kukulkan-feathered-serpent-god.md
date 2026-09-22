@@ -71,6 +71,8 @@ Our [Kukulkan dark roast](/shop/kukulkan/) reflects that intensity: **dark choco
 
 Grown in the highlands of Copán, Honduras at 1,300–1,700 meters above sea level, washed process. The same mountains where Mayan civilization flourished for centuries produce this coffee today, and it carries that weight in every cup.
 
+For the full story of Kukulkan's place alongside the other great gods of the Maya world, see our [complete guide to the Mayan deities](/blog/mayan-gods-complete-guide/).
+
 If [Balam](/shop/balam/) is balanced power and [Mut](/shop/mut/) is luminous clarity, Kukulkan is something else entirely. It's the coffee you drink when you mean business.
 
 ---

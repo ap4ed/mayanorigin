@@ -5,6 +5,7 @@ pubDate: 2026-09-20
 category: origin
 keywords: ["copan honduras", "copán ruins", "honduras coffee region", "copan coffee", "honduras specialty coffee", "mayan highlands coffee"]
 image: "/images/blog/copan.jpg"
+relatedProduct: "welchez-house-blend"
 imageAlt: "Green coffee mountains of Copán, Honduras with ancient ruins in the valley"
 faqs:
   - q: "Is Copán coffee specialty grade?"
@@ -53,6 +54,8 @@ We source our private label coffees, [Balam](/shop/balam/), [Mut](/shop/mut/), a
 
 Both cooperatives share a commitment to the land and the community, values that align with what we're trying to do at Mayan Origin.
 
+We also carry two coffees from **Café Welchez**, a fifth-generation family farm in Copán. The [House Blend](/shop/welchez-house-blend/) is a natural and washed espresso-style medium roast. The [Santa Isabel](/shop/welchez-santa-isabel/) is a single-origin light roast from their estate farm, grown with Parainema, Catuaí, and Caturra varieties at 1,000–1,300 masl.
+
 ## What Makes Copán Coffee Taste Different
 
 If you've only ever drunk coffee from Colombia, Ethiopia, or Brazil, Copán will offer something distinct.
@@ -73,7 +76,7 @@ If you ever have the chance to visit Copán Ruinas, Honduras, do it. The town si
 
 The ruins themselves are remarkable. Unlike the flat Maya sites of the Yucatán, Copán is nestled in green mountains. The carvings here are among the most detailed in the Maya world. The Altar Q alone tells the story of every king in Copán's dynastic line.
 
-It's a place where history and nature sit side by side, and where the connection between people and the land has never been broken.
+It's a place where history and nature sit side by side, and where the connection between people and the land has never been broken. To learn more about the gods the Maya worshipped in these mountains, see our [complete guide to Mayan deities](/blog/mayan-gods-complete-guide/).
 
 ---
 
