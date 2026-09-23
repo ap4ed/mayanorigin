@@ -187,6 +187,7 @@ async function fulfillOrder(session: Stripe.Checkout.Session) {
   const resend = new Resend(resendKey);
   const { error } = await resend.emails.send({
     from: 'Mayan Origin Coffee Co. <hello@mayanorigin.com>',
+    reply_to: 'alfredoenriquepreciado@gmail.com',
     to: email,
     subject: `Order confirmed — your coffee is being packed ☕`,
     html,
