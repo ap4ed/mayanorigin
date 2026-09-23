@@ -475,16 +475,11 @@ const bundleTotal = Object.values(product.prices)[0] + bundleItems.reduce((s, i)
           </div>
         </div>
 
-        <!-- Trustpilot mini widget -->
-        <div class="trustpilot-widget"
-          data-locale="en-US"
-          data-template-id="53aa8807dec7e10d38f59f32"
-          data-businessunit-id="6ab323daf431aed7f37fceb2"
-          data-style-height="24px"
-          data-style-width="100%"
-          data-theme="light">
-          <a href="https://www.trustpilot.com/review/mayanorigin.com" target="_blank" rel="noopener">Trustpilot</a>
-        </div>
+        <!-- Trustpilot review link -->
+        <a class="tp-review-link" href="https://www.trustpilot.com/review/mayanorigin.com" target="_blank" rel="noopener">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="#00b67a" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <span>Be the first to leave a review on Trustpilot</span>
+        </a>
 
         <!-- CTAs -->
         <div class="cta-stack">
@@ -845,6 +840,19 @@ const bundleTotal = Object.values(product.prices)[0] + bundleItems.reduce((s, i)
     color: var(--muted);
     font-style: italic;
   }
+
+  /* Trustpilot review link */
+  .tp-review-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.8rem;
+    color: var(--muted);
+    text-decoration: none;
+    margin-bottom: 0.5rem;
+  }
+  .tp-review-link:hover { color: #00b67a; }
 
   /* Flavor chips */
   .flavor-chips {
