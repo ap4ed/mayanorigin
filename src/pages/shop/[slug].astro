@@ -429,17 +429,6 @@ const bundleTotal = Object.values(product.prices)[0] + bundleItems.reduce((s, i)
         <span class="roast-tag">{product.roast}</span>
         <h1 class="pdp-name">{product.name} <span class="pdp-subtitle">— {product.subtitle}</span></h1>
 
-        <!-- Trustpilot mini widget -->
-        <div class="trustpilot-widget"
-          data-locale="en-US"
-          data-template-id="53aa8807dec7e10d38f59f32"
-          data-businessunit-id="6ab323daf431aed7f37fceb2"
-          data-style-height="24px"
-          data-style-width="100%"
-          data-theme="light">
-          <a href="https://www.trustpilot.com/review/mayanorigin.com" target="_blank" rel="noopener">Trustpilot</a>
-        </div>
-
         <!-- Flavor chips -->
         <div class="flavor-chips">
           {productHighlights.slice(2, 3)[0]?.replace('Tasting notes: ', '').split(', ').map(note => (
@@ -484,6 +473,17 @@ const bundleTotal = Object.values(product.prices)[0] + bundleItems.reduce((s, i)
             <span class="qty-value" id="qtyValue">1</span>
             <button class="qty-btn" id="qtyPlus" aria-label="Increase quantity">+</button>
           </div>
+        </div>
+
+        <!-- Trustpilot mini widget -->
+        <div class="trustpilot-widget"
+          data-locale="en-US"
+          data-template-id="53aa8807dec7e10d38f59f32"
+          data-businessunit-id="6ab323daf431aed7f37fceb2"
+          data-style-height="24px"
+          data-style-width="100%"
+          data-theme="light">
+          <a href="https://www.trustpilot.com/review/mayanorigin.com" target="_blank" rel="noopener">Trustpilot</a>
         </div>
 
         <!-- CTAs -->
