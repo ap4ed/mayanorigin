@@ -14,7 +14,7 @@ export const POST: APIRoute = async ({ request }) => {
 
   const stripe = new Stripe(stripeKey, { apiVersion: '2026-08-26.dahlia' });
 
-  let body: { items: { slug: string; size: string; qty: number }[] };
+  let body: { items: { slug: string; size: string; qty: number }[]; teeSize?: string; teeColor?: string };
   try {
     body = await request.json();
   } catch {
@@ -24,7 +24,7 @@ export const POST: APIRoute = async ({ request }) => {
     });
   }
 
-  const { items } = body;
+  const { items, teeSize, teeColor } = body;
   if (!items || items.length === 0) {
     return new Response(JSON.stringify({ error: 'Cart is empty.' }), {
       status: 400,
@@ -71,7 +71,7 @@ export const POST: APIRoute = async ({ request }) => {
   const totalQty = items.reduce((s, i) => s + i.qty, 0);
 
   function calcShipping(qty: number, sub: number): number {
-    if (sub >= 100) return 0;
+    if (sub >= 120) return 0;
     if (qty >= 3) return 20;
     if (qty >= 2) return 25;
     return 35;
@@ -98,7 +98,10 @@ export const POST: APIRoute = async ({ request }) => {
       }],
       success_url: `${new URL(request.url).origin}/order-confirmed/?session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${new URL(request.url).origin}/cart/`,
-      metadata: { source: 'mayanorigin.com' },
+      metadata: {
+        source: 'mayanorigin.com',
+        ...(teeSize && teeColor ? { free_tee_size: teeSize, free_tee_color: teeColor } : {}),
+      },
       integration_identifier: 'mayanorigin-checkout-kqzprwxy',
     });
 

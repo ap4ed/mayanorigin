@@ -126,7 +126,7 @@ const ogImageUrl = ogImage
 
     <script is:inline>
       (function() {
-        var FREE_THRESHOLD = 100;
+        var FREE_THRESHOLD = 120;
         var MIN_PRODUCT_PRICE = 27;
 
         function updateBanner() {
@@ -142,7 +142,7 @@ const ogImageUrl = ogImage
           if (cart.length === 0) {
             banner.hidden = false;
             banner.classList.remove('is-free');
-            text.innerHTML = 'Free FedEx/DHL Express shipping worldwide on orders over <span class="banner-amount">$100</span>!';
+            text.innerHTML = '👕 Free tee + free shipping on orders over <span class="banner-amount">$120</span>!';
             return;
           }
 
@@ -154,10 +154,10 @@ const ogImageUrl = ogImage
 
           if (subtotal >= FREE_THRESHOLD) {
             banner.classList.add('is-free');
-            text.innerHTML = '🎉 You\'ve unlocked free shipping!';
+            text.innerHTML = '🎉 You\'ve unlocked free shipping + a free tee!';
           } else if (oneMoreGetsFree) {
             banner.classList.remove('is-free');
-            text.innerHTML = 'Add 1 more bag and get <span class="banner-amount">free shipping!</span>';
+            text.innerHTML = 'Add 1 more bag and get <span class="banner-amount">free shipping + a free tee!</span>';
           } else if (totalQty === 1) {
             banner.classList.remove('is-free');
             text.innerHTML = 'Add 1 more bag and save <span class="banner-amount">$10</span> on shipping!';
@@ -167,7 +167,7 @@ const ogImageUrl = ogImage
           } else {
             banner.classList.remove('is-free');
             var remaining = (FREE_THRESHOLD - subtotal).toFixed(2);
-            text.innerHTML = 'Add <span class="banner-amount">$' + remaining + '</span> more to your order and get free shipping!';
+            text.innerHTML = 'Spend <span class="banner-amount">$' + remaining + '</span> more for free shipping + a free tee!';
           }
         }
 

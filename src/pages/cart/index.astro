@@ -39,6 +39,39 @@ const minProductPrice = Math.min(...products.map(p => Math.min(...Object.values(
           <!-- Populated by JS -->
         </div>
 
+        <!-- Gift tee (shown when subtotal >= $120) -->
+        <div class="gift-tee-section" id="giftTeeSection" hidden>
+          <div class="gift-tee-header">
+            <span class="gift-tee-icon">🎁</span>
+            <div>
+              <p class="gift-tee-title">Free Tee — Yours on Us!</p>
+              <p class="gift-tee-sub">Your order qualifies for a complimentary Mayan Origin Coffee Co. tee</p>
+            </div>
+          </div>
+          <div class="gift-tee-options">
+            <div class="gift-tee-field">
+              <label class="gift-tee-label">Size</label>
+              <div class="gift-tee-buttons">
+                <button class="tee-btn" data-tee-size="S">S</button>
+                <button class="tee-btn" data-tee-size="M">M</button>
+                <button class="tee-btn" data-tee-size="L">L</button>
+              </div>
+            </div>
+            <div class="gift-tee-field">
+              <label class="gift-tee-label">Color</label>
+              <div class="gift-tee-buttons">
+                <button class="tee-btn tee-color-btn" data-tee-color="White">
+                  <span class="color-swatch swatch-white"></span> White
+                </button>
+                <button class="tee-btn tee-color-btn" data-tee-color="Black">
+                  <span class="color-swatch swatch-black"></span> Black
+                </button>
+              </div>
+            </div>
+          </div>
+          <p class="gift-tee-reminder" hidden>Please select a size and color to claim your free tee</p>
+        </div>
+
         <!-- Order summary -->
         <div class="cart-summary">
           <h2>Order Summary</h2>
@@ -270,6 +303,26 @@ const minProductPrice = Math.min(...products.map(p => Math.min(...Object.values(
       }
     }
 
+    // Gift tee section
+    const giftTeeEl = document.getElementById('giftTeeSection') as HTMLElement;
+    if (giftTeeEl) {
+      if (subtotal >= 120) {
+        giftTeeEl.hidden = false;
+        const savedSize = localStorage.getItem('mo_tee_size') || '';
+        const savedColor = localStorage.getItem('mo_tee_color') || '';
+        giftTeeEl.querySelectorAll('[data-tee-size]').forEach(btn => {
+          btn.classList.toggle('is-selected', (btn as HTMLElement).dataset.teeSize === savedSize);
+        });
+        giftTeeEl.querySelectorAll('[data-tee-color]').forEach(btn => {
+          btn.classList.toggle('is-selected', (btn as HTMLElement).dataset.teeColor === savedColor);
+        });
+        const reminder = giftTeeEl.querySelector('.gift-tee-reminder') as HTMLElement;
+        if (reminder) reminder.hidden = !!(savedSize && savedColor);
+      } else {
+        giftTeeEl.hidden = true;
+      }
+    }
+
     // Qty / remove handlers
     itemsEl.querySelectorAll('[data-action]').forEach(btn => {
       btn.addEventListener('click', () => {
@@ -296,6 +349,20 @@ const minProductPrice = Math.min(...products.map(p => Math.min(...Object.values(
         renderCart();
       });
     });
+
+    // Tee selection handlers
+    document.querySelectorAll('[data-tee-size]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        localStorage.setItem('mo_tee_size', (btn as HTMLElement).dataset.teeSize!);
+        renderCart();
+      });
+    });
+    document.querySelectorAll('[data-tee-color]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        localStorage.setItem('mo_tee_color', (btn as HTMLElement).dataset.teeColor!);
+        renderCart();
+      });
+    });
   }
 
   // Checkout — calls Stripe API
@@ -304,6 +371,18 @@ const minProductPrice = Math.min(...products.map(p => Math.min(...Object.values(
     if (cart.length === 0) return;
 
     const btn = document.getElementById('checkoutBtn') as HTMLButtonElement;
+
+    // Validate tee selection if they qualify
+    const subtotal = cart.reduce((s, i) => s + i.price * i.qty, 0);
+    const teeSize = localStorage.getItem('mo_tee_size') || '';
+    const teeColor = localStorage.getItem('mo_tee_color') || '';
+    if (subtotal >= 120 && (!teeSize || !teeColor)) {
+      const reminder = document.querySelector('.gift-tee-reminder') as HTMLElement;
+      if (reminder) reminder.hidden = false;
+      document.getElementById('giftTeeSection')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      return;
+    }
+
     btn.textContent = 'Redirecting to checkout…';
     btn.disabled = true;
 
@@ -311,7 +390,10 @@ const minProductPrice = Math.min(...products.map(p => Math.min(...Object.values(
       const res = await fetch('/api/create-checkout/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ items: cart }),
+        body: JSON.stringify({
+          items: cart,
+          ...(subtotal >= 120 && teeSize && teeColor ? { teeSize, teeColor } : {}),
+        }),
       });
       const data = await res.json();
       if (data.url) {
@@ -726,6 +808,95 @@ const minProductPrice = Math.min(...products.map(p => Math.min(...Object.values(
   }
   .shipping-info p { margin: 0 0 0.25rem; }
   .shipping-info p:last-child { margin: 0; }
+
+  /* Gift tee section */
+  .gift-tee-section {
+    background: #fff;
+    border: 2px solid var(--gold);
+    border-radius: 8px;
+    padding: 1.25rem 1.5rem;
+    margin-top: 1rem;
+  }
+  .gift-tee-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    margin-bottom: 1.1rem;
+  }
+  .gift-tee-icon { font-size: 1.6rem; line-height: 1; }
+  .gift-tee-title {
+    font-family: 'Cinzel', Georgia, serif;
+    font-weight: 700;
+    font-size: 0.95rem;
+    color: var(--green);
+    margin: 0 0 0.2rem;
+  }
+  .gift-tee-sub {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.82rem;
+    color: var(--muted);
+    margin: 0;
+  }
+  .gift-tee-options {
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+  }
+  .gift-tee-field {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  .gift-tee-label {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--text);
+    min-width: 40px;
+  }
+  .gift-tee-buttons {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+  .tee-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.35rem 0.85rem;
+    border: 1.5px solid var(--border);
+    border-radius: 6px;
+    background: #fff;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text);
+    cursor: pointer;
+    transition: border-color 0.15s, background 0.15s, color 0.15s;
+  }
+  .tee-btn:hover { border-color: var(--gold); }
+  .tee-btn.is-selected {
+    border-color: var(--gold);
+    background: var(--gold);
+    color: #fff;
+  }
+  .color-swatch {
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    border: 1px solid rgba(0,0,0,0.15);
+    flex-shrink: 0;
+  }
+  .swatch-white { background: #fff; border-color: #ccc; }
+  .swatch-black { background: #111; }
+  .gift-tee-reminder {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.78rem;
+    color: #c0392b;
+    margin: 0.85rem 0 0;
+    font-weight: 500;
+  }
 
   /* Also like */
   .also-like { border-top: 1px solid var(--border); padding-top: 3rem; }
