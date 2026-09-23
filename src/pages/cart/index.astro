@@ -41,35 +41,40 @@ const minProductPrice = Math.min(...products.map(p => Math.min(...Object.values(
 
         <!-- Gift tee (shown when subtotal >= $120) -->
         <div class="gift-tee-section" id="giftTeeSection" hidden>
-          <div class="gift-tee-header">
-            <span class="gift-tee-icon">🎁</span>
-            <div>
-              <p class="gift-tee-title">Free Tee — Yours on Us!</p>
-              <p class="gift-tee-sub">Your order qualifies for a complimentary Mayan Origin Coffee Co. tee</p>
+          <div class="gift-tee-inner">
+            <img id="giftTeeImg" src="/images/tee-white.jpg" alt="Mayan Origin Coffee Co. free tee" class="gift-tee-img" />
+            <div class="gift-tee-content">
+              <div class="gift-tee-header">
+                <span class="gift-tee-icon">🎁</span>
+                <div>
+                  <p class="gift-tee-title">Free Tee — Yours on Us!</p>
+                  <p class="gift-tee-sub">Your order qualifies for a complimentary Mayan Origin Coffee Co. tee</p>
+                </div>
+              </div>
+              <div class="gift-tee-options">
+                <div class="gift-tee-field">
+                  <label class="gift-tee-label">Size</label>
+                  <div class="gift-tee-buttons">
+                    <button class="tee-btn" data-tee-size="S">S</button>
+                    <button class="tee-btn" data-tee-size="M">M</button>
+                    <button class="tee-btn" data-tee-size="L">L</button>
+                  </div>
+                </div>
+                <div class="gift-tee-field">
+                  <label class="gift-tee-label">Color</label>
+                  <div class="gift-tee-buttons">
+                    <button class="tee-btn tee-color-btn" data-tee-color="White">
+                      <span class="color-swatch swatch-white"></span> White
+                    </button>
+                    <button class="tee-btn tee-color-btn" data-tee-color="Black">
+                      <span class="color-swatch swatch-black"></span> Black
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <p class="gift-tee-reminder" hidden>Please select a size and color to claim your free tee</p>
             </div>
           </div>
-          <div class="gift-tee-options">
-            <div class="gift-tee-field">
-              <label class="gift-tee-label">Size</label>
-              <div class="gift-tee-buttons">
-                <button class="tee-btn" data-tee-size="S">S</button>
-                <button class="tee-btn" data-tee-size="M">M</button>
-                <button class="tee-btn" data-tee-size="L">L</button>
-              </div>
-            </div>
-            <div class="gift-tee-field">
-              <label class="gift-tee-label">Color</label>
-              <div class="gift-tee-buttons">
-                <button class="tee-btn tee-color-btn" data-tee-color="White">
-                  <span class="color-swatch swatch-white"></span> White
-                </button>
-                <button class="tee-btn tee-color-btn" data-tee-color="Black">
-                  <span class="color-swatch swatch-black"></span> Black
-                </button>
-              </div>
-            </div>
-          </div>
-          <p class="gift-tee-reminder" hidden>Please select a size and color to claim your free tee</p>
         </div>
 
         <!-- Order summary -->
@@ -310,6 +315,8 @@ const minProductPrice = Math.min(...products.map(p => Math.min(...Object.values(
         giftTeeEl.hidden = false;
         const savedSize = localStorage.getItem('mo_tee_size') || '';
         const savedColor = localStorage.getItem('mo_tee_color') || '';
+        const img = document.getElementById('giftTeeImg') as HTMLImageElement;
+        if (img) img.src = savedColor === 'Black' ? '/images/tee-black.jpg' : '/images/tee-white.jpg';
         giftTeeEl.querySelectorAll('[data-tee-size]').forEach(btn => {
           btn.classList.toggle('is-selected', (btn as HTMLElement).dataset.teeSize === savedSize);
         });
@@ -359,7 +366,10 @@ const minProductPrice = Math.min(...products.map(p => Math.min(...Object.values(
     });
     document.querySelectorAll('[data-tee-color]').forEach(btn => {
       btn.addEventListener('click', () => {
-        localStorage.setItem('mo_tee_color', (btn as HTMLElement).dataset.teeColor!);
+        const color = (btn as HTMLElement).dataset.teeColor!;
+        localStorage.setItem('mo_tee_color', color);
+        const img = document.getElementById('giftTeeImg') as HTMLImageElement;
+        if (img) img.src = color === 'Black' ? '/images/tee-black.jpg' : '/images/tee-white.jpg';
         renderCart();
       });
     });
@@ -817,6 +827,20 @@ const minProductPrice = Math.min(...products.map(p => Math.min(...Object.values(
     padding: 1.25rem 1.5rem;
     margin-top: 1rem;
   }
+  .gift-tee-inner {
+    display: flex;
+    gap: 1.25rem;
+    align-items: flex-start;
+  }
+  .gift-tee-img {
+    width: 130px;
+    height: 130px;
+    object-fit: cover;
+    border-radius: 6px;
+    flex-shrink: 0;
+    border: 1px solid var(--border);
+  }
+  .gift-tee-content { flex: 1; }
   .gift-tee-header {
     display: flex;
     align-items: flex-start;
