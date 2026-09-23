@@ -19,7 +19,7 @@ const {
 } = Astro.props;
 
 const siteName = 'Mayan Origin Coffee';
-const fullTitle = title.includes(siteName) ? title : `${title} | ${siteName}`;
+const fullTitle = title.includes('Mayan Origin') ? title : `${title} | ${siteName}`;
 const ogImageUrl = ogImage
   ? (ogImage.startsWith('http') ? ogImage : new URL(ogImage, Astro.site).href)
   : undefined;

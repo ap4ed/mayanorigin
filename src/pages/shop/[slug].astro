@@ -606,7 +606,7 @@ const bundleTotal = Object.values(product.prices)[0] + bundleItems.reduce((s, i)
           <div class="bundle-item">
             <div class="bundle-img-placeholder">☕</div>
             <p class="bundle-name">{product.name}</p>
-            <p class="bundle-price">${product.prices['250g']}</p>
+            <p class="bundle-price">${Object.values(product.prices)[0]}</p>
           </div>
           {bundleItems.map(item => (
             <>
