@@ -63,6 +63,22 @@ export const POST: APIRoute = async ({ request }) => {
     });
   }
 
+  // Add free tee as $0 line item so it shows in Stripe checkout
+  if (teeSize && teeColor) {
+    lineItems.push({
+      price_data: {
+        currency: 'usd',
+        product_data: {
+          name: `Free Tee — Mayan Origin Coffee Co. (${teeColor}, Size ${teeSize})`,
+          description: 'Complimentary gift with your order.',
+          images: [`https://mayanorigin.com/images/tee-${teeColor.toLowerCase()}.jpg`],
+        },
+        unit_amount: 0,
+      },
+      quantity: 1,
+    });
+  }
+
   // Server-side shipping calculation
   const subtotal = items.reduce((sum, item) => {
     const product = products.find(p => p.slug === item.slug)!;

@@ -34,7 +34,9 @@ const minProductPrice = Math.min(...products.map(p => Math.min(...Object.values(
     <div class="cart-filled" id="cartFilled" hidden>
       <div class="cart-layout">
 
-        <!-- Line items -->
+        <!-- Left column: items + gift tee -->
+        <div class="cart-left">
+
         <div class="cart-items" id="cartItems">
           <!-- Populated by JS -->
         </div>
@@ -77,12 +79,19 @@ const minProductPrice = Math.min(...products.map(p => Math.min(...Object.values(
           </div>
         </div>
 
+        </div><!-- /.cart-left -->
+
         <!-- Order summary -->
         <div class="cart-summary">
           <h2>Order Summary</h2>
 
           <div class="summary-rows" id="summaryRows">
             <!-- Populated by JS -->
+          </div>
+
+          <div class="summary-row tee-summary-row" id="teeSummaryRow" hidden>
+            <span id="teeSummaryLabel">🎁 Free Tee</span>
+            <span class="tee-summary-free">FREE</span>
           </div>
 
           <div class="summary-subtotal">
@@ -310,6 +319,8 @@ const minProductPrice = Math.min(...products.map(p => Math.min(...Object.values(
 
     // Gift tee section
     const giftTeeEl = document.getElementById('giftTeeSection') as HTMLElement;
+    const teeSummaryRow = document.getElementById('teeSummaryRow') as HTMLElement;
+    const teeSummaryLabel = document.getElementById('teeSummaryLabel') as HTMLElement;
     if (giftTeeEl) {
       if (subtotal >= 120) {
         giftTeeEl.hidden = false;
@@ -325,8 +336,18 @@ const minProductPrice = Math.min(...products.map(p => Math.min(...Object.values(
         });
         const reminder = giftTeeEl.querySelector('.gift-tee-reminder') as HTMLElement;
         if (reminder) reminder.hidden = !!(savedSize && savedColor);
+        // Update order summary tee row
+        if (teeSummaryRow) teeSummaryRow.hidden = false;
+        if (teeSummaryLabel) {
+          if (savedColor && savedSize) {
+            teeSummaryLabel.textContent = `🎁 Free Tee (${savedColor}, Size ${savedSize})`;
+          } else {
+            teeSummaryLabel.textContent = '🎁 Free Tee (select size & color)';
+          }
+        }
       } else {
         giftTeeEl.hidden = true;
+        if (teeSummaryRow) teeSummaryRow.hidden = true;
       }
     }
 
@@ -514,6 +535,9 @@ const minProductPrice = Math.min(...products.map(p => Math.min(...Object.values(
     margin-bottom: 4rem;
   }
 
+  /* Left column */
+  .cart-left { display: flex; flex-direction: column; gap: 1rem; }
+
   /* Items */
   .cart-items { display: flex; flex-direction: column; gap: 1rem; }
 
@@ -669,7 +693,7 @@ const minProductPrice = Math.min(...products.map(p => Math.min(...Object.values(
     margin-bottom: 1.25rem;
   }
 
-  .btn-full { width: 120%; text-align: center; }
+  .btn-full { width: 100%; text-align: center; }
 
   .checkout-note {
     text-align: center;
@@ -818,6 +842,14 @@ const minProductPrice = Math.min(...products.map(p => Math.min(...Object.values(
   }
   .shipping-info p { margin: 0 0 0.25rem; }
   .shipping-info p:last-child { margin: 0; }
+
+  /* Tee summary row */
+  .tee-summary-row { color: var(--text); }
+  .tee-summary-free {
+    font-weight: 700;
+    color: #2d6a2d;
+    white-space: nowrap;
+  }
 
   /* Gift tee section */
   .gift-tee-section {
