@@ -4,7 +4,7 @@ description: "The Mayan cacao ceremony is one of the oldest spiritual practices 
 pubDate: 2026-09-22
 category: culture
 keywords: ["cacao ceremony", "cacao ceremony recipe", "mayan cacao ceremony", "ceremonial cacao", "how to do a cacao ceremony", "cacao ritual", "ancient mayan chocolate"]
-relatedProduct: "mut"
+relatedProduct: "cafe-maya-coffee-club"
 image: "/images/blog/cacao-ceremony.jpg"
 imageAlt: "Cacao pods and ancient Mayan cacao ceremony vessels"
 faqs:

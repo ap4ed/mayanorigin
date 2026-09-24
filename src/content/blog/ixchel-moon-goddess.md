@@ -4,7 +4,7 @@ description: "Ixchel was the Mayan goddess of the moon, medicine, fertility, and
 pubDate: 2026-09-20
 category: culture
 keywords: ["ix chel", "ixchel goddess", "mayan moon goddess", "ixchel mayan", "mayan goddess", "mayan deities"]
-relatedProduct: "mut"
+relatedProduct: "welchez-santa-isabel"
 image: "/images/blog/ixchel.jpg"
 imageAlt: "Mayan moon goddess Ixchel depicted in ancient stone art from Cozumel"
 faqs:

@@ -4,7 +4,7 @@ description: "From cacao and maize to fermented drinks and jungle harvests, the 
 pubDate: 2026-09-22
 category: culture
 keywords: ["mayan civilization food", "what did the maya eat", "ancient mayan food", "mayan diet", "mayan cacao", "mayan drinks", "mayan agriculture"]
-relatedProduct: "kukulkan"
+relatedProduct: "cafe-maya-reserva"
 image: "/images/blog/mayan-civilization-food.jpg"
 faqs:
   - q: "What did the ancient Maya eat?"
