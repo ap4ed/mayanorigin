@@ -26,7 +26,7 @@ But Honduras has six officially recognized coffee regions, and the conversation 
 
 Siguatepeque is one of the ones that gets overlooked. That's a mistake.
 
-## Where Siguatepeque Is
+## Siguatepeque, Dead Center of Honduras
 
 Siguatepeque sits in the Comayagua department, roughly at the geographic center of Honduras. The city itself sits at about 1,100 meters above sea level — already high by most standards — and the farms surrounding it climb considerably higher. Finca El Zapote, the farm we source from, is cultivated at 1,550 masl.
 
@@ -50,7 +50,7 @@ Finca El Zapote is their flagship single-origin lot. The beans are hand-selected
 
 The farming practices are regenerative — focused on soil health, shade growing, and long-term land stewardship rather than maximizing short-term yield. That philosophy shows in the cup. Well-tended soil produces more complex coffee.
 
-## Why We Carry It
+## One Farm. One Producer. No Vague Claims.
 
 We added Finca El Zapote to the Mayan Origin collection because it represents something we think matters: a single farm, a known producer, practices you can verify, and a cup that earns its place.
 
@@ -58,7 +58,7 @@ Honduras has no shortage of generic "Honduras coffee" sold under vague sourcing 
 
 It also gives you a direct comparison point. If you've tried our [Balam medium roast](/shop/balam/) from Copán, Finca El Zapote lets you taste what a different Honduran region and a different producer brings to the same roast level. Same country. Different altitude, different farm, different hands. The cup tells you the difference.
 
-## What to Expect in the Cup
+## Clean, Bright, Versatile — What the Cup Delivers
 
 Sigua's Finca El Zapote is a medium roast, washed arabica. Expect:
 
@@ -73,7 +73,7 @@ It's a versatile cup. It works as a pour over, where the clean profile really op
 
 The story of Honduran coffee is still being written. Ten years ago, Honduras wasn't on most specialty coffee buyers' radar at all. Today, Honduran lots regularly win at Cup of Excellence. Mythoz Coffee — another producer we carry — took home a national award at the Global Coffee Awards 2025.
 
-Siguatepeque won't be overlooked forever. The farms are there. The altitude is there. Producers like Sigua are doing the work to document and promote what they grow. It's only a matter of time before the name carries the same weight as Copán or Marcala.
+Siguatepeque won't be overlooked forever. The farms and the altitude are both there. Producers like Sigua are doing the work to document and promote what they grow. It's only a matter of time before the name carries the same weight as Copán or Marcala.
 
 You can get there first.
 
