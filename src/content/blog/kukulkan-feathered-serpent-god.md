@@ -86,7 +86,7 @@ They share the same origin: the Feathered Serpent deity that appears across Meso
 Kukulkan is depicted as a serpent covered in quetzal feathers, often with a human face emerging from its mouth. At Chichen Itza, his stone heads appear at the base of El Castillo's staircases, massive fanged serpent heads marking the boundary between earth and underworld.
 
 **Why did the Maya build pyramids for Kukulkan?**
-Pyramids served as mountains, artificial sacred mountains that connected earth and sky. El Castillo's equinox shadow effect wasn't just artistic; it was a demonstration of Kukulkan's presence and power on specific astronomical dates. The pyramid was a calendar built in stone.
+Pyramids served as mountains, artificial sacred mountains that connected earth and sky. El Castillo's equinox shadow effect demonstrated Kukulkan's presence and power on specific astronomical dates. The pyramid was a calendar built in stone.
 
 **Where is Kukulkan coffee grown?**
 Our Kukulkan dark roast is grown in the highlands of Copán, Honduras, the heart of Mayan territory in Central America, at 1,300–1,700 meters above sea level.

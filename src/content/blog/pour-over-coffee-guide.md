@@ -30,8 +30,6 @@ There's no pressure to compensate for a weak roast, no full-immersion to disguis
 
 That's exactly why it's the best method for a high-quality light roast. The bright acidity, floral aromatics, and natural fruit sweetness that make a light roast special are fully preserved by pour over's clean extraction. A paper filter removes sediment and oils that would muddy those delicate notes, leaving a cup that's clear, vivid, and complex.
 
-If you've ever had pour over coffee at a specialty café and wondered why it tasted so different from drip at home, this guide explains why.
-
 ## What You Need
 
 Pour over can be done with simple or expensive equipment. Start simple.

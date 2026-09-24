@@ -28,8 +28,6 @@ The Mayan pantheon was one of the most complex religious systems ever developed 
 
 Understanding the Mayan gods means understanding how the Maya understood the world: as an interconnected web of natural forces, each with divine personality, each requiring attention, respect, and ceremony.
 
-This guide covers the major deities of the classical Mayan world, particularly those connected to the highlands of Copán, Honduras, the heartland where some of the most extraordinary Mayan art and architecture was ever created.
-
 ## Itzamná: The Supreme Creator
 
 At the top of the Mayan pantheon stood **Itzamná**, the lord of the heavens, creator of all things, and patron of knowledge and writing.

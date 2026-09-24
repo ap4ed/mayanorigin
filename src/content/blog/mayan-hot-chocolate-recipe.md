@@ -30,8 +30,6 @@ The ancient Maya were the first civilization to consume cacao as a drink, and wh
 
 It was not a dessert drink. It was a sacred one.
 
-This recipe honors that tradition while making something genuinely delicious for a modern kitchen.
-
 ## A Brief History of Mayan Hot Chocolate
 
 Cacao (*Theobroma cacao*, meaning "food of the gods" in Greek) originated in Mesoamerica. The Maya were cultivating and consuming cacao at least 3,500 years ago. There is archaeological evidence of cacao use at sites in Honduras dating to 1400 BCE.

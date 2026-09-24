@@ -27,8 +27,6 @@ Every crop had a deity. Every meal carried ritual significance. Maize, corn, was
 
 This relationship between food, divinity, and daily life ran through everything the Maya grew, harvested, prepared, and consumed, from the cacao drink shared at royal courts to the tamales left at temple altars.
 
-Understanding Mayan food means understanding how they saw the world.
-
 ## Maize: The Foundation of Everything
 
 No crop was more important to the ancient Maya than maize.
