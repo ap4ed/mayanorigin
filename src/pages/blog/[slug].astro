@@ -144,6 +144,7 @@ const categoryLabels: Record<string, string> = {
           <time class="post-date" datetime={entry.data.pubDate.toISOString()}>
             {entry.data.pubDate.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
           </time>
+          <span class="post-author">By Mayan Origin Coffee Co.</span>
           {entry.data.image && (
             <img
               src={entry.data.image}
@@ -267,6 +268,14 @@ const categoryLabels: Record<string, string> = {
     color: var(--muted);
     font-family: 'DM Sans', sans-serif;
     display: block;
+    margin-bottom: 0.3rem;
+  }
+
+  .post-author {
+    font-size: 0.82rem;
+    color: var(--muted);
+    font-family: 'DM Sans', sans-serif;
+    display: block;
     margin-bottom: 1.5rem;
   }
 
@@ -309,7 +318,7 @@ const categoryLabels: Record<string, string> = {
   }
 
   /* Sidebar */
-  .post-sidebar { position: sticky; top: 100px; display: flex; flex-direction: column; gap: 1.5rem; }
+  .post-sidebar { position: sticky; top: 100px; max-height: calc(100vh - 120px); overflow-y: auto; display: flex; flex-direction: column; gap: 1.5rem; }
 
   .sidebar-card {
     background: #fff;

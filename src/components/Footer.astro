@@ -15,6 +15,7 @@ const year = new Date().getFullYear();
         <p class="footer-about">
           Single-origin coffee from Copán, Honduras. Roasted in small batches and shipped directly to your door.
         </p>
+        <a href="mailto:hello@mayanorigin.com" class="footer-contact">hello@mayanorigin.com</a>
         <div class="footer-social">
           <!-- Instagram -->
           <a href="#" class="social-icon" aria-label="Instagram" rel="noopener noreferrer">
@@ -123,6 +124,17 @@ const year = new Date().getFullYear();
     color: #888;
     max-width: 340px;
   }
+
+  .footer-contact {
+    display: inline-block;
+    font-size: 0.85rem;
+    color: #888;
+    text-decoration: none;
+    font-family: 'DM Sans', sans-serif;
+    margin-bottom: 1rem;
+    transition: color 0.15s;
+  }
+  .footer-contact:hover { color: #c9943a; }
 
   /* Social icons */
   .footer-social {
