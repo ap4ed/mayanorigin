@@ -1,13 +1,19 @@
 ---
-title: "Mayan Hot Chocolate Recipe (The Ancient Original)"
-description: "The original hot chocolate wasn't sweet. It was spiced, bitter, and ceremonial. Here's how to make authentic Mayan hot chocolate at home using cacao, chili, and honey. The recipe that started it all."
+title: "Authentic Mayan Hot Chocolate Recipe (With Cacao, Chili & Honey)"
+description: "Learn how to make authentic Mayan hot chocolate — the original pre-Columbian cacao drink made with raw cacao, dried chili, and honey. No milk, no sugar. Just the ancient recipe that started it all."
 pubDate: 2026-09-20
 category: recipes
-keywords: ["hot cocoa drink recipe", "mayan hot chocolate", "ancient chocolate drink", "cacao drink recipe", "xocolatl recipe", "mayan cacao drink", "how to make hot chocolate from cacao"]
+keywords: ["mayan hot chocolate", "mayan hot chocolate recipe", "how to make mayan hot chocolate", "authentic mayan hot chocolate", "ancient hot chocolate recipe", "cacao drink recipe", "xocolatl recipe", "mayan cacao drink", "mayan chocolate drink", "hot cocoa from scratch"]
 relatedProduct: "balam"
 image: "/images/blog/mayan-hot-chocolate.jpg"
 imageAlt: "Dark Mayan hot chocolate in a clay cup with cacao nibs and chili"
 faqs:
+  - q: "What is Mayan hot chocolate?"
+    a: "Mayan hot chocolate is the original pre-Columbian cacao drink — made with ground cacao, water, chili, and honey. It predates modern hot chocolate by thousands of years. The Maya called it xocolatl and consumed it as a ceremonial, medicinal, and elite drink. It was bitter, frothy, and spiced — nothing like the sweet hot cocoa we know today."
+  - q: "How is Mayan hot chocolate different from regular hot chocolate?"
+    a: "Modern hot chocolate uses milk, sugar, and processed cocoa powder. Mayan hot chocolate uses water, raw cacao, dried chili, and honey. It is less sweet, more bitter, spicier, and richer in cacao flavor. The froth — created by pouring from height — was considered the best part of the drink."
+  - q: "What are the ingredients in Mayan hot chocolate?"
+    a: "The core ingredients are raw cacao powder or ground cacao nibs, water, a dried chili pepper, cinnamon, sea salt, and honey. No sugar, no dairy in the original. Modern versions sometimes add oat milk for creaminess."
   - q: "What is Mayan hot chocolate called?"
     a: "The ancient Mayan word for their cacao drink was xocolātl. This Nahuatl word is the origin of the English word chocolate."
   - q: "Did the Maya drink hot or cold chocolate?"
@@ -119,6 +125,15 @@ Our wider collection includes [Mythoz](/shop/mythoz-classic/), winner of the Glo
 ---
 
 ## Frequently Asked Questions
+
+**What is Mayan hot chocolate?**
+Mayan hot chocolate is the original pre-Columbian cacao drink — made with ground cacao, water, chili, and honey. It predates modern hot chocolate by thousands of years. The Maya consumed it as a ceremonial, medicinal, and elite drink. It was bitter, frothy, and spiced, with no sugar and no dairy.
+
+**How is Mayan hot chocolate different from regular hot chocolate?**
+Modern hot chocolate uses milk, sugar, and processed cocoa powder. Mayan hot chocolate uses water, raw cacao, dried chili, and honey. The result is less sweet, more bitter, spicier, and richer in true cacao flavor. The froth — created by pouring the liquid from a height — was considered the most valuable part of the drink, not an afterthought.
+
+**What are the ingredients in Mayan hot chocolate?**
+The core ingredients are raw cacao powder (or ground cacao nibs), water, a dried chili pepper, cinnamon, sea salt, and honey. That's it. No milk, no sugar, no vanilla in the original. Modern adaptations sometimes add oat milk for creaminess — that's a reasonable substitution.
 
 **What is Mayan hot chocolate called?**
 The ancient Mayan word for their cacao drink was *xocolātl* (also spelled xocolatl). This Nahuatl word is the origin of the English word "chocolate."
