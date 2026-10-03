@@ -1,9 +1,9 @@
 ---
-title: "Mayan Gods: The Complete Guide to the Major Deities"
-description: "The ancient Maya worshipped hundreds of gods, each governing a different part of the natural and spiritual world. Here's the complete guide to the major Mayan deities, their powers, and their legacy."
+title: "Mayan Gods: Full List of Deities, Names & Powers"
+description: "The ancient Maya worshipped hundreds of gods. Here is the complete list of the major Mayan deities — their names, powers, and stories — from Itzamná the creator god to Ah Puch, lord of the underworld."
 pubDate: 2026-09-21
 category: culture
-keywords: ["mayan gods", "mayan deities", "ancient mayan religion", "mayan mythology", "list of mayan gods", "mayan pantheon", "mayan god names"]
+keywords: ["mayan gods", "mayan deities", "ancient mayan religion", "mayan mythology", "list of mayan gods", "mayan pantheon", "mayan god names", "mayan creator god", "mayan underworld gods", "mayan god of death"]
 image: "/images/blog/mayan-gods.jpg"
 relatedProduct: "mythoz-classic"
 imageAlt: "Stone carvings of ancient Mayan deities at the Copán ruins in Honduras"
@@ -12,6 +12,12 @@ faqs:
     a: "The Maya worshipped hundreds of deities. The exact number is difficult to determine, as the pantheon was highly regional and changed across 2,000+ years of Maya civilization."
   - q: "Who was the most important Mayan god?"
     a: "Itzamná was often considered the supreme creator god. Kukulkan was the most widely revered across Mesoamerica. Chaac was probably the most prayed-to in daily life."
+  - q: "Who is the Mayan creator god?"
+    a: "Itzamná is the Mayan creator god — lord of the heavens, patron of writing and knowledge, and husband of Ixchel. He was credited with creating the world and giving the Maya their hieroglyphic script."
+  - q: "What are the Mayan underworld gods?"
+    a: "The Mayan underworld Xibalba was ruled by 12 death lords. The most prominent was Ah Puch (also called Kisin or Hun Ahau), depicted as a skeletal figure. The Hero Twins Hunahpu and Xbalanque famously defeated the lords of Xibalba in the Popol Vuh."
+  - q: "Who is the Mayan god of death?"
+    a: "Ah Puch (also called Kisin) was the Mayan god of death and ruler of Xibalba, the underworld. He was depicted as a skeletal figure with bloated flesh, associated with owls and the number ten."
   - q: "What is the Mayan underworld called?"
     a: "The Mayan underworld was called Xibalba, meaning place of fear. It had 12 lords and multiple levels."
   - q: "Are the Mayan gods still worshipped?"
@@ -28,7 +34,24 @@ The Mayan pantheon was one of the most complex religious systems ever developed 
 
 Understanding the Mayan gods means understanding how the Maya understood the world: as an interconnected web of natural forces, each with divine personality, each requiring attention, respect, and ceremony.
 
-## Itzamná: The Supreme Creator
+## The Major Mayan Gods: Quick Reference
+
+| God | Domain | Symbol |
+|---|---|---|
+| Itzamná | Creation, knowledge, writing | Elderly man with hooked nose |
+| Kukulkan | Wind, rain, Venus, creation | Feathered serpent |
+| Ixchel | Moon, medicine, weaving | Woman with serpent headdress |
+| Balam | Night, underworld, jaguar power | Jaguar |
+| Chaac | Rain, thunder, lightning | Long-nosed figure with lightning axe |
+| Hun Hunahpu | Maize, death, rebirth | Young man with corn cob headdress |
+| Ah Puch | Death, darkness, disaster | Skeletal figure |
+| Kinich Ahau | Sun | Sun disc and jaguar (night form) |
+| Hunahpu & Xbalanque | Heroism, death, resurrection | Twin ballplayers |
+| The Bacabs | Four cardinal directions | Four jaguar gods at world's corners |
+
+---
+
+## Itzamná: The Mayan Creator God
 
 At the top of the Mayan pantheon stood **Itzamná**, the lord of the heavens, creator of all things, and patron of knowledge and writing.
 
@@ -166,6 +189,15 @@ The Maya worshipped hundreds of deities, though the exact number is difficult to
 
 **Who was the most important Mayan god?**
 It depends on the period and region. Itzamná was often considered the supreme creator god. Kukulkan was the most widely revered across Mesoamerica. Chaac was probably the most prayed-to in daily life, given how much the Maya depended on rain for agriculture.
+
+**Who is the Mayan creator god?**
+Itzamná is the Mayan creator god — lord of the heavens, patron of knowledge and writing, and husband of Ixchel. He stands at the top of the Mayan pantheon as the deity who created the world, gave the Maya their hieroglyphic script, and in some traditions had the power to resurrect the dead.
+
+**What are the Mayan underworld gods?**
+The Mayan underworld, Xibalba, was ruled by 12 death lords. The most prominent was Ah Puch (also called Kisin or Hun Ahau), depicted as a skeletal figure of decay and darkness. The other lords presided over specific forms of suffering: disease, pain, starvation, and fear. In the Popol Vuh, the Hero Twins Hunahpu and Xbalanque descend into Xibalba and ultimately defeat its lords through cunning — making their story the Maya's central myth of death and resurrection.
+
+**Who is the Mayan god of death?**
+Ah Puch (also known as Kisin) was the primary Mayan god of death, ruling the lowest level of Xibalba. He was depicted as a skeletal figure with bloated flesh, associated with owls, the smell of decay, and the number ten. Unlike some death deities in other traditions, Ah Puch was not a gentle figure — he represented the terrifying, unavoidable reality of death.
 
 **What is the Mayan underworld called?**
 The Mayan underworld was called **Xibalba**, meaning "place of fear." It had 12 lords and multiple levels, each more terrifying than the last. The Hero Twins descended into Xibalba and ultimately triumphed over its lords, making their story the Maya's model for death and resurrection.
