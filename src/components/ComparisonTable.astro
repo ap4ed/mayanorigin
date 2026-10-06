@@ -1,0 +1,67 @@
+---
+interface Row {
+  feature: string;
+  [product: string]: string;
+}
+
+interface Props {
+  products: string[];
+  rows: Row[];
+}
+
+const { products, rows } = Astro.props;
+---
+
+<div class="ct-wrapper">
+  <table class="ct-table">
+    <thead>
+      <tr>
+        <th>Feature</th>
+        {products.map((p) => <th>{p}</th>)}
+      </tr>
+    </thead>
+    <tbody>
+      {rows.map((row) => (
+        <tr>
+          <td class="ct-feature">{row.feature}</td>
+          {products.map((p) => <td>{row[p] ?? '—'}</td>)}
+        </tr>
+      ))}
+    </tbody>
+  </table>
+</div>
+
+<style>
+  .ct-wrapper {
+    overflow-x: auto;
+    margin: 2rem 0;
+  }
+  .ct-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+    font-family: 'DM Sans', sans-serif;
+  }
+  .ct-table th,
+  .ct-table td {
+    padding: 0.65rem 1rem;
+    border: 1px solid var(--border, #e4ddd4);
+    text-align: left;
+  }
+  .ct-table thead th {
+    background: var(--green, #1b2e1b);
+    color: #fff;
+    font-weight: 600;
+  }
+  .ct-table thead th:first-child {
+    background: var(--cream, #faf8f4);
+    color: var(--text, #2d2d2d);
+  }
+  .ct-table tbody tr:nth-child(even) td {
+    background: var(--cream, #faf8f4);
+  }
+  .ct-table .ct-feature {
+    font-weight: 600;
+    color: var(--text, #2d2d2d);
+  }
+</style>
