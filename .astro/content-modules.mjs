@@ -1,1 +1,16 @@
-export default new Map();
+
+export default new Map([
+["src/content/blog/balam-jaguar-god.mdx", () => import("astro:content-layer-deferred-module?astro%3Acontent-layer-deferred-module=&fileName=src%2Fcontent%2Fblog%2Fbalam-jaguar-god.mdx&astroContentModuleFlag=true")],
+["src/content/blog/cacao-ceremony.mdx", () => import("astro:content-layer-deferred-module?astro%3Acontent-layer-deferred-module=&fileName=src%2Fcontent%2Fblog%2Fcacao-ceremony.mdx&astroContentModuleFlag=true")],
+["src/content/blog/coffee-gifts-for-coffee-lovers.mdx", () => import("astro:content-layer-deferred-module?astro%3Acontent-layer-deferred-module=&fileName=src%2Fcontent%2Fblog%2Fcoffee-gifts-for-coffee-lovers.mdx&astroContentModuleFlag=true")],
+["src/content/blog/coffee-grind-size-guide.mdx", () => import("astro:content-layer-deferred-module?astro%3Acontent-layer-deferred-module=&fileName=src%2Fcontent%2Fblog%2Fcoffee-grind-size-guide.mdx&astroContentModuleFlag=true")],
+["src/content/blog/copan-honduras-coffee.mdx", () => import("astro:content-layer-deferred-module?astro%3Acontent-layer-deferred-module=&fileName=src%2Fcontent%2Fblog%2Fcopan-honduras-coffee.mdx&astroContentModuleFlag=true")],
+["src/content/blog/french-press-guide.mdx", () => import("astro:content-layer-deferred-module?astro%3Acontent-layer-deferred-module=&fileName=src%2Fcontent%2Fblog%2Ffrench-press-guide.mdx&astroContentModuleFlag=true")],
+["src/content/blog/ixchel-moon-goddess.mdx", () => import("astro:content-layer-deferred-module?astro%3Acontent-layer-deferred-module=&fileName=src%2Fcontent%2Fblog%2Fixchel-moon-goddess.mdx&astroContentModuleFlag=true")],
+["src/content/blog/kukulkan-feathered-serpent-god.mdx", () => import("astro:content-layer-deferred-module?astro%3Acontent-layer-deferred-module=&fileName=src%2Fcontent%2Fblog%2Fkukulkan-feathered-serpent-god.mdx&astroContentModuleFlag=true")],
+["src/content/blog/mayan-civilization-food.mdx", () => import("astro:content-layer-deferred-module?astro%3Acontent-layer-deferred-module=&fileName=src%2Fcontent%2Fblog%2Fmayan-civilization-food.mdx&astroContentModuleFlag=true")],
+["src/content/blog/mayan-gods-complete-guide.mdx", () => import("astro:content-layer-deferred-module?astro%3Acontent-layer-deferred-module=&fileName=src%2Fcontent%2Fblog%2Fmayan-gods-complete-guide.mdx&astroContentModuleFlag=true")],
+["src/content/blog/mayan-hot-chocolate-recipe.mdx", () => import("astro:content-layer-deferred-module?astro%3Acontent-layer-deferred-module=&fileName=src%2Fcontent%2Fblog%2Fmayan-hot-chocolate-recipe.mdx&astroContentModuleFlag=true")],
+["src/content/blog/pour-over-coffee-guide.mdx", () => import("astro:content-layer-deferred-module?astro%3Acontent-layer-deferred-module=&fileName=src%2Fcontent%2Fblog%2Fpour-over-coffee-guide.mdx&astroContentModuleFlag=true")],
+["src/content/blog/siguatepeque-honduras-coffee.mdx", () => import("astro:content-layer-deferred-module?astro%3Acontent-layer-deferred-module=&fileName=src%2Fcontent%2Fblog%2Fsiguatepeque-honduras-coffee.mdx&astroContentModuleFlag=true")]]);
+		

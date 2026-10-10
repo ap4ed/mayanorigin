@@ -33,3 +33,10 @@ Edit `src/data/products.ts` to add/change coffees.
 ## Deployment
 
 Push to GitHub -> connect to Vercel -> add .env variables in Vercel dashboard.
+
+## Blog posts — mandatory rule
+
+Every blog post MUST be run through the unslop skill before saving or pushing. No exceptions.
+
+Skill directory: `/Users/alfrepreci/.claude/skills/unslop/`
+Command: `/unslop rewrite <file-path>`
