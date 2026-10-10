@@ -1,0 +1,198 @@
+---
+---
+
+<div class="notify-overlay" id="notifyOverlay" hidden>
+  <div class="notify-modal">
+    <button class="notify-close" id="notifyClose" aria-label="Close">&times;</button>
+
+    <div class="notify-content" id="notifyForm">
+      <h3>Get Notified</h3>
+      <p id="notifyProduct">We'll email you when this coffee is available.</p>
+      <form id="notifyEmailForm">
+        <input
+          type="email"
+          name="email"
+          placeholder="Your email address"
+          required
+          autocomplete="email"
+          class="notify-input"
+        />
+        <input type="hidden" name="product" id="notifyProductInput" />
+        <input type="hidden" name="_subject" value="Mayan Origin — Notify Me Signup" />
+        <button type="submit" class="btn btn-primary notify-submit">Notify Me</button>
+      </form>
+    </div>
+
+    <div class="notify-success" id="notifySuccess" hidden>
+      <p class="notify-check">&#10003;</p>
+      <h3>You're on the list!</h3>
+      <p>We'll let you know as soon as it launches.</p>
+    </div>
+
+    <div class="notify-error" id="notifyError" hidden>
+      <h3>Something went wrong</h3>
+      <p>Please try again or email us at <a href="mailto:hello@mayanorigin.com">hello@mayanorigin.com</a>.</p>
+    </div>
+  </div>
+</div>
+
+<script is:inline>
+(function() {
+  var overlay = document.getElementById('notifyOverlay');
+  var closeBtn = document.getElementById('notifyClose');
+  var form = document.getElementById('notifyEmailForm');
+  var formSection = document.getElementById('notifyForm');
+  var successSection = document.getElementById('notifySuccess');
+  var errorSection = document.getElementById('notifyError');
+  var productInput = document.getElementById('notifyProductInput');
+  var productText = document.getElementById('notifyProduct');
+
+  function openModal(productName) {
+    productInput.value = productName;
+    productText.textContent = "We'll email you when " + productName + " is available.";
+    formSection.hidden = false;
+    successSection.hidden = true;
+    errorSection.hidden = true;
+    overlay.hidden = false;
+    document.body.style.overflow = 'hidden';
+    form.querySelector('input[type="email"]').focus();
+  }
+
+  function closeModal() {
+    overlay.hidden = true;
+    document.body.style.overflow = '';
+  }
+
+  // Listen for clicks on any Notify Me button
+  document.addEventListener('click', function(e) {
+    var btn = e.target.closest('[data-notify]');
+    if (btn) {
+      e.preventDefault();
+      openModal(btn.getAttribute('data-notify'));
+    }
+  });
+
+  closeBtn.addEventListener('click', closeModal);
+  overlay.addEventListener('click', function(e) {
+    if (e.target === overlay) closeModal();
+  });
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && !overlay.hidden) closeModal();
+  });
+
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    var submitBtn = form.querySelector('.notify-submit');
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Sending…';
+
+    var formData = new FormData(form);
+
+    fetch('https://formspree.io/f/' + (document.body.dataset.formspreeId || ''), {
+      method: 'POST',
+      body: formData,
+      headers: { 'Accept': 'application/json' }
+    }).then(function(res) {
+      if (res.ok) {
+        formSection.hidden = true;
+        successSection.hidden = false;
+        form.reset();
+      } else {
+        formSection.hidden = true;
+        errorSection.hidden = false;
+      }
+    }).catch(function() {
+      formSection.hidden = true;
+      errorSection.hidden = false;
+    }).finally(function() {
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Notify Me';
+    });
+  });
+})();
+</script>
+
+<style>
+  .notify-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    padding: 1rem;
+  }
+  .notify-overlay[hidden] { display: none; }
+
+  .notify-modal {
+    background: #fff;
+    border-radius: 12px;
+    padding: 2.5rem 2rem;
+    max-width: 420px;
+    width: 100%;
+    position: relative;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+    text-align: center;
+  }
+
+  .notify-close {
+    position: absolute;
+    top: 0.75rem;
+    right: 1rem;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: #999;
+    cursor: pointer;
+    line-height: 1;
+    padding: 0.25rem;
+  }
+  .notify-close:hover { color: #333; }
+
+  .notify-modal h3 {
+    font-family: 'Playfair Display', 'Cinzel', Georgia, serif;
+    font-size: 1.4rem;
+    margin: 0 0 0.5rem;
+    color: #1b2e1b;
+  }
+
+  .notify-modal p {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.92rem;
+    color: #6b6b6b;
+    margin: 0 0 1.25rem;
+    line-height: 1.5;
+  }
+
+  .notify-input {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 1.5px solid #e4ddd4;
+    border-radius: 6px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.95rem;
+    outline: none;
+    transition: border-color 0.15s;
+    margin-bottom: 0.75rem;
+  }
+  .notify-input:focus {
+    border-color: #c9943a;
+  }
+
+  .notify-submit {
+    width: 100%;
+  }
+
+  .notify-check {
+    font-size: 2.5rem;
+    color: #2d6a2d;
+    margin: 0 0 0.5rem;
+    line-height: 1;
+  }
+
+  .notify-success a,
+  .notify-error a {
+    color: #c9943a;
+  }
+</style>

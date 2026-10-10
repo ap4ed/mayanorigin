@@ -37,7 +37,7 @@ const isComingSoon = product.comingSoon === true;
       <p class="card-price">From <strong>${startingPrice}</strong></p>
     )}
     {isComingSoon ? (
-      <span class="btn btn-outline card-cta coming-soon-btn">Notify Me</span>
+      <button type="button" class="btn btn-outline card-cta coming-soon-btn" data-notify={product.name}>Notify Me</button>
     ) : (
       <a href={`/shop/${product.slug}/`} class="btn btn-primary card-cta">Shop Now</a>
     )}
@@ -163,7 +163,6 @@ const isComingSoon = product.comingSoon === true;
   }
 
   .coming-soon-btn {
-    cursor: default;
-    opacity: 0.7;
+    cursor: pointer;
   }
 </style>
