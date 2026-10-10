@@ -10,6 +10,7 @@ export interface Product {
   prices: Record<string, number>;
   image: string;
   brand?: string;
+  comingSoon?: boolean;
   metaTitle?: string;
   metaDescription?: string;
   ingredients?: string;
@@ -31,6 +32,7 @@ export const products: Product[] = [
     prices: { 'Whole Bean 16oz': 52 },
     image: '/images/balam.jpg',
     brand: 'Mayan Origin Coffee Co.',
+    comingSoon: true,
     metaTitle: 'Balam Medium Roast — Single Origin Honduras Coffee | Mayan Origin',
     metaDescription: 'Balam Medium Roast — single origin specialty coffee from the Mayan Highlands of Copán, Honduras. 1,300–1,700 masl. Brown sugar, toasted almond, clean citrus. Private label by Mayan Origin Coffee Co. Ships direct from Honduras.',
   },
@@ -47,6 +49,7 @@ export const products: Product[] = [
     prices: { 'Whole Bean 16oz': 52 },
     image: '/images/mut.jpg',
     brand: 'Mayan Origin Coffee Co.',
+    comingSoon: true,
     metaTitle: 'Mut Light Roast — Single Origin Honduras Coffee | Mayan Origin',
     metaDescription: 'Mut Light Roast — single origin specialty coffee from the Mayan Highlands of Copán, Honduras. 1,300–1,700 masl. Jasmine, orange blossom, stone fruit, honey finish. Private label by Mayan Origin Coffee Co. Ships direct from Honduras.',
   },
@@ -63,6 +66,7 @@ export const products: Product[] = [
     prices: { 'Whole Bean 16oz': 52 },
     image: '/images/kukulkan.jpg',
     brand: 'Mayan Origin Coffee Co.',
+    comingSoon: true,
     metaTitle: 'Kukulkan Dark Roast — Single Origin Honduras Coffee | Mayan Origin',
     metaDescription: 'Kukulkan Dark Roast — single origin specialty coffee from the Mayan Highlands of Copán, Honduras. 1,300–1,700 masl. Dark chocolate, smoky cedar, dried cherry. Private label by Mayan Origin Coffee Co. Ships direct from Honduras.',
   },

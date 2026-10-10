@@ -8,9 +8,10 @@ interface Props {
 
 const { product } = Astro.props;
 const startingPrice = getStartingPrice(product);
+const isComingSoon = product.comingSoon === true;
 ---
 
-<article class="product-card">
+<article class:list={['product-card', { 'coming-soon': isComingSoon }]}>
   <a href={`/shop/${product.slug}/`} class="card-image-link" tabindex="-1" aria-hidden="true">
     <div class="card-image">
       <img
@@ -21,6 +22,7 @@ const startingPrice = getStartingPrice(product);
         height="400"
       />
       <span class="roast-badge">{product.roast}</span>
+      {isComingSoon && <span class="coming-soon-badge">Coming February 2027</span>}
     </div>
   </a>
 
@@ -29,8 +31,16 @@ const startingPrice = getStartingPrice(product);
       <h2 class="card-name">{product.name}</h2>
     </a>
     <p class="card-subtitle">{product.brand ?? product.subtitle}</p>
-    <p class="card-price">From <strong>${startingPrice}</strong></p>
-    <a href={`/shop/${product.slug}/`} class="btn btn-primary card-cta">Shop Now</a>
+    {isComingSoon ? (
+      <p class="card-price coming-soon-text">Coming Soon</p>
+    ) : (
+      <p class="card-price">From <strong>${startingPrice}</strong></p>
+    )}
+    {isComingSoon ? (
+      <span class="btn btn-outline card-cta coming-soon-btn">Notify Me</span>
+    ) : (
+      <a href={`/shop/${product.slug}/`} class="btn btn-primary card-cta">Shop Now</a>
+    )}
   </div>
 </article>
 
@@ -128,5 +138,32 @@ const startingPrice = getStartingPrice(product);
   .card-cta {
     align-self: flex-start;
     margin-top: auto;
+  }
+
+  /* Coming Soon */
+  .coming-soon-badge {
+    position: absolute;
+    bottom: 0.75rem;
+    left: 0.75rem;
+    background: rgba(201, 148, 58, 0.92);
+    color: #fff;
+    font-size: 0.72rem;
+    font-weight: 700;
+    font-family: 'DM Sans', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 0.3rem 0.7rem;
+    border-radius: 100px;
+    backdrop-filter: blur(4px);
+  }
+
+  .coming-soon-text {
+    color: #c9943a;
+    font-weight: 600;
+  }
+
+  .coming-soon-btn {
+    cursor: default;
+    opacity: 0.7;
   }
 </style>

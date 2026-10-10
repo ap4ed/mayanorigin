@@ -2,6 +2,10 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import ProductCard from '../components/ProductCard.astro';
 import { products } from '../data/products';
+
+const privateLabel = products.filter(p => p.comingSoon);
+const welchez = products.filter(p => p.brand === 'Café Welchez');
+const otherPartners = products.filter(p => !p.comingSoon && p.brand !== 'Café Welchez');
 ---
 
 <BaseLayout
@@ -58,20 +62,51 @@ import { products } from '../data/products';
     </div>
   </section>
 
-  <!-- FEATURED PRODUCTS -->
+  <!-- PARTNER COFFEES -->
   <section class="products-section">
     <div class="container">
       <div class="section-header">
-        <h2>Three Roasts. Three Mayan Gods.</h2>
-        <p>Each coffee named after a deity of the ancient Maya — bold, bright, or balanced. Which one calls to you?</p>
+        <h2>Honduras Coffee, Direct to Your Door</h2>
+        <p>Specialty coffees from Honduran roasters — sourced direct, packed fresh, and shipped straight to you.</p>
       </div>
-      <div class="products-grid">
-        {products.map(product => (
-          <ProductCard product={product} />
-        ))}
+
+      <!-- Welchez row -->
+      <div class="brand-group">
+        <p class="brand-group-label">Café Welchez — Fifth-Generation Coffee Farmers, Copán</p>
+        <div class="products-grid grid-3">
+          {welchez.map(product => (
+            <ProductCard product={product} />
+          ))}
+        </div>
       </div>
+
+      <!-- Other partners -->
+      <div class="brand-group">
+        <p class="brand-group-label">More Honduran Roasters</p>
+        <div class="products-grid">
+          {otherPartners.map(product => (
+            <ProductCard product={product} />
+          ))}
+        </div>
+      </div>
+
       <div class="products-cta">
         <a href="/shop/" class="btn btn-outline">View All Coffees</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- OUR OWN ROASTS — COMING SOON -->
+  <section class="products-section coming-soon-section">
+    <div class="container">
+      <div class="section-header">
+        <h2>Three Roasts. Three Mayan Gods.</h2>
+        <p>Our own single-origin coffees from the highlands of Copán — each named after a deity of the ancient Maya. Coming February 2027.</p>
+      </div>
+      <div class="products-grid grid-3">
+        {privateLabel.map(product => (
+          <ProductCard product={product} />
+        ))}
       </div>
     </div>
   </section>
@@ -275,6 +310,30 @@ import { products } from '../data/products';
     gap: 1.75rem;
   }
 
+  .products-grid.grid-3 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .brand-group {
+    margin-bottom: 3rem;
+  }
+
+  .brand-group-label {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--muted);
+    margin: 0 0 1.25rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .coming-soon-section {
+    background: #f9f7f3;
+  }
+
   .products-cta {
     text-align: center;
     margin-top: 2.5rem;
@@ -413,13 +472,18 @@ import { products } from '../data/products';
       grid-template-columns: repeat(2, 1fr);
     }
 
+    .products-grid.grid-3 {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
     .why-grid {
       grid-template-columns: repeat(2, 1fr);
     }
   }
 
   @media (max-width: 560px) {
-    .products-grid {
+    .products-grid,
+    .products-grid.grid-3 {
       grid-template-columns: 1fr;
     }
 
