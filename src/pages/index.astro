@@ -29,7 +29,7 @@ const otherPartners = products.filter(p => !p.comingSoon && p.brand !== 'Café W
         </div>
       </div>
       <div class="hero-image">
-        <img src="/logo.png" alt="Mayan Origin Coffee Co." class="hero-logo" width="480" height="480" />
+        <img src="/images/welchez-signature-blend.webp" alt="Welchez Signature Blend — Specialty coffee from Copán, Honduras" class="hero-product-img" width="480" height="480" />
       </div>
     </div>
   </section>
@@ -73,7 +73,7 @@ const otherPartners = products.filter(p => !p.comingSoon && p.brand !== 'Café W
       <!-- Welchez row -->
       <div class="brand-group">
         <p class="brand-group-label">Café Welchez — Fifth-Generation Coffee Farmers, Copán</p>
-        <div class="products-grid grid-3">
+        <div class="products-grid">
           {welchez.map(product => (
             <ProductCard product={product} />
           ))}
@@ -103,7 +103,7 @@ const otherPartners = products.filter(p => !p.comingSoon && p.brand !== 'Café W
         <h2>Three Roasts. Three Mayan Gods.</h2>
         <p>Our own single-origin coffees from the highlands of Copán — each named after a deity of the ancient Maya. Coming February 2027.</p>
       </div>
-      <div class="products-grid grid-3">
+      <div class="products-grid">
         {privateLabel.map(product => (
           <ProductCard product={product} />
         ))}
@@ -157,22 +157,30 @@ const otherPartners = products.filter(p => !p.comingSoon && p.brand !== 'Café W
       <h2 class="why-title">Why Mayan Origin</h2>
       <div class="why-grid">
         <div class="why-card">
-          <div class="why-icon">🌿</div>
+          <div class="why-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2a7 7 0 0 1 7 7c0 5-7 13-7 13S5 14 5 9a7 7 0 0 1 7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+          </div>
           <h3>Direct Trade</h3>
           <p>We pay cooperatives fairly and know exactly where every bag comes from.</p>
         </div>
         <div class="why-card">
-          <div class="why-icon">📦</div>
+          <div class="why-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
+          </div>
           <h3>Packed Fresh</h3>
           <p>Every order is packed to order in Honduras — not sitting in a warehouse for months.</p>
         </div>
         <div class="why-card">
-          <div class="why-icon">🏔️</div>
+          <div class="why-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          </div>
           <h3>High Altitude</h3>
           <p>Coffee grown above 1,400 meters develops slower, producing denser, more complex beans.</p>
         </div>
         <div class="why-card">
-          <div class="why-icon">✈️</div>
+          <div class="why-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.4 2 2 0 0 1 3.6 1.22h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.8a16 16 0 0 0 6 6l.86-.86a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.61 16z"/></svg>
+          </div>
           <h3>Ships to the US</h3>
           <p>Delivered to your door in the continental United States, straight from Honduras.</p>
         </div>
@@ -243,11 +251,13 @@ const otherPartners = products.filter(p => !p.comingSoon && p.brand !== 'Café W
     align-items: center;
   }
 
-  .hero-logo {
+  .hero-product-img {
     width: 100%;
     max-width: 420px;
     height: auto;
-    filter: drop-shadow(0 24px 48px rgba(0,0,0,0.5));
+    border-radius: 8px;
+    box-shadow: 0 24px 64px rgba(0,0,0,0.4);
+    object-fit: cover;
   }
 
   /* TRUST BAR */
@@ -284,7 +294,7 @@ const otherPartners = products.filter(p => !p.comingSoon && p.brand !== 'Café W
 
   /* PRODUCTS */
   .products-section {
-    padding: 5rem 0;
+    padding: 6rem 0;
   }
 
   .section-header {
@@ -310,10 +320,6 @@ const otherPartners = products.filter(p => !p.comingSoon && p.brand !== 'Café W
     gap: 1.75rem;
   }
 
-  .products-grid.grid-3 {
-    grid-template-columns: repeat(3, 1fr);
-  }
-
   .brand-group {
     margin-bottom: 3rem;
   }
@@ -331,7 +337,7 @@ const otherPartners = products.filter(p => !p.comingSoon && p.brand !== 'Café W
   }
 
   .coming-soon-section {
-    background: #f9f7f3;
+    background: #ede8e0;
   }
 
   .products-cta {
@@ -343,7 +349,7 @@ const otherPartners = products.filter(p => !p.comingSoon && p.brand !== 'Café W
   .origin-section {
     background: var(--green);
     color: #fff;
-    padding: 5rem 0;
+    padding: 7rem 0;
   }
 
   .origin-inner {
@@ -398,7 +404,7 @@ const otherPartners = products.filter(p => !p.comingSoon && p.brand !== 'Café W
   }
 
   .stat-number {
-    font-family: 'Playfair Display', Georgia, serif;
+    font-family: 'Cinzel', Georgia, serif;
     font-size: 2.5rem;
     font-weight: 700;
     color: var(--gold);
@@ -413,7 +419,7 @@ const otherPartners = products.filter(p => !p.comingSoon && p.brand !== 'Café W
 
   /* WHY */
   .why-section {
-    padding: 5rem 0;
+    padding: 6rem 0 7rem;
     background: #fff;
   }
 
@@ -442,8 +448,10 @@ const otherPartners = products.filter(p => !p.comingSoon && p.brand !== 'Café W
   }
 
   .why-icon {
-    font-size: 2rem;
+    display: flex;
+    justify-content: center;
     margin-bottom: 1rem;
+    color: var(--gold);
   }
 
   .why-card h3 {
@@ -466,13 +474,10 @@ const otherPartners = products.filter(p => !p.comingSoon && p.brand !== 'Café W
       gap: 2.5rem;
     }
 
-    .hero-image { display: none; }
+    .hero-image { display: flex; margin-top: 0.5rem; }
+    .hero-product-img { max-width: 280px; }
 
     .products-grid {
-      grid-template-columns: repeat(2, 1fr);
-    }
-
-    .products-grid.grid-3 {
       grid-template-columns: repeat(2, 1fr);
     }
 
@@ -482,8 +487,7 @@ const otherPartners = products.filter(p => !p.comingSoon && p.brand !== 'Café W
   }
 
   @media (max-width: 560px) {
-    .products-grid,
-    .products-grid.grid-3 {
+    .products-grid {
       grid-template-columns: 1fr;
     }
 

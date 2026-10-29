@@ -31,6 +31,12 @@ export const POST: APIRoute = async ({ request }) => {
       headers: { 'Content-Type': 'application/json' },
     });
   }
+  if (items.length > 20) {
+    return new Response(JSON.stringify({ error: 'Too many items in cart.' }), {
+      status: 400,
+      headers: { 'Content-Type': 'application/json' },
+    });
+  }
 
   // Validate and price items server-side — never trust client-supplied prices
   const lineItems = [];

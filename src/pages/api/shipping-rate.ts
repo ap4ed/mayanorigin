@@ -4,7 +4,6 @@ interface CartItem {
   slug: string;
   size: string;
   qty: number;
-  price: number;
 }
 
 // Weight in lbs per size (product weight + bag/packaging)
