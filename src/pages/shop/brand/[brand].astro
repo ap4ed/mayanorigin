@@ -36,7 +36,7 @@ const config = brandConfig[brand!];
 if (!config) return Astro.redirect('/shop/');
 
 const brandProducts = products.filter(p => {
-  if (brand === 'mayan-origin') return !p.brand;
+  if (brand === 'mayan-origin') return !p.brand || p.brand === 'Mayan Origin Coffee Co.';
   return p.brand === config.name;
 });
 ---
