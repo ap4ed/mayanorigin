@@ -46,6 +46,23 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
   // Clear cart on successful order
   localStorage.removeItem('mo_cart');
   window.dispatchEvent(new Event('mo:cart-updated'));
+
+  // Fire GA4 purchase event using cart saved before Stripe redirect
+  const raw = sessionStorage.getItem('mo_last_cart');
+  if (raw) {
+    try {
+      const { items, value } = JSON.parse(raw);
+      if (typeof (window as any).gtag === 'function') {
+        (window as any).gtag('event', 'purchase', {
+          currency: 'USD',
+          value,
+          transaction_id: new URLSearchParams(window.location.search).get('session_id') ?? Date.now().toString(),
+          items: items.map((i: any) => ({ item_id: i.slug, price: i.price, quantity: i.qty })),
+        });
+      }
+    } catch {}
+    sessionStorage.removeItem('mo_last_cart');
+  }
 </script>
 
 <style>

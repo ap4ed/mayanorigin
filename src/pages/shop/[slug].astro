@@ -659,7 +659,7 @@ const bundleTotal = Object.values(product.prices)[0] + bundleItems.reduce((s, i)
   </div>
 </BaseLayout>
 
-<script define:vars={{ slug: product.slug }}>
+<script define:vars={{ slug: product.slug, productName: product.name }}>
   // Read all state from the DOM — no prices object needed
   let qty = 1;
 
@@ -726,6 +726,13 @@ const bundleTotal = Object.values(product.prices)[0] + bundleItems.reduce((s, i)
       }
       localStorage.setItem('mo_cart', JSON.stringify(cart));
       window.dispatchEvent(new Event('mo:cart-updated'));
+      if (typeof (window as any).gtag === 'function') {
+        (window as any).gtag('event', 'add_to_cart', {
+          currency: 'USD',
+          value: price * qty,
+          items: [{ item_id: slug, item_name: productName, price, quantity: qty }],
+        });
+      }
       const btn = document.getElementById('addToCart');
       if (btn) {
         btn.textContent = 'Added!';
